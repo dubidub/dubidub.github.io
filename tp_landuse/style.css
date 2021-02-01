@@ -1,23 +1,22 @@
 /* Layout */
 html {
-  display: flex; 
+  display: flex;
   flex-direction: column;
-} 
+}
 body {
-  display: inline-flex; 
-  flex-direction: column; 
+  display: inline-flex;
+  flex-direction: column;
   min-height: 100vh;
 }
 .wrapper {
-  display: block; 
-  flex: 1 1 auto; 
-  display: flex; 
+  display: block;
+  flex: 1 1 auto;
+  display: flex;
   flex-direction: row;
 }
 #map {
-  display: flex; 
-  flex: 1 0 auto;
-  height:80vh;
+  display: flex;
+  flex: 1;
 }
 
 @media (max-width: 640px) {
@@ -56,9 +55,9 @@ header, footer {
 	margin: 0;
 	border: 2px solid #fff;
 	color: #fff;
-} 
+}
 #town, #vill {
- width:100px;   
+ width:100px;
 }
 select {
   text-align: center;
