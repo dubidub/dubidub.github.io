@@ -9,11 +9,12 @@
 <body>
 <!-- partial:index.partial.html -->
 <header>
-  <h2>台北市各里土地使用分區查詢</h2>
-  <select width='40' id="town" onchange="villageSelect()">
+  <h1>台北市各里土地使用分區查詢</h1>
+  <select width='40' id="town" width="300" style="width: 300px" onchange="villageSelect()">
     <option value="">--行政區--</option>
   </select>
-  <select width='40' id="vill" onchange="villageShow()">
+  <p></p>
+  <select width='40' id="vill" width="300" style="width: 300px" onchange="villageShow()">
     <option value="">----里----</option>
   </select>
   <br/>
@@ -23,7 +24,7 @@
   <div class="wrapper">
     <iframe id="stats" src="https://dubidub.github.io/tp_landuse/stats/total_stats"></iframe>
     <iframe id="map" src="https://dubidub.github.io/tp_landuse/maps/tp_landuse_map.html" allowfullscreen></iframe>
-  </div> 
+  </div>
 </body>
 <!-- partial -->
   <script  src="./script.js"></script>
