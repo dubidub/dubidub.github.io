@@ -58,7 +58,7 @@ select {
   height: 50px;
 }
 
-@media screen and (max-width: 640px) {
+/* @media screen and (max-width: 640px) {
 	body {
   min-height: 0;
   }
@@ -72,4 +72,4 @@ select {
   #stats {
     width: auto;
   }
-}
+} */
