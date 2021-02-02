@@ -3,10 +3,34 @@ html {
   display: flex;
   flex-direction: column;
 }
+header {
+  padding: 10px;
+	margin: 0;
+	border: 2px solid #fff;
+	color: #fff;
+  background: dodgerblue;
+  text-align: center;
+}
+footer {
+  padding: 10px;
+	margin: 0;
+	border: 2px solid #fff;
+	color: #fff;
+  background: dodgerblue;
+  text-align: center;
+}
+p, a {
+  font-size: 12px;
+  line-height: 100%;
+}
 body {
   display: inline-flex;
   flex-direction: column;
   min-height: 100vh;
+  margin: 0;
+	background: #fff;
+	font-family: "Century Gothic", helvetica, arial, sans-serif;
+	/* font-size: 1.1em; */
 }
 .wrapper {
   display: block;
@@ -14,9 +38,24 @@ body {
   display: flex;
   flex-direction: row;
 }
+#stats {
+  margin: 0;
+	border: 2px solid #fff;
+	color: #fff;
+}
 #map {
   display: flex;
   flex: 1;
+  margin: 0;
+	border: 2px solid #fff;
+	color: #fff;
+}
+select {
+  text-align: center;
+  text-align-last: center;
+  font-size: 25px;
+  width: 200px;
+  height: 50px;
 }
 
 @media screen and (max-width: 640px) {
@@ -33,43 +72,4 @@ body {
   #stats {
     width: auto;
   }
-}
-
-/* Decoration */
-body {
-	margin: 0;
-	background: #fff;
-	font-family: "Century Gothic", helvetica, arial, sans-serif;
-	font-size: 1.1em;
-}
-header, footer {
-	padding: 10px;
-	margin: 0;
-	border: 2px solid #fff;
-	color: #fff;
-}
-#stats {
-	margin: 0;
-	border: 2px solid #fff;
-	color: #fff;
-}
-#map {
-	margin: 0;
-	border: 2px solid #fff;
-	color: #fff;
-}
-select {
-  text-align: center;
-  text-align-last: center;
-  font-size: 25px;
-  width: 200px;
-  height: 50px;
-}
-header {
-	background: dodgerblue;
-  text-align: center;
-}
-footer {
-	background: dodgerblue;
-  text-align: center;
 }
