@@ -19,35 +19,19 @@ body {
   flex: 1;
 }
 
-/* @media (max-width: 640px) {
-	body {
-  min-height: 0;
-  }
-	.wrapper {
-    flex-direction: column;
-  }
-	#map {
-		flex-basis: auto;
-  }
-} */
-
 @media screen and (max-width: 640px) {
 	body {
   min-height: 0;
   }
 	.wrapper {
     flex-direction: column;
-    /* display: flex; */
   }
 	#map {
 		flex-basis: auto;
-    /* display: flex; */
     height: 80vh;
 	}
   #stats {
     width: auto;
-    /* display: block; */
-    /* order: 1; */
   }
 }
 
@@ -65,24 +49,21 @@ header, footer {
 	color: #fff;
 }
 #stats {
-/* 	padding: 10px; */
 	margin: 0;
 	border: 2px solid #fff;
 	color: #fff;
 }
 #map {
-/* 	padding: 10px; */
 	margin: 0;
 	border: 2px solid #fff;
 	color: #fff;
 }
-#town, #vill {
- width:100px;
-}
 select {
   text-align: center;
   text-align-last: center;
-  font-size: 30px;
+  font-size: 25px;
+  width: 200px;
+  height: 50px;
 }
 header {
 	background: dodgerblue;
