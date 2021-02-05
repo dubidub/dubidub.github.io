@@ -15,6 +15,10 @@ window.onclick = function(event) {
   }
 }
 
+function home_map() {
+  var map = document.getElementById('map');
+  map.src = "https://dubidub.github.io/traffic_accident/resources/3_city_overview.html";
+}
 function tp_maplink1() {
   var map = document.getElementById('map');
   map.src = "https://dubidub.github.io/traffic_accident/resources/hexbin_tp";
