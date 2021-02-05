@@ -1,47 +1,47 @@
 <!DOCTYPE html>
-<html lang="zh-hant-TW" >
+<html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>台灣交通事故視覺化 | Adu Work in Progress</title>
+  <title>Road Safety Data Visualization 2019 - Taiwan | Adu Work in Progress</title>
   <link rel="stylesheet" href="./style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:image" content="https://dubidub.github.io/traffic_accident/cover.png" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://dubidub.github.io/traffic_accident/" />
-  <meta property="og:description" content="將2019年台灣交通事故斑點圖視覺化，快速定位交通事故熱區" />
+  <meta property="og:description" content="A visualization of Taiwan Road Safety Data in 2019. Heatmap, Hexbin map are created for 3 cities while data is open for customizable search. " />
 
 </head>
 <body>
 <!-- partial:index.partial.html -->
 <div class="wrapper">
-  <div class="title" onclick="home_map()">台灣交通事故視覺化 (2019年)
+  <div class="title" onclick="home_map()">Taiwan Road Safty Data 2019
   </div>
   <div class="navbar">
     <div class="dropdown Taipei">
-      <button class="dropbtn" onclick="myFunction(1)">台北市
+      <button class="dropbtn" onclick="myFunction(1)">Taipei
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content" id="myDropdown1">
-        <a onclick="tp_maplink1()">交通事故蜂窩圖</a>
-        <a onclick="tp_maplink2()">自訂搜尋條件</a>
+        <a onclick="tp_maplink1()">Hexbin</a>
+        <a onclick="tp_maplink2()">Customize</a>
       </div>
     </div>
     <div class="dropdown Taichung">
-      <button class="dropbtn" onclick="myFunction(2)">台中市
+      <button class="dropbtn" onclick="myFunction(2)">Taichung
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content" id="myDropdown2">
-        <a onclick="tc_maplink1()">蜂窩圖（動圖）</a>
-        <a onclick="tc_maplink2()">自訂搜尋條件</a>
+        <a onclick="tc_maplink1()">Hexbin (Time Playback)</a>
+        <a onclick="tc_maplink2()">Customize</a>
       </div>
     </div>
     <div class="dropdown Kaohsiung">
-      <button class="dropbtn" onclick="myFunction(3)">高雄市
+      <button class="dropbtn" onclick="myFunction(3)">Kaohsiung
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content" id="myDropdown3">
-        <a onclick="kh_maplink1()">熱區圖（動圖）</a>
-        <a onclick="kh_maplink2()">自訂搜尋條件</a>
+        <a onclick="kh_maplink1()">Heatmap (Time Playback)</a>
+        <a onclick="kh_maplink2()">Customize</a>
       </div>
     </div>
   </div>
@@ -52,8 +52,8 @@
   <script  src="./script.js"></script>
 </body>
 <footer>
-  <p>資料來源:
-    <a href='https://data.gov.tw/dataset/7440'>警政署資料集 | 內政部資料開放平台</a>
+  <p>Source:
+    <a href='https://www.npa.gov.tw/NPAGip/wSite/lp?ctNode=11500&xq_xCat=10&mp=4'>National Police Agency, Taiwan</a>
   </p>
 </footer>
 </html>
