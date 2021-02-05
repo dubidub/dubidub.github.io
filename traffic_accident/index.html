@@ -4,49 +4,52 @@
   <meta charset="UTF-8">
   <title>CodePen - A Pen by Adu</title>
   <link rel="stylesheet" href="./style.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
-
 <body>
-  <div class="wrapper">
-    <div class="title">台灣交通事故視覺化
+<!-- partial:index.partial.html -->
+<div class="wrapper">
+  <div class="title">台灣交通事故視覺化 (2019年)
+  </div>
+  <div class="navbar">
+    <div class="dropdown Taipei">
+      <button class="dropbtn" onclick="myFunction(1)">台北市
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content" id="myDropdown1">
+        <a onclick="tp_maplink1()">交通事故蜂窩圖</a>
+        <a onclick="tp_maplink2()">自訂搜尋條件</a>
+      </div>
     </div>
-    <div class="navbar">
-      <div class="dropdown Taipei">
-        <button class="dropbtn" onclick="myFunction(1)">台北市
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content" id="myDropdown1">
-          <a href="#link">24小時事故動圖</a>
-          <a href="#link">交通事故熱區</a>
-          <a href="#link">自訂搜尋條件</a>
-        </div>
+    <div class="dropdown Taichung">
+      <button class="dropbtn" onclick="myFunction(2)">台中市
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content" id="myDropdown2">
+        <a onclick="tc_maplink1()">蜂窩圖（動圖）</a>
+        <a onclick="tc_maplink2()">自訂搜尋條件</a>
       </div>
-      <div class="dropdown Taichung">
-        <button class="dropbtn" onclick="myFunction(2)">台中市
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content" id="myDropdown2">
-          <a href="#link">24小時事故動圖</a>
-          <a href="#link">交通事故熱區</a>
-          <a href="#link">自訂搜尋條件</a>
-        </div>
+    </div>
+    <div class="dropdown Kaohsiung">
+      <button class="dropbtn" onclick="myFunction(3)">高雄市
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content" id="myDropdown3">
+        <a onclick="kh_maplink1()">熱區圖（動圖）</a>
+        <a onclick="kh_maplink2()">自訂搜尋條件</a>
       </div>
-      <div class="dropdown Kaohsiung">
-        <button class="dropbtn" onclick="myFunction(3)">高雄市
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content" id="myDropdown3">
-          <a href="#link">24小時事故動圖</a>
-          <a href="#link">交通事故熱區</a>
-          <a href="#link">自訂搜尋條件</a>
-        </div>
-      </div>
-
     </div>
   </div>
-  <iframe class="map" src="https://dubidub.github.io/tp_landuse/Maps/63000010003_map.html" allowfullscreen></iframe>
-
+  <iframe id="map" src="https://dubidub.github.io/traffic_accident/resources/3_city_overview.html" allowfullscreen>
+  </iframe>
+</div>
+<!-- partial -->
   <script  src="./script.js"></script>
 </body>
+<footer>
+  <p>資料來源:
+    <a href='https://data.gov.tw/dataset/7440'>警政署資料集 | 內政部資料開放平台</a>
+  </p>
+</footer>
 </html>
