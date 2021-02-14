@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>台灣交通事故視覺化 | Adu Work in Progress</title>
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./hamburger.css">
+  <link rel="shortcut icon" href="https://dubidub.github.io/blog/assets/favicon.png" type="image/png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:image" content="https://dubidub.github.io/traffic_accident/cover.png" />
   <meta property="og:type" content="website" />
@@ -22,8 +24,17 @@
 <body>
 <!-- partial:index.partial.html -->
 <div class="wrapper">
-  <div class="title" onclick="home_map()">台灣交通事故視覺化 (2019年)
+  <div class="header">
+    <a class="logo" onclick="home_map()">台灣交通事故視覺化 (2019年)</a>
+    <input class="menu-btn" type="checkbox" id="menu-btn" />
+    <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+    <ul class="menu">
+      <li><h4>ADU WORK IN PROGRESS</h4></li>
+      <li><a href="https://dubidub.github.io/blog/">Blog</a></li>
+      <li><a href="https://dubidub.github.io/blog/tools">Tools</a></li>
+    </ul>
   </div>
+  <div class="title"></div>
   <div class="navbar">
     <div class="dropdown Taipei">
       <button class="dropbtn" onclick="myFunction(1)">台北市
