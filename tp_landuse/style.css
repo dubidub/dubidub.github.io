@@ -11,6 +11,12 @@ header {
   background: dodgerblue;
   text-align: center;
 }
+
+/* header a {
+  font-family: "PT Sans", "Helvetica Neue","Segoe UI","Roboto",sans-serif;
+  background-color: #f4f4f4;
+} */
+
 footer {
   padding: 10px;
 	margin: 0;
