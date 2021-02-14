@@ -10,7 +10,7 @@ footer {
   font-size: 12px;
   height: 5vh;
   line-height: 5vh;
-  background-color: #000;
+  background-color: #2a2c33;
   text-align: center;
 }
 footer p {
@@ -24,7 +24,7 @@ footer p {
   width: 100%;
 }
 .title {
-  background-color: #000;
+  background-color: #2a2c33;
   font-size: 24px;
 /*   padding: 10px; */
   height: 7.5vh;
