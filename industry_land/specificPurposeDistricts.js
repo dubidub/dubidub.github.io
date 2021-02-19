@@ -373,7 +373,7 @@ for ( var i = 0; i < datasets['features'].length; i++ ) {
 };
 
 if ( match == 0 ) {
-  alert("Object ID 不存在! \n\n請重新整理網頁");
+  alert("Object ID 不存在! \n\n請重新整理網頁\nhttps://dubidub.github.io/industry_land/specificPurposeDistricts");
   var map_268e8228ea5f4fe69088f4e171741f86 = L.map(
     'map_268e8228ea5f4fe69088f4e171741f86', {
       center: [23.799635452798242, 120.65374639818933],
