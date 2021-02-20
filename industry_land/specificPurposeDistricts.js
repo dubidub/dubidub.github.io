@@ -444,4 +444,14 @@ for ( var i = 0; i < datasets['features'].length; i++ ) {
   var html_text = $('<div id="html1" style="width: 100.0%; height: 100.0%;"><h3>地塊資料</h3><h5> '+ob_text+'</h5></div>')[0];
   var popup_text = L.popup().setContent(html_text);
   polygon1.bindPopup(popup_text);
+
+  // Control 3: This add a Search bar
+  var searchControl = new L.esri.Controls.Geosearch().addTo(map_268e8228ea5f4fe69088f4e171741f86);
+  var results = new L.LayerGroup().addTo(map_268e8228ea5f4fe69088f4e171741f86);
+  searchControl.on('results', function(data){
+      results.clearLayers();
+      for (var i = data.results.length - 1; i >= 0; i--) {
+      results.addLayer(L.marker(data.results[i].latlng));
+      }
+  });
 };
