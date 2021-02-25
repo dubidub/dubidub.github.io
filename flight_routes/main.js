@@ -1,5 +1,22 @@
 window.onload = loadAwesomeplete();
 
+var loadCoord = [23.46, 120.58];
+var map = L.map('mapid', {
+  worldCopyJump: true,
+}).setView(loadCoord, 6);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+}).addTo(map);
+
+drawLegend();
+// document.getElementsByClassName("legend").style.display = "none";
+
+var markerLayer = L.layerGroup().addTo(map);
+var routeLayer = L.layerGroup().addTo(map);
+var highlightLayer = L.layerGroup().addTo(map);
+var legendLayer = L.layerGroup().addTo(map);
+
 function loadAwesomeplete() {
   var input = document.getElementById("mylist");
   var all_airports = Object.keys(airports_dict);
@@ -13,16 +30,14 @@ function loadAwesomeplete() {
   input.innerHTML = datalist_text;
 }
 
-var loadCoord = [23.46, 120.58];
-var map = L.map('mapid', {
-  worldCopyJump: true,
-}).setView(loadCoord, 6);
-
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-}).addTo(map);
-
-var markerLayer = L.layerGroup().addTo(map);
-var routeLayer = L.layerGroup().addTo(map);
-var highlightLayer = L.layerGroup().addTo(map);
-var legendLayer = L.layerGroup().addTo(map);
+function drawLegend() {
+  var legend = L.control({ position: "bottomleft" });
+  legend.onAdd = function(map) {
+    var div = L.DomUtil.create("div", "legend");
+    div.innerHTML += "<h4>Airports</h4>";
+    div.innerHTML += '<i class="circleDirect"></i><span>Direct</span><br>';
+    div.innerHTML += '<i class="circleOneStop"></i><span>One Stop</span><br>';
+    return div;
+  };
+  legend.addTo(map);
+}

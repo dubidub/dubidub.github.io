@@ -23,33 +23,29 @@ function inputOrigin() {
     drawCircleMarker(city_dir[i], 'blue', 4);
   }
   drawCircleMarker(ori, 'red', 6);
-  drawLegend();
+  showLegned();
   mapCenter(ori, 3);
 }
 
-function drawLegend() {
-  var legend = L.control({ position: "bottomleft" });
-
-  legend.onAdd = function(map) {
-    var div = L.DomUtil.create("div", "legend");
-    div.innerHTML += "<h4>Tegnforklaring</h4>";
-    div.innerHTML += '<i style="background: #477AC2"></i><span>Water</span><br>';
-    div.innerHTML += '<i style="background: #448D40"></i><span>Forest</span><br>';
-    div.innerHTML += '<i style="background: #E6E696"></i><span>Land</span><br>';
-    div.innerHTML += '<i style="background: #E8E6E0"></i><span>Residential</span><br>';
-    div.innerHTML += '<i style="background: #FFFFFF"></i><span>Ice</span><br>';
-    div.innerHTML += '<i class="icon" style="background-image: url(https://d30y9cdsu7xlg0.cloudfront.net/png/194515-200.png);background-repeat: no-repeat;"></i><span>Grænse</span><br>';
-    return div;
-  };
-
-  legend.addTo(map);
+function showLegned() {
+  var legendClass = document.getElementsByClassName('legend');
+    for (var i = 0; i < legendClass.length; i++) {
+      legendClass[i].style.display = 'block';
+  }
 }
 
+function hideLegned() {
+  var legendClass = document.getElementsByClassName('legend');
+    for (var i = 0; i < legendClass.length; i++) {
+      legendClass[i].style.display = 'none';
+  }
+}
 
 function inputDestination() {
   markerLayer.clearLayers();
   routeLayer.clearLayers();
   highlightLayer.clearLayers();
+  hideLegned();
   var ori = document.getElementById('input_ori').value.substring(0,3).toUpperCase();
   var des = document.getElementById('input_des').value.substring(0,3).toUpperCase();
   var city_dir = Object.keys(routes_dict[ori]);
