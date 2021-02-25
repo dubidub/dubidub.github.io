@@ -24,14 +24,15 @@ function loadAwesomeplete() {
   for ( var i=0; i<all_airports.length; i++ ) {
     var airport = all_airports[i];
     datalist_text = datalist_text.concat(
-      "<option>" + airport + " (" + airports_dict[airport]['name'] +")</option>"
+      "<option>" + airport + ", " + airports_dict[airport]['city'] + " (" +
+      airports_dict[airport]['name'] +")</option>"
     );
   }
   input.innerHTML = datalist_text;
 }
 
 function drawLegend() {
-  var legend = L.control({ position: "bottomleft" });
+  var legend = L.control({ position: "topright" });
   legend.onAdd = function(map) {
     var div = L.DomUtil.create("div", "legend");
     div.innerHTML += "<h4>Airports</h4>";
