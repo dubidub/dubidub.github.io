@@ -11,20 +11,22 @@ function inputOrigin() {
   markerLayer.clearLayers();
   routeLayer.clearLayers();
   highlightLayer.clearLayers();
-  // document.getElementById('input_des').value = "";
   var ori = document.getElementById('input_ori').value.substring(0,3).toUpperCase();
   var city_dir = Object.keys(routes_dict[ori]);
-  // var routes_stop_1 = findOneStop(ori);
-  var city_stop_1 = Object.keys(routes_stop_1[ori]);
-  for ( var i=0; i<city_stop_1.length; i++ ) {
-    drawCircleMarker(city_stop_1[i], 'grey', 2);
+  showLegned();
+  mapCenter(ori, 3);
+  try {
+    var city_stop_1 = Object.keys(routes_stop_1[ori]);
+    for ( var i=0; i<city_stop_1.length; i++ ) {
+      drawCircleMarker(city_stop_1[i], 'grey', 2);
+    }
+  } catch (e) {
+  console.log(e);
   }
   for ( var i=0; i<city_dir.length; i++ ) {
     drawCircleMarker(city_dir[i], 'blue', 4);
   }
   drawCircleMarker(ori, 'red', 6);
-  showLegned();
-  mapCenter(ori, 3);
 }
 
 function showLegned() {
