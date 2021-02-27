@@ -1,9 +1,9 @@
 window.onload = loadAwesomeplete();
 
-var loadCoord = [23.46, 120.58];
+var loadCoord = [35.8, -85.4];
 var map = L.map('mapid', {
   worldCopyJump: true,
-}).setView(loadCoord, 6);
+}).setView(loadCoord, 4);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
