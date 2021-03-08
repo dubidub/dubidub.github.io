@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-hant-TW" >
+<head>
+  <meta charset="UTF-8">
+  <title>台灣交通事故視覺化 2020 | Adu Work in Progress</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./hamburger.css">
+  <link rel="shortcut icon" href="https://dubidub.github.io/blog/assets/favicon.png" type="image/png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:image" content="https://dubidub.github.io/traffic_accident_2020/cover.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dubidub.github.io/traffic_accident_2020/zh_tw.html" />
+  <meta property="og:description" content="將2020年台灣交通事故斑點圖視覺化，快速定位交通事故熱區" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLLS8DZLPN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-PLLS8DZLPN');
+  </script>
+  <!--  -->
+</head>
+<body>
+<!-- partial:index.partial.html -->
+  <div class="wrapper">
+    <div class="title">
+      <div class="header">
+        <a class="logo" onclick="home_map()">台灣交通事故視覺化 (2020年)</a>
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+        <ul class="menu">
+          <li><a href="https://dubidub.github.io/blog/"><strong>ADU WORK IN PROGRESS</strong></a></li>
+          <li><a href="https://dubidub.github.io/blog/">Blog</a></li>
+          <li><a href="https://dubidub.github.io/blog/tools">Tools</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="navbar">
+      <div class="dropdown Taipei">
+        <button class="dropbtn" onclick="myFunction(1)">台北市
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content" id="myDropdown1">
+          <a onclick="tp_maplink1()">蜂窩圖</a>
+          <a onclick="tp_maplink2()">事故細節斑點圖</a>
+        </div>
+      </div>
+      <div class="dropdown Taichung">
+        <button class="dropbtn" onclick="myFunction(2)">台中市
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content" id="myDropdown2">
+          <a onclick="tc_maplink1()">蜂窩圖</a>
+          <a onclick="tc_maplink2()">事故細節斑點圖</a>
+        </div>
+      </div>
+      <div class="dropdown Kaohsiung">
+        <button class="dropbtn" onclick="myFunction(3)">高雄市
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content" id="myDropdown3">
+          <a onclick="kh_maplink1()">蜂窩圖</a>
+          <a onclick="kh_maplink2()">事故細節斑點圖</a>
+        </div>
+      </div>
+    </div>
+    <iframe id="map" src="./resources/3_city_overview_2020.html" allowfullscreen>
+    </iframe>
+  </div>
+<!-- partial -->
+  <div id="footer">
+    <p>資料來源:
+      <a href='https://data.gov.tw/dataset/12197'>歷史交通事故資料 | 政府資料開放平台</a>
+    </p>
+  </div>
+</body>
+
+<script  src="./script.js"></script>
+</html>
