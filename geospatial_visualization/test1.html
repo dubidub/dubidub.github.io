@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
+<input type="button" id="submit" value="送出">
 
 <script>
-  $.getJSON("tp_df_emp_fl_area.geojson", function(json) {
-    console.log(json); // this will show the info it in firebug console
-  });
+// function testClick() {
+//   $.getScript("tp_df_emp_fl_area.js");
+//   alert('hello');
+// }
 
-  // alert('hello');
+$("input").click(function(){
+  $.getScript("tp_df_emp_fl_area.js");
+  alert('hello');
+});
+
 
 </script>
