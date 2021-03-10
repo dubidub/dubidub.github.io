@@ -1,18 +1,31 @@
 <!DOCTYPE html>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
-<input type="button" id="submit" value="送出">
+<input type="button" id="submit" value="送出" onclick="testClick()">
+<input type="button" id="kkkk" value="kkkk" onclick="kkkk()">
 
 <script>
-// function testClick() {
-//   $.getScript("tp_df_emp_fl_area.js");
-//   alert('hello');
-// }
+var datasets;
+function testClick() {
+  var xhr = new XMLHttpRequest(),
+      method = 'GET',
+      overrideMimeType = 'application/json',
+      url = 'https://sheethub.com/data.gov.tw/村里界圖%28WGS84經緯度%29?format=json';
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+      datasets = JSON.parse(xhr.responseText);
+      // alert(villages[63000010]["vill_code"].length);
+      // datasets = villages;
+      console.log(datasets);
+    }
+  };
+  xhr.open(method, url, true);
+  xhr.send();
+}
+function kkkk() {
+  alert(datasets["type"]);
+}
 
-$("input").click(function(){
-  $.getScript("tp_df_emp_fl_area.js");
-  alert('hello');
-});
 
 
 </script>

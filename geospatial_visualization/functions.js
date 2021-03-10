@@ -1,3 +1,16 @@
+function loadTemplate() {
+  var xhr = new XMLHttpRequest(),
+      method = 'GET',
+      overrideMimeType = 'application/json',
+      url = 'https://dubidub.github.io/tp_landuse/tp_dict.json';
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+      datasets = JSON.parse(xhr.responseText);
+    }
+  };
+  xhr.open(method, url, true);
+  xhr.send();
+}
 function onChange(event) {
     var reader = new FileReader();
     reader.onload = onReaderLoad;
