@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<input type="file" id="inputFile" value="Import" /><br />
+<button id="import" onclick="importData()">Import</button>
+<!-- <input type="button" id="submit" value="送出" onclick="importData()">
+<input type="button" id="click" value="click" onclick="clickData()">
+<textarea id="result"> -->
+</textarea>
+
+<script>
+const myGlobalVar;
+$("#inputFile").change(function(e) {
+    onChange(e);
+});
+function onChange(event) {
+    var reader = new FileReader();
+    reader.onload = onReaderLoad;
+    reader.readAsText(event.target.files[0]);
+}
+function onReaderLoad(event){
+    //alert(event.target.result);
+    var obj = JSON.parse(event.target.result);
+    myGlobalVar = obj;
+}
+function importData() {
+  alert(myGlobalVar.features.length);
+}
+
+
+// function importData() {
+// 	var files = document.getElementById('selectFiles').files;
+//   console.log(files);
+//   if (files.length <= 0) {
+//     return false;
+//   }
+//
+//   const fr = new FileReader();
+//
+//   fr.onload = function(e) {
+//     console.log(e);
+//     var result = JSON.parse(e.target.result);
+//     var formatted = JSON.stringify(result, null, 2);
+// 		document.getElementById('result').value = formatted;
+//
+//   }
+//   fr.readAsText(files.item(0));
+//   return fr;
+// };
+// function clickData() {
+//   alert(fr.length);
+// }
+</script>

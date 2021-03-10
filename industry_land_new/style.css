@@ -1,0 +1,274 @@
+
+body {
+  margin:0;
+  padding: 0;
+  /* text-align: center; */
+  background-color: #042759;
+  font-family: "PT Sans", "Helvetica Neue","Segoe UI","Roboto",sans-serif;
+  /* background-color: #f4f4f4; */
+  /* font-weight: 400;
+  line-height: 1.6; */
+}
+
+.fst-filter {
+  margin: 0 0 10px;
+}
+.fst-filter .wrap {
+  padding: 15px 20px;
+  border: 1px solid #000;
+  background-color: #ddd;
+}
+.fst-filter h4 {
+  margin: 0 0 1em;
+}
+.stats h3 {
+  color: #fff;
+}
+.wrapper {
+  display: block;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: row;
+}
+.stats{
+  width: 50%;
+  height: 93vh;
+  background-color: #042759;
+  padding: 0 1rem 0 1rem;
+  /* margin: .5rem; */
+}
+.map{
+  width: 50%;
+  height: 93vh;
+  background-color: gray;
+  /* padding: .5rem;
+  margin: .5rem; */
+}
+table {
+  margin: 10px 0 0 0;
+}
+table tbody {
+  display: block;
+  max-height: 28vh;
+  overflow-y: scroll;
+}
+
+table thead, table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  font-size: 12px;
+  border: 1px solid #aaa;
+}
+
+/* Hamburger */
+
+.title {
+  height: 7vh;
+  /* width: 100%; */
+  font-weight: 400;
+  line-height: 1.6;
+}
+.header {
+  background-color: #2a2c33;
+  box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1);
+  position: fixed;
+  width: 100%;
+  z-index: 99999;
+  height: 7.5vh;
+  /* padding: 20.9px; */
+}
+
+.header a {
+  color: #fff;
+}
+
+.header ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  background-color: #2a2c33;
+}
+
+.header li a {
+  color: #fff;
+  display: block;
+  padding: 0 20px;
+  line-height: 7.5vh;
+  border-right: 1px solid #f4f4f4;
+  text-decoration: none;
+}
+
+.header li h4 {
+  color: #fff;
+  display: block;
+  padding: 0 20px;
+  line-height: 7.5vh;
+  border-right: 1px solid #f4f4f4;
+  text-decoration: none;
+}
+
+.header li a:hover,
+.header .menu-btn:hover {
+  background-color: #000;
+}
+
+.header .logo {
+  display: block;
+  float: left;
+  font-size: 19.5px;
+  padding: 0 20px;
+  text-decoration: none;
+  line-height: 7.5vh;
+}
+
+/* menu */
+
+.header .menu {
+  clear: both;
+  max-height: 0;
+  transition: max-height .2s ease-out;
+}
+
+/* menu icon */
+
+.header .menu-icon {
+  cursor: pointer;
+  display: inline-block;
+  float: right;
+  padding: 28px 20px;
+  position: relative;
+  user-select: none;
+}
+
+.header .menu-icon .navicon {
+  background: #fff;
+  display: block;
+  height: 2px;
+  position: relative;
+  transition: background .2s ease-out;
+  width: 18px;
+}
+
+.header .menu-icon .navicon:before,
+.header .menu-icon .navicon:after {
+  background: #fff;
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  transition: all .2s ease-out;
+  width: 100%;
+}
+
+.header .menu-icon .navicon:before {
+  top: 5px;
+}
+
+.header .menu-icon .navicon:after {
+  top: -5px;
+}
+
+/* menu btn */
+
+.header .menu-btn {
+  display: none;
+}
+
+.header .menu-btn:checked ~ .menu {
+  max-height: 240px;
+}
+
+.header .menu-btn:checked ~ .menu-icon .navicon {
+  background: transparent;
+}
+
+.header .menu-btn:checked ~ .menu-icon .navicon:before {
+  transform: rotate(-45deg);
+}
+
+.header .menu-btn:checked ~ .menu-icon .navicon:after {
+  transform: rotate(45deg);
+}
+
+.header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+.header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+  top: 0;
+}
+
+/* 48em = 768px */
+
+@media (min-width: 48em) {
+  .header li {
+    float: left;
+  }
+  .header li a {
+    /* padding: 20px 30px; */
+  }
+  .header .menu {
+    clear: none;
+    float: right;
+    max-height: none;
+  }
+  .header .menu-icon {
+    display: none;
+    padding: 28px 20px;
+  }
+}
+
+
+/*Legend specific*/
+.legend {
+  padding: 6px 8px;
+  font: 14px Arial, Helvetica, sans-serif;
+  background: white;
+  background: rgba(255, 255, 255, 0.8);
+  /*box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);*/
+  /*border-radius: 5px;*/
+  line-height: 24px;
+  color: #555;
+  display: none;
+}
+.legend h4 {
+  text-align: center;
+  font-size: 16px;
+  margin: 2px 12px 8px;
+  color: #777;
+}
+
+.legend span {
+  position: relative;
+  bottom: 3px;
+}
+
+.legend i {
+  width: 18px;
+  height: 18px;
+  float: left;
+  margin: 0 8px 0 0;
+  opacity: 0.7;
+}
+
+.legend i.icon {
+  background-size: 18px;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.legend .circleDirect {
+  border-radius: 50%;
+  background: blue;
+  width: 8px;
+  height: 8px;
+  margin: 4px 10px 4px 6px;
+  /* margin-top: 8px; */
+}
+
+.legend .circleOneStop {
+  border-radius: 50%;
+  background: grey;
+  width: 4px;
+  height: 4px;
+  /* margin-top: 8px; */
+  margin: 6px 12px 6px 8px;
+}

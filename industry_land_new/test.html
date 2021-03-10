@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<head>
+  <!-- General -->
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <title>互動式地圖資料庫視覺化工具 | Adu Work in Progress</title>
+  <link rel="stylesheet" href="./style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <link rel="shortcut icon" href="https://dubidub.github.io/blog/assets/favicon.png" type="image/png" />
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+  <!-- Social Network -->
+  <meta property="og:image" content="https://dubidub.github.io/flight_routes_finder/cover.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dubidub.github.io/flight_routes_finder/" />
+  <meta property="og:description" content="A quick search engine of more than 60,000 historical flight routes" />
+  <meta property="og:site_name" content="Adu Work In Progress" />
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLLS8DZLPN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-PLLS8DZLPN');
+  </script>
+
+  <!-- Leaflet Library -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
+</head>
+
+<body>
+  <div class="title">
+    <div class="header">
+      <a class="logo">互動式地圖資料庫視覺化工具</a>
+      <input class="menu-btn" type="checkbox" id="menu-btn" />
+      <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+      <ul class="menu">
+        <li><a href="https://dubidub.github.io/blog/"><strong>ADU WORK IN PROGRESS</strong></a></li>
+        <li><a href="https://dubidub.github.io/blog/">Blog</a></li>
+        <li><a href="https://dubidub.github.io/blog/tools">Tools</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="wrapper">
+    <div class="stats">
+      <h3>使用步驟</h3>
+
+      <div class="fst-filter special">
+        <div class="wrap">
+          <h4>第一步　資料上傳</h4>
+          <input type="file" id="inputFile" value="Import" />
+        </div>
+      </div>
+      <div class="fst-filter special">
+        <div class="wrap">
+          <h4>第二步　選擇資料編號欄位</h4>
+          <select id="uniqueID" onchange="uniqueIDSelect()">
+            <option value="">--選擇欄位--</option>
+          </select>
+        </div>
+      </div>
+      <div class="fst-filter special">
+        <div class="wrap">
+          <h4>第三步　使用資料編號快速查詢</h4>
+          <input type="text" id="quickSearch" placeholder="快速查詢" onchange="inputID()"
+           onclick="clearInput()"/>
+          <input type="button" id="submit" value="送出">
+        </div>
+      </div>
+      <div class="fst-filter special">
+        <div class="wrap">
+          <h4>第四步　使用其他欄位篩選資料</h4>
+          <select id="dataField" onchange="dataFilterSelect()">
+            <option value="">--選擇欄位--</option>
+          </select>
+          <select id="filterField" onchange="showFilterData()"></select>
+          <table id="table">
+          </table>
+        </div>
+      </div>
+
+      <!-- <div class="filter"> -->
+        <!-- <input type="file" id="inputFile" value="Import" /><br/> -->
+        <!-- <select id="uniqueID" onchange="uniqueIDSelect()">
+          <option value="">--選擇資料編號欄位--</option>
+        </select><br/> -->
+        <!-- <input type="text" id="quickSearch" placeholder="快速查詢" onchange="inputID()"
+         onclick="clearInput()"/>
+        <input type="button" id="submit" value="送出"> -->
+        <!-- <p>篩選資料</p>
+        <select id="dataField" onchange="dataFilterSelect()">
+          <option value="">----資料欄位----</option>
+        </select>
+        <select id="filterField" onchange="showFilterData()"></select> -->
+      <!-- </div> -->
+
+    </div>
+    <div class="map" id="mapid">
+      <p>Select a file with the following format.</p>
+    </div>
+  </div>
+</body>
+
+<script>
+
+  const loadCoord = [23.707398117586052, 120.98712417755992];
+  const map = L.map('mapid', {
+    worldCopyJump: true,
+  }).setView(loadCoord, 8);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  }).addTo(map);
+
+  var datasets;
+  $("#inputFile").change(function(e) {
+      onChange(e);
+  });
+  function onChange(event) {
+      var reader = new FileReader();
+      reader.onload = onReaderLoad;
+      reader.readAsText(event.target.files[0]);
+  }
+  function onReaderLoad(event){
+      var obj = JSON.parse(event.target.result);
+      datasets = obj;
+      dataFieldSelect();
+      for ( let i = 0; i < datasets['features'].length; i++ ) {
+        let coordinates_p = datasets['features'][i]['geometry']['coordinates'][0][0];
+        let coordinates_p_inv = [];
+        for ( let j = 0; j < coordinates_p.length; j++ ) {
+          let coordinate = [ coordinates_p[j][1], coordinates_p[j][0] ];
+          coordinates_p_inv.push(coordinate);
+        };
+        drawPolygon(coordinates_p_inv, map, datasets['features'][i]['properties'], "#000");
+      };
+  }
+  var uniqueID;
+  function uniqueIDSelect() {
+    let uniqueIDDropdown = document.getElementById('uniqueID');
+    uniqueID = uniqueIDDropdown.value;
+    let quickSearch = document.getElementById('quickSearch');
+    quickSearch.placeholder = "輸入 " + uniqueID + " 快速查詢"
+  }
+
+  function inputID() {
+    let quickSearch = document.getElementById('quickSearch');
+    let match = 0;
+    for ( let i = 0; i < datasets['features'].length; i++ ) {
+      if ( datasets['features'][i]['properties'][uniqueID] == quickSearch.value ) {
+        let coordinates_map = datasets['features'][i]['geometry']['coordinates'][0][0];
+        let coordinates_map_inv = [];
+        for ( var j = 0; j < coordinates_map.length; j++ ) {
+          let coordinate = [ coordinates_map[j][1], coordinates_map[j][0] ];
+          coordinates_map_inv.push(coordinate);
+        };
+        match++;
+        drawPolygon(coordinates_map_inv, map, datasets['features'][i]['properties'], "#ffff00");
+        map.flyTo(coordinates_map_inv[0], 15);
+      }
+    };
+    if ( match == 0 ) {
+      alert("資料不存在");
+    }
+  }
+  function clickID(id) {
+    for ( let i = 0; i < datasets['features'].length; i++ ) {
+      if ( datasets['features'][i]['properties'][uniqueID] == id ) {
+        let coordinates_map = datasets['features'][i]['geometry']['coordinates'][0][0];
+        let coordinates_map_inv = [];
+        for ( var j = 0; j < coordinates_map.length; j++ ) {
+          let coordinate = [ coordinates_map[j][1], coordinates_map[j][0] ];
+          coordinates_map_inv.push(coordinate);
+        };
+        drawPolygon(coordinates_map_inv, map, datasets['features'][i]['properties'], "#ffff00");
+        map.flyTo(coordinates_map_inv[0], 15);
+      }
+    }
+  }
+  function clearInput() {
+    document.getElementById('quickSearch').value = "";
+  }
+  function drawPolygon(coordinates, map, properties, color) {
+    let polygon = L.polygon(coordinates, {
+      "color": color,
+      "fill": true,
+      "fillColor": color,
+      "fillOpacity": 0.2,
+      "opacity": 1.0,
+      "stroke": true,
+      "weight": 2
+    }).addTo(map);
+    let ob_keys = Object.keys(properties);
+    let ob_values = Object.values(properties);
+    let ob_text = "";
+    for ( let k=0; k < ob_keys.length; k++ ) {
+      ob_text = ob_text.concat("<br>- <strong>"+ob_keys[k].toString()+"</strong>: "+ob_values[k].toString());
+    };
+    let html_text = $('<div id="html1" style="width: 100.0%; height: 100.0%;"><h5> '+ob_text+'</h5></div>')[0];
+    let popup_text = L.popup().setContent(html_text);
+    polygon.bindPopup(popup_text);
+    polygon.on('mouseover', function (e) {
+      this.openPopup();
+    });
+    polygon.on('mouseout', function (e) {
+      this.closePopup();
+    });
+  }
+  function dataFieldSelect() {
+    let dataField = Object.keys(datasets['features'][0]['properties']);
+    let uniqueIDDropdown = document.getElementById('uniqueID');
+    let dataFieldDropdown = document.getElementById('dataField');
+    for (let i = 0; i < dataField.length; i++) {
+      uniqueIDDropdown.innerHTML = uniqueIDDropdown.innerHTML +
+        '<option value="' + dataField[i] + '">' + dataField[i] + '</option>';
+      dataFieldDropdown.innerHTML = dataFieldDropdown.innerHTML +
+        '<option value="' + dataField[i] + '">' + dataField[i] + '</option>';
+    }
+  }
+  function dataFilterSelect() {
+    let dataFieldDropdown = document.getElementById('dataField');
+    let filterFieldDropdown = document.getElementById('filterField');
+    filterFieldDropdown.innerHTML = '<option value="">--選擇篩選內容--</option>';
+    let filterField = [];
+    for (let i=0; i<datasets['features'].length; i++) {
+      let dataValue = datasets['features'][i]['properties'][dataFieldDropdown.value];
+      if ( !filterField.includes(dataValue) ) {
+        filterField.push(dataValue);
+      }
+    }
+    for (let i = 0; i < filterField.length; i++) {
+      filterFieldDropdown.innerHTML = filterFieldDropdown.innerHTML +
+        '<option value="' + filterField[i] + '">' + filterField[i] + '</option>';
+    }
+  }
+  function showFilterData() {
+    let dataField = Object.keys(datasets['features'][0]['properties']);
+    let dataFieldDropdown = document.getElementById('dataField');
+    let filterFieldDropdown = document.getElementById('filterField');
+    let table = document.getElementById('table');
+    table.innerHTML = "";
+    let filteredData = [];
+    for (let i=0; i<datasets['features'].length; i++) {
+      if ( datasets['features'][i]['properties'][dataFieldDropdown.value] == filterFieldDropdown.value ) {
+        filteredData.push(i);
+      }
+    }
+    let tableHead = "";
+    for (let i = 0; i < dataField.length; i++) {
+      tableHead = tableHead + '<th>' + dataField[i] + '</th>';
+    }
+    let tableBody = "";
+    for (let i = 0; i < filteredData.length; i++) {
+      let dataProperties = datasets['features'][filteredData[i]]['properties'];
+      let oneRowData = "";
+      for (let j = 0; j < dataField.length; j++) {
+        if ( dataField[j] == uniqueID ) {
+          oneRowData = oneRowData + '<td>' +
+                       '<input type="button" id="submit" onclick="clickID(' +
+                       dataProperties[dataField[j]] + ')" value="' +
+                       dataProperties[dataField[j]] + '"></td>';
+        } else {
+          oneRowData = oneRowData + '<td>' + dataProperties[dataField[j]] + '</td>';
+        }
+      }
+      tableBody = tableBody + '<tr>' + oneRowData + '</tr>';
+    }
+    table.innerHTML = table.innerHTML +
+                      '<thead><tr>' + tableHead + '</tr></thead>' +
+                      '<tbody>' + tableBody + '</tbody>';
+  }
+</script>
