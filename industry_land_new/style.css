@@ -31,14 +31,14 @@ body {
   flex-direction: row;
 }
 .stats{
-  width: 50%;
+  width: 40%;
   height: 93vh;
   background-color: #042759;
   padding: 0 1rem 0 1rem;
   /* margin: .5rem; */
 }
 .map{
-  width: 50%;
+  width: 60%;
   height: 93vh;
   background-color: gray;
   /* padding: .5rem;
@@ -47,16 +47,24 @@ body {
 table {
   margin: 10px 0 0 0;
 }
-table tbody {
+table {
   display: block;
-  max-height: 28vh;
-  overflow-y: scroll;
+  max-height: 30vh;
+  /* max-width: fit-content; */
+  /* overflow-y: scroll; */
+  table-layout: fixed;
+  overflow: auto;
 }
+th, td {
+   min-width: 80px;
+   max-width: 80px;
+ }
 
 table thead, table tbody tr {
   display: table;
-  width: 100%;
-  table-layout: fixed;
+  /* width: 100%; */
+  /* width: fit-content; */
+  /* table-layout: fixed; */
   font-size: 12px;
   border: 1px solid #aaa;
 }
@@ -160,6 +168,10 @@ table thead, table tbody tr {
   position: absolute;
   transition: all .2s ease-out;
   width: 100%;
+}
+
+#dataField, #quickSearch, #uniqueID {
+  width: 100px;
 }
 
 .header .menu-icon .navicon:before {
