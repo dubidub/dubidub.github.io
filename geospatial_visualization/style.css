@@ -30,6 +30,9 @@ body {
   display: flex;
   flex-direction: row;
 }
+.wrap p {
+  font-size: 13px;
+}
 .stats{
   width: 40%;
   height: 93vh;

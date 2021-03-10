@@ -2,10 +2,33 @@ function loadTemplate() {
   var xhr = new XMLHttpRequest(),
       method = 'GET',
       overrideMimeType = 'application/json',
-      url = 'https://dubidub.github.io/tp_landuse/tp_dict.json';
+      url = 'https://raw.githubusercontent.com/dubidub/dubidub.github.io/master/geospatial_visualization/%E6%9D%91%E9%87%8C%E7%95%8C%E5%9C%96(WGS84%E7%B6%93%E7%B7%AF%E5%BA%A6).geojson';
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
       datasets = JSON.parse(xhr.responseText);
+      // console.log(datasets);
+      dataFieldSelect();
+      if (typeof datasets['features'][0]['geometry']['coordinates'][0][0][0][0] == 'number') {
+        for ( let i = 0; i < datasets['features'].length; i++ ) {
+          let coordinates_p = datasets['features'][i]['geometry']['coordinates'][0][0];
+          let coordinates_p_inv = [];
+          for ( let j = 0; j < coordinates_p.length; j++ ) {
+            let coordinate = [ coordinates_p[j][1], coordinates_p[j][0] ];
+            coordinates_p_inv.push(coordinate);
+          }
+          drawPolygon(coordinates_p_inv, map, datasets['features'][i]['properties'], "#000");
+        }
+      } else if (typeof datasets['features'][0]['geometry']['coordinates'][0][0][0] == 'number') {
+        for ( let i = 0; i < datasets['features'].length; i++ ) {
+          let coordinates_p = datasets['features'][i]['geometry']['coordinates'][0];
+          let coordinates_p_inv = [];
+          for ( let j = 0; j < coordinates_p.length; j++ ) {
+            let coordinate = [ coordinates_p[j][1], coordinates_p[j][0] ];
+            coordinates_p_inv.push(coordinate);
+          }
+          drawPolygon(coordinates_p_inv, map, datasets['features'][i]['properties'], "#000");
+        }
+      }
     }
   };
   xhr.open(method, url, true);
