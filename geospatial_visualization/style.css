@@ -30,8 +30,20 @@ body {
   display: flex;
   flex-direction: row;
 }
+.stats p {
+  font-size: 13px;
+  color: #fff;
+  text-decoration: none;
+  padding-left: 5px;
+}
+.stats p a {
+  font-size: 13px;
+  color: #fff;
+  text-decoration: none;
+}
 .wrap p {
   font-size: 13px;
+  color: #000;
 }
 .stats{
   width: 40%;
