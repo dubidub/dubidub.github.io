@@ -2,10 +2,10 @@ function loadTemplate() {
   var xhr = new XMLHttpRequest(),
       method = 'GET',
       overrideMimeType = 'application/json',
-      url = 'https://raw.githubusercontent.com/dubidub/dubidub.github.io/master/geospatial_visualization/%E6%9D%91%E9%87%8C%E7%95%8C%E5%9C%96(WGS84%E7%B6%93%E7%B7%AF%E5%BA%A6).geojson';
+      url = 'https://dubidub.github.io/geospatial_visualization/resources/tp_landuse.geojson';
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-      document.getElementById("loading").innerHTML = '';
+      document.getElementById("templateLoading").innerHTML = '';
       datasets = JSON.parse(xhr.responseText);
       // console.log(datasets);
       dataFieldSelect();
@@ -32,7 +32,7 @@ function loadTemplate() {
       }
     }
   };
-  document.getElementById("loading").innerHTML = '<img src="resources/loading.gif" />';
+  document.getElementById("templateLoading").innerHTML = '<img src="resources/loading.gif" />';
   xhr.open(method, url, true);
   xhr.send();
 }
