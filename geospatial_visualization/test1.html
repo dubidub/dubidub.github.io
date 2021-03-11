@@ -1,31 +1,27 @@
 <!DOCTYPE html>
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
-<input type="button" id="submit" value="送出" onclick="testClick()">
-<input type="button" id="kkkk" value="kkkk" onclick="kkkk()">
+<button type="button" onclick="loadXMLDoc();">Request</button><span id="loading"></span>
+<!--An empty tag - this be the loading image-->
+
+<!-- <div id="1">asdf</div> -->
 
 <script>
-var datasets;
-function testClick() {
-  var xhr = new XMLHttpRequest(),
-      method = 'GET',
-      overrideMimeType = 'application/json',
-      url = 'https://raw.githubusercontent.com/dubidub/dubidub.github.io/master/geospatial_visualization/%E6%9D%91%E9%87%8C%E7%95%8C%E5%9C%96(WGS84%E7%B6%93%E7%B7%AF%E5%BA%A6).geojson';
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-      datasets = JSON.parse(xhr.responseText);
-      // alert(villages[63000010]["vill_code"].length);
-      // datasets = villages;
-      console.log(datasets);
+function loadXMLDoc() {
+    var xmlhttp;
+    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
     }
-  };
-  xhr.open(method, url, true);
-  xhr.send();
+    else {// code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            document.getElementById("loading").innerHTML = ''; // Hide the image after the response from the server
+            // document.getElementById("1").innerHTML = xmlhttp.responseText;
+        }
+    }
+    document.getElementById("loading").innerHTML = '<img src="resources/loading.gif" />'; // Set here the image before sending request
+    xmlhttp.open("GET", "feedchck.php", true);
+    xmlhttp.send();
 }
-function kkkk() {
-  alert(datasets["type"]);
-}
-
-
-
 </script>
