@@ -1,110 +1,115 @@
-* {
-    margin: 0;
-    padding: 0;
-}
-
-#footer {
-  height: 5%;
-  width: 100%;
-  color: white;
-  font-size: 14px;
-  /* height: 5vh; */
-  /* line-height: 5vh; */
-  text-align: center;
-
-}
-
-#footer p a {
-  color: white;
-  text-decoration: none;
-}
-.wrapper {
-  font-family: "PT Sans", "Helvetica Neue","Segoe UI","Roboto",sans-serif;
-  color: white;
-  width: 100%;
-}
-.title {
-  background-color: #2a2c33;
-  /* font-size: 24px; */
-/*   padding: 10px; */
-  height: 7.5vh;
-  line-height: 7.5vh;
-  text-align: center;
-}
-.navbar {
-  overflow: hidden;
-  display: flex;
-  height: 6vh;
-}
-.header ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  overflow: hidden;
-  background-color: #2a2c33;
-}
-.dropdown {
-  float: left;
-  overflow: hidden;
-  text-align: center;
-}
-
-.Taipei {
-  background-color: #28c8c8;
-  flex:1;
-}
-.Taichung {
-  background-color: #000095;
-  flex:1;
-}
-.Kaohsiung {
-  background-color: #009a00;
-  flex:1;
-}
-.dropdown .dropbtn {
-  cursor: pointer;
-  font-size: 16px;
-  border: none;
-  color: white;
-  line-height: 6vh;
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 25%;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-.dropdown-content a {
-  float: none;
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-}
-
-.dropdown-content a:hover {
-  background-color: #ddd;
-}
-
-.show {
-  display: block;
-}
-#map {
-  width: 100vw;
-  height: 81.5vh;
-	border: none;
-}
-
 body {
   margin:0;
   padding: 0;
-  background-color: #2a2c33;
+  /* text-align: center; */
+  background-color: #111;
   font-family: "PT Sans", "Helvetica Neue","Segoe UI","Roboto",sans-serif;
+  /* background-color: #f4f4f4; */
+  /* font-weight: 400;
+  line-height: 1.6; */
+}
+
+/* The sidepanel menu */
+.sidepanel {
+  height: 93vh; /* Specify a height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 9999; /* Stay on top */
+  top: 7vh;
+  left: 0;
+  /* padding: 0 1rem 0 1rem; */
+  background-color: #ddd; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 50px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidepanel */
+}
+.fst-filter {
+  margin: 0 0 10px;
+}
+.fst-filter .wrap {
+  padding: 15px 20px 5px 30px;
+  /* border: 1px solid #000; */
+  color: #000;
+  /* background-color: #ddd; */
+}
+.fst-filter .wrap:hover {
+  background-color: #eee;
+}
+.fst-filter h4 {
+  margin: 0 0 1em;
+}
+/* .sidepanel h3 {
+  color: #fff;
+}
+.sidepanel p {
+  font-size: 13px;
+  color: #fff;
+  text-decoration: none;
+  padding-left: 5px;
+} */
+.stats p a {
+  font-size: 13px;
+  /* color: #CACCF2; */
+  text-decoration: none;
+}
+.wrap p {
+  font-size: 13px;
+  color: #000;
+  text-decoration: none;
+  padding-left: 5px;
+}
+
+.loading {
+  position: absolute;
+  height: 100%;
+  width: 100%; 
+  background-color: #000;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 99999999999;
+  opacity: 0.6;
+  text-align: center;
+  line-height: 100vh;
+}
+
+
+
+
+/* Position and style the close button (top right corner) */
+.sidepanel .closebtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-decoration: none;
+  font-size: 30px;
+  cursor: pointer;
+  background-color: #ddd;
+  color: #000;
+  padding: 5px 15px;
+  border: none;
+}
+.sidepanel .closebtn:hover {
+  background-color: #444;
+}
+
+/* Style the button that is used to open the sidepanel */
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #ddd;
+  color: #000;
+  padding: 10px 15px;
+  border: 1px solid #bbb;
+  /* opacity: 0.6; */
+  border-radius: 3px;
+  position: fixed;
+  z-index: 1;
+  top: 9vh;
+  left: 2vw;
+  display:block;
+}
+.openbtn:hover {
+  background-color: #444;
 }

@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#footer {
+  height: 5%;
+  width: 100%;
+  color: white;
+  font-size: 14px;
+  /* height: 5vh; */
+  /* line-height: 5vh; */
+  text-align: center;
+
+}
+
+#footer p a {
+  color: white;
+  text-decoration: none;
+}
+.wrapper {
+  font-family: "PT Sans", "Helvetica Neue","Segoe UI","Roboto",sans-serif;
+  color: white;
+  width: 100%;
+}
+.title {
+  background-color: #2a2c33;
+  /* font-size: 24px; */
+/*   padding: 10px; */
+  height: 7.5vh;
+  line-height: 7.5vh;
+  text-align: center;
+}
+.navbar {
+  overflow: hidden;
+  display: flex;
+  height: 6vh;
+}
+.header ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  background-color: #2a2c33;
+}
+.dropdown {
+  float: left;
+  overflow: hidden;
+  text-align: center;
+}
+
+.Taipei {
+  background-color: #28c8c8;
+  flex:1;
+}
+.Taichung {
+  background-color: #000095;
+  flex:1;
+}
+.Kaohsiung {
+  background-color: #009a00;
+  flex:1;
+}
+.dropdown .dropbtn {
+  cursor: pointer;
+  font-size: 16px;
+  border: none;
+  color: white;
+  line-height: 6vh;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 25%;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.show {
+  display: block;
+}
+#map {
+  width: 100vw;
+  height: 81.5vh;
+	border: none;
+}
+
+body {
+  margin:0;
+  padding: 0;
+  background-color: #2a2c33;
+  font-family: "PT Sans", "Helvetica Neue","Segoe UI","Roboto",sans-serif;
+}
