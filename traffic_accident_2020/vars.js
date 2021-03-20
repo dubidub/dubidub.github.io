@@ -35,7 +35,15 @@ var config = {
     }
 };
 
-
+const idValueDict = {
+    "臺北市":"taipei",
+    "新北市":"newTaipei",
+    "桃園市":"taoyuan",
+    "臺中市":"taichung",
+    "臺南市":"tainan",
+    "高雄市":"kaohsiung",
+  }
+  
 const carTypeDict = {'人': ['行人', '其他人', '乘客'],
                         '全聯結車': ['自用', '營業用'],
                         '其他車': ['拖車(架)', '火車', '拼裝車', '農耕用車(或機械)', '其他車', '動力機械'],

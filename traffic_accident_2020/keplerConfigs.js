@@ -5,7 +5,6 @@ function changeConfig() {
             datasets,
             config
         );
-
         store.dispatch(keplerGl.addDataToMap({
             datasets: loadedData.datasets,
             config: loadedData.config,
@@ -17,6 +16,7 @@ function changeConfig() {
 }
 
 function loadDatasets(elmnt) {      
+    highlightDatasets(elmnt);
     let filename = countyDict[elmnt][0];
     let countyLat = countyDict[elmnt][1][0];
     let countyLng = countyDict[elmnt][1][1];
@@ -39,7 +39,7 @@ function loadDatasets(elmnt) {
             "zoom":12,
             "isSplit":false
         },
-        selectLayer("事故頻率蜂窩圖");
+        selectLayer("事故頻率 (3D)");
         config["config"]["mapState"] = {};
       }
     };
@@ -48,9 +48,26 @@ function loadDatasets(elmnt) {
     xhr.send();      
 }
 
+function highlightDatasets(elmnt) {
+  let btData = document.getElementsByClassName('bt-data');
+  for (var i = 0; i < btData.length; i++) {
+    btData[i].style.border = 'none';
+  }
+  if ( Object.keys(idValueDict).includes(elmnt) ) {
+    document.getElementById(idValueDict[elmnt]).style.border = "1.5px solid rgb(240, 97, 97)";
+  } else {
+    document.getElementById("selectCounty").style.border = "1.5px solid rgb(240, 97, 97)";
+  }          
+}
+
 function selectLayer(elmnt) {
+    let btLayer = document.getElementsByClassName('bt-layer');
+    for (var i = 0; i < btLayer.length; i++) {
+      btLayer[i].style.border = 'none';
+    }
     let layers = [];
-    if ( elmnt == "事故頻率蜂窩圖" ) {
+    if ( elmnt == "事故頻率 (3D)" ) {
+      document.getElementById("hexbin").style.border = "1.5px solid rgb(240, 97, 97)";
       let hexbinLayer = {
         "id":"mruiy3i",
         "type":"hexagon",
@@ -87,7 +104,8 @@ function selectLayer(elmnt) {
       layers.push(hexbinLayer);
     }
     
-    if ( elmnt == "事故細節斑點圖" ) {
+    if ( elmnt == "事故細節" ) {
+      document.getElementById("pointsFreq").style.border = "1.5px solid rgb(240, 97, 97)";
       let pointsFreqLayer = {
         "id":"1pe1mk",
         "type":"point",

@@ -1,12 +1,8 @@
 body {
   margin:0;
   padding: 0;
-  /* text-align: center; */
   background-color: #111;
   font-family: "PT Sans", "Helvetica Neue","Segoe UI","Roboto",sans-serif;
-  /* background-color: #f4f4f4; */
-  /* font-weight: 400;
-  line-height: 1.6; */
 }
 
 /* The sidepanel menu */
@@ -24,13 +20,11 @@ body {
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidepanel */
 }
 .fst-filter {
-  margin: 0 0 10px;
+  margin: 0 0 15px;
 }
 .fst-filter .wrap {
-  padding: 15px 20px 5px 30px;
-  /* border: 1px solid #000; */
+  padding: 12px 20px 5px 30px;
   color: #000;
-  /* background-color: #ddd; */
 }
 .fst-filter .wrap:hover {
   background-color: #eee;
@@ -38,22 +32,8 @@ body {
 .fst-filter h4 {
   margin: 0 0 1em;
 }
-/* .sidepanel h3 {
-  color: #fff;
-}
-.sidepanel p {
-  font-size: 13px;
-  color: #fff;
-  text-decoration: none;
-  padding-left: 5px;
-} */
-.stats p a {
-  font-size: 13px;
-  /* color: #CACCF2; */
-  text-decoration: none;
-}
 .wrap p {
-  font-size: 13px;
+  font-size: 10px;
   color: #000;
   text-decoration: none;
   padding-left: 5px;
@@ -74,8 +54,94 @@ body {
   line-height: 100vh;
 }
 
+/* button design  */
+.wrapper{
+  display: flex;
+  margin: 8px 10px;
+}
+.button {
+  flex:1;
+  border-radius:0;
+  border: none;
+  /* border: 1px solid rgb(240, 97, 97); */
+  background-color: #ccc;
+  padding: 4px 12px;
+  margin: 0 10px 0 0;
+}
+.button:hover{
+  background-color: #aaa;
+}
 
+/* dropdown list design */
+select {
+  appearance: auto;
+  outline: 0;
+  box-shadow: none;
+  border: none;
+  background: #ccc;
+  background-image: none;
+  flex: 1;
+  padding: 5px 12px;
+  color: #000;
+  cursor: pointer;
+  margin: 0 10px 0 0;
+}
+select:hover{
+  background-color: #bbb;
+}
 
+/* filter design */
+.clmn1 {
+  flex:1;
+  display: flex;
+  font-size: 13px;
+  padding: 5px 0;
+  margin: 0 2px 0 0;
+}
+.clmn2 {
+  flex:2;
+  display: flex;
+  font-size: 13px;
+  padding: 4px 0;
+  margin: 0 0 0 0;  
+}
+
+/* checkbox design */
+.osman{
+  appearance: none;
+  outline:none;
+  width:30px;
+  height:15px;
+  position: relative;
+  background: linear-gradient(#ccc,#eee);
+  border-radius: 7.5px;
+  border-top:solid 2px #bbb;
+  border-bottom:solid 2px #fff;
+  cursor:pointer;
+  box-shadow: inset 0 0 5px rgba(0,0,0,.2)
+              inset 0 0 10px rgba(0,0,0,.2)
+              inset 0 0 15px rgba(0,0,0,.2);
+}
+.osman:checked{
+  background: linear-gradient(rgb(252, 83, 83),rgb(252, 101, 101)); 
+}
+.osman::before{
+  content:'';
+  position:absolute;
+  width:16.5px;
+  height:16.5px;
+  top:-4.5px;
+  left:-1.5px;
+  border-radius: 50%;
+  border-bottom:solid 2px #bbb;
+  border-top:solid 2px #fff;
+  background: linear-gradient(#eee,#ccc);
+  transition: .3s;
+  box-shadow: 0 0 5px #00000033;
+}
+.osman:checked::before{
+  left:15px;
+}
 
 /* Position and style the close button (top right corner) */
 .sidepanel .closebtn {
@@ -91,7 +157,7 @@ body {
   border: none;
 }
 .sidepanel .closebtn:hover {
-  background-color: #444;
+  background-color: #eee;
 }
 
 /* Style the button that is used to open the sidepanel */
@@ -111,5 +177,5 @@ body {
   display:block;
 }
 .openbtn:hover {
-  background-color: #444;
+  background-color: #eee;
 }
