@@ -2,7 +2,7 @@
 <head>
   <!--General-->
   <meta charset="UTF-8"/>
-  <title>2020 全國交通事故地圖 | Adu Work in Progress</title>
+  <title>2020 Taiwan Road Safety Data Visualization | Adu Work in Progress</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="./header.css">
@@ -11,8 +11,8 @@
   <!-- Social Network -->
   <meta property="og:image" content="https://dubidub.github.io/traffic_accident_2020/cover.PNG" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://dubidub.github.io/traffic_accident_2020/zh_tw.html" />
-  <meta property="og:description" content="將2020年台灣交通事故斑點圖視覺化，快速定位交通事故熱區" />
+  <meta property="og:url" content="https://dubidub.github.io/traffic_accident_2020/" />
+  <meta property="og:description" content="A visualization of Taiwan Road Safety Data in 2020. Database of each county is established respectively. Hexbin and pointsfrequency layers are added as well as various filters for customizable display." />
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLLS8DZLPN"></script>
   <script>
@@ -44,7 +44,7 @@
   <!-- Header -->
   <div class="title">
     <div class="header">
-      <a class="logo">2020 全國交通事故地圖</a>
+      <a class="logo">2020 Taiwan Road Safety Map</a>
       <input class="menu-btn" type="checkbox" id="menu-btn" />
       <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
       <ul class="menu">
@@ -59,16 +59,16 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <div class="fst-filter">
       <div class="wrap">
-        <h4>縣市交通事故資料庫</h4>
+        <h4>LOAD CITY DATABASE</h4>
         <div class="wrapper">
-          <input class="button bt-data" type="button" id="taipei" value="臺北市" onclick="loadDatasets(this.value)">
-          <input class="button bt-data" type="button" id="newTaipei" value="新北市" onclick="loadDatasets(this.value)">
-          <input class="button bt-data" type="button" id="taoyuan" value="桃園市" onclick="loadDatasets(this.value)">
+          <input class="button bt-data" type="button" id="taipei" value="Taipei" onclick="loadDatasets(this.value)">
+          <input class="button bt-data" type="button" id="newTaipei" value="N Taipei" onclick="loadDatasets(this.value)">
+          <input class="button bt-data" type="button" id="taoyuan" value="Taoyuan" onclick="loadDatasets(this.value)">
         </div>
         <div class="wrapper">
-          <input class="button bt-data" type="button" id="taichung" value="臺中市" onclick="loadDatasets(this.value)">
-          <input class="button bt-data" type="button" id="tainan" value="臺南市" onclick="loadDatasets(this.value)">
-          <input class="button bt-data" type="button" id="kaohsiung" value="高雄市" onclick="loadDatasets(this.value)">
+          <input class="button bt-data" type="button" id="taichung" value="Taichung" onclick="loadDatasets(this.value)">
+          <input class="button bt-data" type="button" id="tainan" value="Tainan" onclick="loadDatasets(this.value)">
+          <input class="button bt-data" type="button" id="kaohsiung" value="Kaohsiung" onclick="loadDatasets(this.value)">
         </div>
         <div class="wrapper">
           <select id="selectCounty" class="bt-data" onchange="loadDatasets(this.value)">
@@ -78,41 +78,41 @@
     </div>
     <div class="fst-filter">
       <div class="wrap">
-        <h4>資料呈現方式</h4>
+        <h4>LOAD DATA LAYERS</h4>
         <div class="wrapper">
-          <input class="button bt-layer" type="button" id="hexbin" value="事故頻率 (3D)" onclick="selectLayer(this.value)">
-          <input class="button bt-layer" type="button" id="pointsFreq" value="事故細節" onclick="selectLayer(this.value)">
+          <input class="button bt-layer" type="button" id="hexbin" value="Hexbin (3D)" onclick="selectLayer(this.value)">
+          <input class="button bt-layer" type="button" id="pointsFreq" value="Points" onclick="selectLayer(this.value)">
         </div>        
       </div>
     </div>
     <div class="fst-filter">
       <div class="wrap">
-        <h4>篩選條件　<input type="button" id="clearFilters" value="清空" onclick="clearFilters()"></h4>
+        <h4>FILTERS　　<input type="button" id="clearFilters" value="Clear" onclick="clearFilters()"></h4>
         <div class="wrapper">
-          <div class="clmn1">死亡車禍</div>
+          <div class="clmn1">Death</div>
           <div class="clmn2">
             <input class="osman" type="checkbox" id="accType" onchange="resetConfig()"/>
           </div>          
         </div>
         <div class="wrapper">
-          <div class="clmn1">月份</div>
+          <div class="clmn1">Month</div>
           <div class="clmn2">
             <select id="selectMonth" onchange="resetConfig()"></select>
           </div>
         </div>
         <div class="wrapper">
-          <div class="clmn1">開啟時間軸</div>
+          <div class="clmn1">24HR Timeline</div>
           <div class="clmn2">
             <input class="osman" type="checkbox" id="dateAnimation" onchange="resetConfig()"/>
           </div>
         </div>
         <div class="wrapper">
-          <div class="clmn1">車輛類型</div>
+          <div class="clmn1">Car Type</div>
           <div class="clmn2">
             <select id="carType" onchange="selectCarSubType(this)"></select>
           </div>
         </div>
-        <div class="wrapper">
+        <div class="wrapper" style="display:none">
           <div class="clmn1"></div>
           <div class="clmn2">
             <select id="carSubType" onchange="resetConfig()"></select>
@@ -122,11 +122,8 @@
     </div>
     <div class="fst-filter">
       <div class="wrap">
-        <!-- <p> 網站架構與說明：
-          <a href="https://dubidub.github.io/blog/geospatial-data-visualization/"><u>《還沒寫》</u></a>
-        </p> -->
-        <p> 資料來源：
-          <a href="https://data.gov.tw/dataset/12197"><u>《政府資料開放平台》</u></a>
+        <p> Source:
+          <a href="https://data.gov.tw/dataset/12197"><u>National Development Council</u></a>
         </p>
       </div>      
     </div>
@@ -138,7 +135,7 @@
   </div>
   <!-- Scripts -->
   <script src="./reactComponent.js"></script>
-  <script src="./vars_zh.js"></script>
-  <script src="./keplerConfigs_zh.js"></script>
-  <script src="./pageEvents_zh.js"></script>
+  <script src="./vars.js"></script>
+  <script src="./keplerConfigs.js"></script>
+  <script src="./pageEvents.js"></script>
 </body>

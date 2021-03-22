@@ -28,9 +28,8 @@ function loadDatasets(elmnt) {
     xhr.onreadystatechange = function () {
       if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
         document.getElementById("loading").innerHTML = '';
-        document.getElementById("openbtn").innerHTML = '&vellip;　' + elmnt.toUpperCase();
+        document.getElementById("openbtn").innerHTML = '&vellip;　' + elmnt;
         datasets = [JSON.parse(xhr.responseText)];   
-        datasets[0]["data"]["fields"] = fields;
         config["config"]["mapState"] = {
             "bearing":15.923076923076922,
             "dragRotate":true,
@@ -40,7 +39,7 @@ function loadDatasets(elmnt) {
             "zoom":12,
             "isSplit":false
         },
-        selectLayer("Hexbin (3D)");
+        selectLayer("事故頻率 (3D)");
         config["config"]["mapState"] = {};
       }
     };
@@ -67,16 +66,16 @@ function selectLayer(elmnt) {
       btLayer[i].style.border = 'none';
     }
     let layers = [];
-    if ( elmnt == "Hexbin (3D)" ) {
+    if ( elmnt == "事故頻率 (3D)" ) {
       document.getElementById("hexbin").style.border = "1.5px solid rgb(240, 97, 97)";
       let hexbinLayer = {
         "id":"mruiy3i",
         "type":"hexagon",
         "config":{
           "dataId":"fi4bu3mll",
-          "label":"Hexbin (3D)",
+          "label":"事故頻率蜂窩圖",
           "color":[218,112,191],
-          "columns":{"lat":"Latitude","lng":"Longitude"},
+          "columns":{"lat":"緯度","lng":"經度"},
           "isVisible":true,
           "visConfig":{
             "opacity":0.6,
@@ -105,16 +104,16 @@ function selectLayer(elmnt) {
       layers.push(hexbinLayer);
     }
     
-    if ( elmnt == "Points" ) {
+    if ( elmnt == "事故細節" ) {
       document.getElementById("pointsFreq").style.border = "1.5px solid rgb(240, 97, 97)";
       let pointsFreqLayer = {
         "id":"1pe1mk",
         "type":"point",
         "config":{
           "dataId":"fi4bu3mll",
-          "label":"Points",
+          "label":"事故細節斑點圖",
           "color":[34,63,154],
-          "columns":{"lat":"Latitude","lng":"Longitude","altitude":null},
+          "columns":{"lat":"緯度","lng":"經度","altitude":null},
           "isVisible":true,
           "visConfig":{
             "radius":10,
@@ -148,7 +147,7 @@ function resetConfig() {
     if ( accType.checked ) {
       let accTypeFilter = {
         "dataId":["fi4bu3mll"],
-        "name":["AccidentType"],
+        "name":["事故類型"],
         "type":"multiSelect",
         "value":["A1"],
       };
@@ -179,7 +178,7 @@ function resetConfig() {
       let end = new Date(monthDict[selectMonth.value][1]);
       let selectMonthFilter = {
         "dataId":["fi4bu3mll"],
-        "name":["Date"],
+        "name":["日期"],
         "type":"multiSelect",
         "value":getDatesBetweenDates(start, end),
       };
@@ -190,7 +189,7 @@ function resetConfig() {
     if ( dateAnimation.checked ) {
       let dateAnimationFilter = {
         "dataId":["fi4bu3mll"],
-        "name":["Time"],
+        "name":["時間"],
         "type":"timeRange",
         "enlarged":true,
         "speed":1,
