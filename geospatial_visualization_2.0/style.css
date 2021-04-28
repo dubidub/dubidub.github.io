@@ -1,0 +1,335 @@
+body {
+    margin:0;
+    padding: 0;
+    background-color: #111;
+    font-family: "PT Sans", "Helvetica Neue","Segoe UI","Roboto",sans-serif;
+  }
+/* loading */
+.loading {
+    position: absolute;
+    height: 100%;
+    width: 100%; 
+    background-color: #000;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 99999999999;
+    opacity: 0.6;
+    text-align: center;
+    line-height: 100vh;
+}
+/* The sidepanel menu */
+.sidepanel {
+    height: 100vh; /* Specify a height */
+    width: 415px; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1001; /* Stay on top */
+    top: 0;
+    left: 0;
+    opacity:0.9;
+    /* padding: 0 1rem 0 1rem; */
+    background-color: #f5f5f5; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    overflow-y: auto;
+    padding-top: 50px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidepanel */
+}
+
+/* Position and style the close button (top right corner) */
+.sidepanel .closebtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-decoration: none;
+    font-size: 30px;
+    cursor: pointer;
+    background-color: #f5f5f5;
+    color: #000;
+    padding: 5px 15px;
+    border: none;
+}
+.sidepanel .closebtn:hover {
+    background-color: #ddd;
+}
+
+/* Style the button that is used to open the sidepanel */
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #ddd;
+    color: #000;
+    padding: 10px 15px;
+    border: 1px solid #bbb;
+    /* opacity: 0.6; */
+    border-radius: 3px;
+    position: fixed;
+    z-index: 1;
+    top: 9vh;
+    left: 2vw;
+    display:none;
+}
+.openbtn:hover {
+    background-color: #eee;
+}
+/* Solid border */
+hr.solid {
+    border-top: 1px solid #bbb;
+}
+
+.map-style {
+    margin: 10px;
+}
+
+/* inside the wrapper */
+.fst-filter {
+    margin: 20px 10px;
+    border: 2px solid #23a3a7;	
+}
+.fst-filter .wrap-title {
+    padding: 5px 2px 5px 10px;
+    background-color: #23a3a7;
+    color: #fff;
+}
+.wrap-addlayer {
+    padding: 5px 0;
+    text-align: center;
+}
+.fst-filter .wrap .list {
+    padding: 7px;
+    list-style-type: none;
+    border-bottom: 1px solid #23a3a7;
+}
+.fst-filter .wrap .list:hover {
+    background-color: #fff;
+}
+#uploadExportSeg {
+    border-bottom: 1px solid #ccc;
+    margin: 5px 0 0 0;
+}
+.add-load-export-buttons {
+    display:flex;
+    padding: 0 0 20px 7px;
+}
+#mapStyleSeg {
+    padding: 10px 0 0 0;
+    border-top: 1px solid #ccc;
+}
+/* Image Container */
+.image-container {
+    display: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+    align-items: center;
+  }
+.flex-item {
+    width: 11em;
+    margin: 10px;
+    flex:1;
+}
+.flex-item img {
+    width: 11em;
+    cursor: pointer;
+}
+.flex-item figcaption {
+    /* text-align: center; */
+    padding: 3px 0 0 5px;
+}
+/* Legend */
+.list span i {
+    width: 35px;
+    height: 35px;
+    float: right;
+    margin-right: 5px;
+}
+/* DataTables */
+div.dataTables_wrapper th, div.dataTables_wrapper td { 
+    white-space: nowrap; 
+    width: 160px;
+}
+div.dataTables_wrapper {
+    /* width: 800px; */
+    margin: 0 auto;
+}
+div.dataTables_wrapper tr { 
+    height: 30px; 
+    /* width: 160px; */
+}
+
+
+/* LAYER ATTRIBUTES */
+.input-modal-title {
+    width: 50%;
+}
+.layer {
+    padding: 10px;
+}
+.layer:hover {
+    background-color: rgb(245, 245, 245);
+}
+.layer-content {
+    padding: 0 0 0 5px;
+    line-height:40px;
+}
+.input-readonly {
+    background-color: #ddd;
+    border: none;
+    height:35px;
+    width: 180px;
+    padding: 0px 10px;
+    margin: 0 5px;
+}
+.attributes {
+    padding: 10px;
+}
+.attributes:hover {
+    border: 1px solid #23a3a7;
+}
+.sub-attributes {
+    /* height:35px; */
+    line-height:40px;
+    padding: 0 10px;
+}
+input[type="number"], input[type="color"] {
+	text-align:center;
+    line-height:33px;
+    width: 70px;
+}
+.layer-select {
+	text-align:center;
+    height:35px;
+    line-height:33px;
+    width: 280px;
+}
+
+/* Buttons */
+.filter-button, .add-button, .view-button, .delete-button, .edit-button, .hide-button, .delete-layer-button, .upload-button, .export-button, .load-button{
+	background:#f5f5f5;
+	border:1px solid #ccc;	 
+	text-align:center;	
+	font-weight:500;
+	cursor:pointer;
+}
+.upload-button, .export-button, .load-button {
+    flex: 1;
+    margin: 3px 10px 3px 3px;
+    word-wrap: break-word;
+    width: 7em;
+    height: 4em;
+    padding: 3px 22px;
+}
+.upload-button {
+    background:#23a3a7;	
+    color: #fff
+}
+.upload-button:hover {
+    background:#23a3a78c;	
+    color: #fff
+}
+.export-button:hover, .load-button:hover {
+    background:#ccc;	
+    color: #fff
+}
+.filter-button, .add-button, .view-button, .delete-button{
+    padding:0px 10px;
+    line-height:33px;
+}
+.view-button {
+    margin: 0 5px 0 0;
+}
+.filter-button:hover {
+    border:1px solid #23a3a7;	
+}
+.view-button:hover {
+    background:#404370;	
+    color: #fff;
+}
+.add-button:hover {
+    background:#23a3a7;	
+    color: #fff;
+}
+.delete-button:hover {
+    background:rgb(102, 8, 8);
+    color: #fff;	
+}
+.edit-button:hover, .hide-button:hover, .delete-layer-button:hover {
+    border:1px solid #23a3a7;	
+}
+.edit-button, .hide-button, .delete-layer-button {
+    font-size: 14px;
+    padding:0px 5px;
+    line-height:28px;
+}
+
+/* raio checkbox */
+
+.box-radio-input input[type="radio"]{
+	display:none;
+}
+
+.box-radio-input input[type="radio"] + span{
+	display:inline-block;
+	background:#fff;
+	border:1px solid #dfdfdf;	 
+	padding: 3px 15px;
+	text-align:center;
+	/* height:35px; */
+	line-height:33px;
+	font-weight:500;
+	cursor:pointer;
+    margin: 0 5px 0 0;
+}
+
+.box-radio-input input[type="radio"] + span:hover{
+	/* background:#9ebcbd; */
+    border:1px solid #23a3a7;	
+}
+
+.box-radio-input input[type="radio"]:checked + span{
+	border:1px solid #23a3a7;
+	background:#23a3a7;
+	color:#fff;
+}
+ 
+/* Popup */
+.popup-fixed {
+    position: fixed;
+    top: 0 !important;
+    /* bottom: 0 !important; */
+    left: 0 !important;
+    /* right: auto; */
+    width: 415px;
+    transform: none !important;
+    margin: 0;
+    border-radius: 0;
+}    
+.leaflet-popup-tip-container {
+    display: none;
+}    
+.leaflet-popup-content-wrapper,.leaflet-popup-content {
+    border-radius: 0 !important;
+    height: 100vh;
+}
+.leaflet-popup-content {
+    width: 350px !important;
+    margin: 40px 20px !important;
+}
+.leaflet-fixed-pane {
+    z-index: 1200 !important;
+}
+.leaflet-popup-content h5 {
+    margin: 5px 10px;
+}
+#tablePopup {
+    margin: 20px 0 0 0; 
+}
+#tablePopup td {
+    font-size: 14px;
+    padding: 5px 10px;
+}
+#tablePopup tr {
+    border-top: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
+}
