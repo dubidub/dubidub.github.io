@@ -319,26 +319,26 @@ var dataTablesLang = {
 }
 var datasetTemplates = {
     "tw-road-safety-2020": {
-        "src": "https://raw.githubusercontent.com/dubidub/dubidub.github.io/master/geospatial_visualization_2/resources/2020-traffic-accidents.PNG", 
+        "src": "https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/geospatial_visualization_2.0/resources/2020-traffic-accidents.PNG", 
         "figcaption": "2020年台灣A1交通事故",
         "entries": "(1,806筆資料, 304KB)",
-        "url": "https://raw.githubusercontent.com/dubidub/dubidub.github.io/master/geospatial_visualization_2/resources/tw-road-safety-2020.csv",
+        "url": "https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/geospatial_visualization_2.0/resources/tw-road-safety-2020.csv",
         "fileName": "台灣A1交通事故2020",
         "fileType": "csv"
     }, 
     "flight-routes-2014": {
-        "src": "https://raw.githubusercontent.com/dubidub/dubidub.github.io/master/geospatial_visualization_2/resources/flight-routes-2014.PNG", 
+        "src": "https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/geospatial_visualization_2.0/resources/flight-routes-2014.PNG", 
         "figcaption": "2014年全球航線資料",
         "entries": "(67,663筆資料, 10.9MB)",
-        "url": "https://raw.githubusercontent.com/dubidub/dubidub.github.io/master/geospatial_visualization_2/resources/flight-routes-2014.csv",
+        "url": "https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/geospatial_visualization_2.0/resources/flight-routes-2014.csv",
         "fileName": "全球航線",
         "fileType": "csv"
     }, 
     "taipei-landuse": {
-        "src": "https://raw.githubusercontent.com/dubidub/dubidub.github.io/master/geospatial_visualization_2/resources/taipei-landuse.PNG", 
+        "src": "https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/geospatial_visualization_2.0/resources/taipei-landuse.PNG", 
         "figcaption": "台北市土地分區使用",
         "entries": "(15,538筆資料, 16.9MB)",
-        "url": "https://raw.githubusercontent.com/dubidub/dubidub.github.io/master/geospatial_visualization_2/resources/taipei-landuse.csv",
+        "url": "https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/geospatial_visualization_2.0/resources/taipei-landuse.csv",
         "fileName": "台北土地使用",
         "fileType": "csv"
     }, 
