@@ -85,15 +85,20 @@ function loadTemplate(DATABASETEMP) {
         url = datasetTemplates[DATABASETEMP]["url"];
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            console.log("0");
             let data = Papa.parse(xhr.responseText, {header : false}), 
                 datasetNumber = "dataset" + datasetNo, 
                 fileType = datasetTemplates[DATABASETEMP]["fileType"],
                 fileName = datasetTemplates[DATABASETEMP]["fileName"];
             console.log(data);
             datasetNo += 1;
+            console.log("1");
             addCsvToDatasets(data, datasetNumber, fileType, fileName);
+            console.log("2");
             addDatasetToSeg(datasetNumber, fileType, fileName);
+            console.log("3");
             addTemplateLayers(DATABASETEMP, datasetNumber);    
+            console.log("4");
             $("#loading").html("");
         }
     };
