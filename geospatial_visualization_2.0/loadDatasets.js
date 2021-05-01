@@ -37,7 +37,7 @@ function addDatasetToSeg(DATASETNUMBER, FILETYPE, FILENAME) {
             id: "addLayer_"+DATASETNUMBER, 
         }),  
         layerButton = createElementAttributes("button", "add-button", {
-            onclick: function(){addLayer(DATASETNUMBER);},
+            onclick: function(){addLayer(DATASETNUMBER, true, false);},
             innerHTML: "新增圖層"
         }),
         viewButton = createElementAttributes("button", "view-button", {

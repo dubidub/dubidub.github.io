@@ -1,11 +1,3 @@
-// var config = {},
-//     filterGroups = {},
-//     datasets = {},
-//     layerGroups = {},
-//     layerNo = 0,
-//     datasetNo = 0,
-//     filterNo = 0,
-//     loadCoord = [23.707398117586052, 120.98712417755992];
 var tileLayers = {
     OpenStreetMap_Mapnik: {
         name: "街道1 - OpenStreetMap",

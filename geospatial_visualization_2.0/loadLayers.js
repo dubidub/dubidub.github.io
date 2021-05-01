@@ -1,7 +1,12 @@
-function addLayer(DATASET) {
+function addLayer(DATASET, SHOWMODAL, LNUMBER) {
     // generate a new layer modal
-    let layerNumber = "layer" + layerNo; 
-    layerNo += 1;
+    let layerNumber;
+    if ( LNUMBER == false ) {
+        layerNumber = "layer" + layerNo; 
+        layerNo += 1;
+    } else {
+        layerNumber = LNUMBER;
+    }    
     generateModal(layerNumber);
     $("#modal"+layerNumber).css({
         "overflow-y": "auto",
@@ -9,7 +14,9 @@ function addLayer(DATASET) {
     $("#modalDialog"+layerNumber).attr({
         class: "modal-dialog"
     });
-    $('#modal'+layerNumber).modal();
+    if ( SHOWMODAL == true ) {
+        $('#modal'+layerNumber).modal();
+    }    
     // add modal title
     $( "#modalTitle"+layerNumber ).html("圖層 ");
     let lName = createElementAttributes("input", "input-modal-title", {
@@ -52,7 +59,9 @@ function addLayer(DATASET) {
     // add confirm button 
     addConfirmButtonToModal(layerNumber, DATASET);
     // add filters
-    addFilter(DATASET, layerNumber);
+    if ( LNUMBER == false ) {
+        addFilter(DATASET, layerNumber);
+    }    
 }
 
 function addConfirmButtonToModal(LAYERNUMBER, DATASET) {
@@ -222,9 +231,9 @@ function submitLayer(LAYERNUMBER, DATASET) {
     config[LAYERNUMBER]["layerType"] = LAYERTYPE;
     config[LAYERNUMBER]["coordColumns"] = COORDINATES;
     config[LAYERNUMBER]["attributes"] = ATTRIBUTES;
+    layerToMap(config, LAYERNUMBER);
     console.log(config);
     console.log(filterGroups);
-    layerToMap(config, LAYERNUMBER);
 }
 
 function addLayerList(DATASET, LAYERNUMBER, LAYERNAME, LAYERTYPE, ATTR) {
