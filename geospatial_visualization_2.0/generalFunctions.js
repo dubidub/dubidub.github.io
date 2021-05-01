@@ -93,7 +93,7 @@ function loadTemplate(DATABASETEMP) {
             datasetNo += 1;
             addCsvToDatasets(data, datasetNumber, fileType, fileName);
             addDatasetToSeg(datasetNumber, fileType, fileName);
-            addTemplateLayers(DATABASETEMP, datasetNumber);       
+            addTemplateLayers(DATABASETEMP, datasetNumber);    
             $("#loading").html("");
         }
     };

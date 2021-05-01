@@ -223,6 +223,7 @@ function submitLayer(LAYERNUMBER, DATASET) {
     config[LAYERNUMBER]["coordColumns"] = COORDINATES;
     config[LAYERNUMBER]["attributes"] = ATTRIBUTES;
     console.log(config);
+    console.log(filterGroups);
     layerToMap(config, LAYERNUMBER);
 }
 

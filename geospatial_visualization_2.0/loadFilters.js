@@ -59,7 +59,7 @@ function addFilter(DATASET, LAYER) {
                     $( "#layerContentDataset"+LAYER ).append(clearFilter);
                 }                
                 filterGroups[filterNumber]["rows"] = $('#table'+filterNumber).DataTable().rows( { search: 'applied' } ).select()[0];
-                console.log(filterGroups);
+                // console.log(filterGroups);
             },
             innerHTML: "套用"
         });
