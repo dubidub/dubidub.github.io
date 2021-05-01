@@ -32,7 +32,7 @@ function addLayer(DATASET) {
         ele3 = createElementAttributes("input", "input-readonly", {
             id: "dataset"+layerNumber, 
             type: "text",
-            name: "layerName",
+            name: "datasetFilename",
             value: datasets[DATASET]['fileName'] + "." + datasets[DATASET]['fileType'],
         }),
         filterButton = createElementAttributes("button", "filter-button", {
@@ -186,9 +186,10 @@ function addAttributes(ATTR, LAYERNUMBER) {
                 for: attrs[i], 
                 innerHTML: names[attrs[i]]["zh"]
             }),
-            attrInput = createElementAttributes("input", null, 
-                {...layerAttributes[ATTR][attrs[i]]}
-            );                   
+            attrInput = createElementAttributes("input", null, {
+                // id: attrs[i] + LAYERNUMBER,
+                ...layerAttributes[ATTR][attrs[i]]
+            });              
         selectInput.append(attrLabel, attrInput);
         ele1.append(selectInput);
     }
@@ -211,7 +212,7 @@ function submitLayer(LAYERNUMBER, DATASET) {
         ATTRIBUTES.push(...attrs); 
     }   
     for (let i=0; i<ATTRIBUTES.length; i++) {
-        let attr = ATTRIBUTES[i]['id'];        
+        let attr = ATTRIBUTES[i]['id'];  
         ATTRIBUTES[i]['value'] = $("#layerAttributes"+LAYERNUMBER+" input#"+attr).val();
     }
     addLayerList(DATASET, LAYERNUMBER, LAYERNAME, LAYERTYPE, ATTRIBUTES);
@@ -232,6 +233,7 @@ function addLayerList(DATASET, LAYERNUMBER, LAYERNAME, LAYERTYPE, ATTR) {
     } 
     $( "#list"+LAYERNUMBER ).html("");
     let hideButton = createElementAttributes("button", "hide-button", {
+            id: "hideShow" + LAYERNUMBER,
             innerHTML: "隱藏",
             onclick: function(){showHideLayer(LAYERNUMBER);}
         }),
@@ -292,12 +294,13 @@ function addLayerList(DATASET, LAYERNUMBER, LAYERNAME, LAYERTYPE, ATTR) {
 }
 
 function showHideLayer(LAYERNUMBER) {
-    if ($("#"+LAYERNUMBER).html() == "隱藏") {
+    console.log(layerGroups);
+    if ($("#hideShow"+LAYERNUMBER).html() == "隱藏") {
         map.removeLayer(layerGroups[LAYERNUMBER]);
-        $("#"+LAYERNUMBER).html("顯示");
+        $("#hideShow"+LAYERNUMBER).html("顯示");
     } else {
         map.addLayer(layerGroups[LAYERNUMBER]);
-        $("#"+LAYERNUMBER).html("隱藏");
+        $("#hideShow"+LAYERNUMBER).html("隱藏");
     }
 }
 

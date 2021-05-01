@@ -2,8 +2,9 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" charset=utf-8"/>       
-    <link rel="stylesheet" type="text/css" media="all" href="https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/geospatial_visualization_2.0/style.css">
-
+    <link rel="stylesheet" type="text/css" media="all" href="./style.css">
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/geospatial_visualization_2.0/style.css"> -->
+    
     <!-- DataTables General-->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
@@ -49,6 +50,23 @@
     <div class="map" id="mapid" style="width: 100vw; height: 100vh;"></div>
         
     <!-- Scripts -->
+    <script>
+        var config = {},
+            filterGroups = {},
+            datasets = {},
+            layerGroups = {},
+            layerNo = 0,
+            datasetNo = 0,
+            filterNo = 0,
+            loadCoord = [23.707398117586052, 120.98712417755992];
+    </script>
+    <!-- <script src="./loadDatasets.js" charset="utf-8" type="text/javascript" ></script>
+    <script src="./loadLayers.js" charset="utf-8" type="text/javascript" ></script>
+    <script src="./loadFilters.js" charset="utf-8" type="text/javascript" ></script>
+    <script src="./loadMaps.js" charset="utf-8" type="text/javascript" ></script>
+    <script src="./vars.js" charset="utf-8" type="text/javascript" ></script>
+    <script src="./generalFunctions.js" charset="utf-8" type="text/javascript" ></script>
+    <script src="./onload.js" charset="utf-8" type="text/javascript" ></script> -->
     <script src="https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/geospatial_visualization_2.0/loadDatasets.js" charset="utf-8" type="text/javascript" ></script>
     <script src="https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/geospatial_visualization_2.0/loadLayers.js" charset="utf-8" type="text/javascript" ></script>
     <script src="https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/geospatial_visualization_2.0/loadFilters.js" charset="utf-8" type="text/javascript" ></script>

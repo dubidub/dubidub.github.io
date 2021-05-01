@@ -93,12 +93,41 @@ function loadTemplate(DATABASETEMP) {
             datasetNo += 1;
             addCsvToDatasets(data, datasetNumber, fileType, fileName);
             addDatasetToSeg(datasetNumber, fileType, fileName);
+            addTemplateLayers(DATABASETEMP, datasetNumber);       
             $("#loading").html("");
         }
     };
     $("#loading").html('<div class="loading"><img src="resources/loading.gif" /></div>');
     xhr.open(method, url, true);
     xhr.send();
+}
+function addTemplateLayers(DATABASETEMP, datasetNumber) {
+    let LAYERS = datasetTemplates[DATABASETEMP]["layers"];
+    for ( let i=0; i<LAYERS.length; i++ ) {
+        addLayer(datasetNumber);
+        let LAYERNUMBER = "layer" + (layerNo - 1),
+            LAYERNAME = LAYERS[i]["layerName"], 
+            LAYERTYPE = LAYERS[i]["layerType"], 
+            COORDINATES = LAYERS[i]["coordinates"],
+            ATTRIBUTES = LAYERS[i]["attributes"], 
+            FILTERROWS = LAYERS[i]["filterRows"], 
+            FILTERNUMBER = "filter" + (filterNo - 1);
+        $('#layerName'+LAYERNUMBER).val(LAYERNAME);
+        $("input[name=layerType" + LAYERNUMBER + "][value=" + LAYERTYPE + "]").click();
+        for ( let [key, value] of Object.entries(COORDINATES) ) {
+            $('#'+`${key}`+LAYERNUMBER).val(`${value}`);
+        }            
+        checkCoordFilled(datasetNumber, LAYERTYPE, LAYERNUMBER);
+        for ( let [key, value] of Object.entries(ATTRIBUTES) ) {
+            $("#layerAttributes"+LAYERNUMBER+" input#"+`${key}`).val(`${value}`);
+        } 
+        if ( FILTERROWS.length != 0 ) {
+            filterGroups[FILTERNUMBER]["rows"] = FILTERROWS;                    
+        }
+        $( "#confirmButton" + LAYERNUMBER ).click();
+    }
+    $("#layerTypes").val(datasetTemplates[DATABASETEMP]["tilelayer"]);
+    updateTileLayer();    
 }
 function openNav() {
     document.getElementById("mySidepanel").style.width = "26em";
