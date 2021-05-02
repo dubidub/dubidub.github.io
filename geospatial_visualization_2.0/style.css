@@ -28,50 +28,38 @@ body {
     top: 0;
     left: 0;
     opacity:0.9;
-    /* padding: 0 1rem 0 1rem; */
     background-color: #f5f5f5; /* Black*/
     overflow-x: hidden; /* Disable horizontal scroll */
     overflow-y: auto;
-    padding-top: 50px; /* Place content 60px from the top */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidepanel */
+    padding-top: 1vh; /* Place content 60px from the top */
+    /* transition: 0.5s; 0.5 second transition effect to slide in the sidepanel */
 }
 
 /* Position and style the close button (top right corner) */
-.sidepanel .closebtn {
-    position: absolute;
-    top: 0;
-    right: 0;
-    text-decoration: none;
-    font-size: 30px;
-    cursor: pointer;
-    background-color: #f5f5f5;
-    color: #000;
-    padding: 5px 15px;
-    border: none;
-}
-.sidepanel .closebtn:hover {
-    background-color: #ddd;
-}
-
-/* Style the button that is used to open the sidepanel */
-.openbtn {
+.closebtn, .openbtn {
     font-size: 20px;
     cursor: pointer;
-    background-color: #ddd;
-    color: #000;
-    padding: 10px 15px;
-    border: 1px solid #bbb;
-    /* opacity: 0.6; */
-    border-radius: 3px;
+    background-color: #f5f5f5;
+    color: #777;
+    padding: 3px 3px 3px 0;
+    border: 1px solid #aaa;
     position: fixed;
     z-index: 1;
-    top: 9vh;
-    left: 2vw;
+    top: 1.5vh;
+    height:43px;
+    width:21px;
+}
+.closebtn {
+    left: 415.5px;
+    display:block;
+}
+.openbtn {
     display:none;
 }
-.openbtn:hover {
+.closebtn:hover, .openbtn:hover  {
     background-color: #eee;
 }
+
 /* Solid border */
 hr.solid {
     border-top: 1px solid #bbb;
@@ -115,15 +103,15 @@ hr.solid {
     padding: 10px 0 0 0;
     border-top: 1px solid #ccc;
 }
-/* Image Container */
-.image-container {
+/* Image/export Container */
+.image-container, .export-container {
     display: none;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-content: flex-start;
     align-items: center;
-  }
+}
 .flex-item {
     width: 11em;
     margin: 10px;
@@ -273,10 +261,11 @@ input[type="number"], input[type="color"] {
 	display:inline-block;
 	background:#fff;
 	border:1px solid #dfdfdf;	 
-	padding: 3px 15px;
+	padding: 10px 5px;
 	text-align:center;
-	/* height:35px; */
-	line-height:33px;
+	height:60px;
+    width: 130px;
+	line-height:18px;
 	font-weight:500;
 	cursor:pointer;
     margin: 0 5px 0 0;

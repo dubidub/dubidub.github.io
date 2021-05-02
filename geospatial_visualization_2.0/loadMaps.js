@@ -26,13 +26,23 @@ function layerToMap(config, layer) {
 function addPolygonLayer(coordColumns, dataset, attr, fields, layerGroup, filteredRows, layer) {
     let coordClmn = coordColumns[0],
         contained = [], 
+        coordinates0;
+    try {
         coordinates0 = JSON.parse(dataset["allData"][0][coordClmn]);
+    } catch(e) {
+        coordinates0 = dataset["allData"][0][coordClmn];
+    }
     let n = removeArrayStructure(coordinates0); 
     for ( let i=0; i<filteredRows.length; i++ ) {
         try {
             let entry = dataset["allData"][filteredRows[i]],
-                coordinates = JSON.parse(entry[coordClmn]),
-                polygon = L.polygon(coordinates.flat(n), attr);
+                coordinates;
+            try {
+                coordinates = JSON.parse(entry[coordClmn]);
+            } catch(e) {
+                coordinates = entry[coordClmn];
+            }                
+            let polygon = L.polygon(coordinates.flat(n), attr);
             layerGroup.addLayer(polygon);
             addPopup(polygon, fields, entry, dataset, layer, coordColumns);    
             contained.push(coordinates);   

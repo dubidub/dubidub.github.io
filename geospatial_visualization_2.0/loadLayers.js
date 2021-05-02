@@ -45,7 +45,6 @@ function addLayer(DATASET, SHOWMODAL, LNUMBER) {
         filterButton = createElementAttributes("button", "filter-button", {
             id: "filter"+layerNumber,
             onclick: function(){showFilter(layerNumber);},
-            // onclick: function(){showFilter(layerNumber);},
             innerHTML: "添加篩選"
         });
     layerContent.append(ele3, filterButton);

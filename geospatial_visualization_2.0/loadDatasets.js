@@ -1,18 +1,22 @@
 function uploadDataset(evt) {  
 	$("#loading").html('<div class="loading"><img src="resources/loading.gif" /></div>');
-    let file = evt.target.files[0],
-        fileFullname = file.name.split("."),
-        fileName = fileFullname[0],
-        fileType = fileFullname[1],
-        datasetNumber = "dataset" + datasetNo;
-    datasetNo += 1;
-    readCSV(file, datasetNumber, fileType, fileName);
-    // if (fileType == "csv") {
-    //     readCSV(file, datasetNumber, fileType, fileName);
-    // } else if (fileType == "geojson") {
-    //     readGeojson(file, datasetNumber, fileType);
-    // }
-    addDatasetToSeg(datasetNumber, fileType, fileName);
+    try {
+        let file = evt.target.files[0],
+            fileFullname = file.name.split("."),
+            fileName = fileFullname[0],
+            fileType = fileFullname[1],
+            datasetNumber = "dataset" + datasetNo;
+        datasetNo += 1;
+        // readCSV(file, datasetNumber, fileType, fileName);
+        if (fileType == "csv") {
+            readCSV(file, datasetNumber, fileType, fileName);
+        } else if (fileType == "geojson") {
+            readGeojson(file, datasetNumber, fileType, fileName);
+        }
+        addDatasetToSeg(datasetNumber, fileType, fileName);
+    } catch(e) {
+        $("#loading").html("");
+    }    
 }
 function addDatasetToSeg(DATASETNUMBER, FILETYPE, FILENAME) {
     let datasetWrapper = createElementAttributes("div", "fst-filter", {
@@ -117,21 +121,25 @@ function deleteDataset(datasetNumber) {
         }
     }
 }
-function readGeojson(CsvFile, fileName, fileType) {
+function readGeojson(GeoJSON, datasetNumber, fileType, fileName) {
     let reader = new FileReader();
-    reader.readAsText(CsvFile);
+    reader.readAsText(GeoJSON);
     reader.onload = function(event) {
         let geojsonData = event.target.result,	
             data = JSON.parse(geojsonData);
-        addGeojsonToDatasets(data, fileName, fileType);
+        console.log(data);
+        addGeojsonToDatasets(data, datasetNumber, fileType, fileName);
     };
     reader.onerror = function() {
         alert('無法讀取 ' + fileName + '.' + fileType);
     }; 
 }
-function addGeojsonToDatasets(geojson, fileName, fileType) {
+function addGeojsonToDatasets(geojson, datasetNumber, fileType, fileName) {
     let dataset = {},   
-        fields = Object.keys(geojson['features'][0]['properties']);
+        fieldsProp = Object.keys(geojson['features'][0]['properties']),
+        fieldsGeo = Object.keys(geojson['features'][0]['geometry']),
+        fields = fieldsProp.concat(fieldsGeo),
+        n = removeArrayStructure(geojson['features'][0]['geometry']['coordinates']);
     dataset['fileType'] = fileType;
     dataset['fields'] = [];    
     for (let i=0; i<fields.length; i++) {
@@ -141,8 +149,24 @@ function addGeojsonToDatasets(geojson, fileName, fileType) {
     }
     dataset['allData'] = [];
     for (let i=0; i<geojson['features'].length; i++) {
-        dataset['allData'].push(Object.values(geojson['features'][i]['properties']));
+        let entryProp = Object.values(geojson['features'][i]['properties']),
+            entryGeoType = geojson['features'][i]['geometry']['type'],
+            entryGeoCoord = geojson['features'][i]['geometry']['coordinates'];  
+        entryGeoCoord = entryGeoCoord.flat(n);
+        let entryGeoCoordRev = switchLatLng(entryGeoCoord);
+        entryProp.push(entryGeoType, entryGeoCoordRev);
+        dataset['allData'].push(entryProp);
     }
-    datasets[fileName] = dataset;
+    dataset['fileName'] = fileName;
+    datasets[datasetNumber] = dataset;
+    addDatasetModal(datasetNumber, fileType, fileName); 
     console.log(datasets);
+}
+function switchLatLng(coordinates) {
+    let coordinates_inv = [];
+    for ( let j = 0; j < coordinates.length; j++ ) {
+        let coordinate = [ coordinates[j][1], coordinates[j][0] ];
+        coordinates_inv.push(coordinate);
+    }
+    return coordinates_inv;
 }

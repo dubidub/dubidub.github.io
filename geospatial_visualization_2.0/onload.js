@@ -22,16 +22,18 @@ $(document).ready( function() {
         $('#fileUpload').click();
     }); 
     $("#loadButton").click(openDatabaseTemp); 
+    $("#exportButton").click(openExportOptions); 
     $("#fileUpload").change(uploadDataset); 
-    loadConfigLayer();
+    if ( Object.keys(datasets).length != 0 ) {
+        loadConfigLayer();
+    }    
 });
 
 function loadConfigLayer(){
     for ( let [key, value] of Object.entries(datasets) ) {
         addDatasetToSeg(key, value["fileType"], value["fileName"]);
         let datasetLAYERS = findLayersByDataset(key);
-        for ( let i=0; i<datasetLAYERS.length; i++ ) {
-            
+        for ( let i=0; i<datasetLAYERS.length; i++ ) {            
             let LAYERNUMBER = datasetLAYERS[i],
                 LAYERNAME = config[LAYERNUMBER]["name"], 
                 LAYERTYPE = config[LAYERNUMBER]["layerType"], 
@@ -52,12 +54,15 @@ function loadConfigLayer(){
             if ( FILTERROWS.length != 0 ) {
                 filterGroups[FILTERNUMBER]["rows"] = FILTERROWS;                    
             }
-            submitLayer(LAYERNUMBER, key);
-            closeNav();
+            submitLayer(LAYERNUMBER, key);            
         }
     }
-
-    
+    try {
+        if ( hideOpenBtn == true) {
+            closeNav();
+            $('#openbtn').remove();
+        } 
+    } catch(e) {}       
 }
 function findLayersByDataset(DATASET) {
     let LAYERS = [];
@@ -66,7 +71,6 @@ function findLayersByDataset(DATASET) {
             LAYERS.push(key);
         }
     }
-    console.log(LAYERS);
     return LAYERS
 }
 function findFilterByLayer(LAYERNUMBER) {
@@ -76,6 +80,5 @@ function findFilterByLayer(LAYERNUMBER) {
             FILTER = key;
         }
     }
-    console.log(FILTER);
     return FILTER
 }

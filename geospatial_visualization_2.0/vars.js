@@ -175,13 +175,13 @@ var layerTypes = {
 }
 var names = {
     "pointLayer": {
-        "zh": "點",
+        "zh": "點<br/><i>(csv)</i>",
     }, 
     "lineLayer": {
-        "zh": "線",
+        "zh": "線<br/><i>(csv)</i>",
     }, 
     "polygonLayer": {
-        "zh": "多邊形",
+        "zh": "多邊形<br/><i>(csv,geojson)</i>",
     }, 
     "latitude": {
         "zh": "緯度　", 
@@ -307,6 +307,18 @@ var dataTablesLang = {
                 startsWith: '開頭'
             },
         },
+    }
+}
+var exportFig = {
+    "showPanel": {
+        "src": "https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/geospatial_visualization_2.0/resources/show-modal.PNG",
+        "caption": "顯示控制面板",
+        "hide": false
+    },
+    "hidePanel": {
+        "src": "https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/geospatial_visualization_2.0/resources/hide-modal.PNG",
+        "caption": "隱藏控制面板",
+        "hide": true
     }
 }
 var datasetTemplates = {
