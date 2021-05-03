@@ -34,7 +34,7 @@
   color: #fff;
   display: block;
   padding: 0 20px;
-  line-height: 7.2vh;
+  line-height: 7.3vh;
   /* border-top: 1px solid #f4f4f4; */
   text-decoration: none;
 }
@@ -72,8 +72,9 @@
   padding: 0;
   list-style: none;
   overflow: hidden;
-  background-color: #2a2c33;
+  background-color: #2a2c33;  
   border-top: 1px solid #777;
+  border-bottom: 1px solid #777;
 }
 
 /* menu icon */

@@ -24,9 +24,25 @@ $(document).ready( function() {
     $("#loadButton").click(openDatabaseTemp); 
     $("#exportButton").click(openExportOptions); 
     $("#fileUpload").change(uploadDataset); 
-    $("#mySidepanel").on("swipeleft",function(){
-        closeNav();
+    // Swipe Event
+    var start = null;
+    $("#mySidepanel").on("touchstart",function(event){
+        if ( event.touches.length === 1 ) {
+            start = event.touches.item(0).clientX;
+        } else {
+            start = null;
+        }
     });
+    $("#mySidepanel").on("touchend",function(event){
+        var offset = 100;
+        if ( start ) {
+            var end = event.changedTouches.item(0).clientX;        
+            if ( end < start - offset ){
+                closeNav();
+            }
+        }
+    });
+    // Load Exported HTML
     if ( Object.keys(datasets).length != 0 ) {
         loadConfigLayer();
     }    
