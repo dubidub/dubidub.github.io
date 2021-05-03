@@ -1,10 +1,33 @@
 <!DOCTYPE html>
 
 <head>
+    <!--General-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" charset=utf-8"/>       
+    <title>2020 全國交通事故地圖 | Adu Work in Progress</title>
     <link rel="stylesheet" type="text/css" media="all" href="./style.css">
     <!-- <link rel="stylesheet" type="text/css" media="all" href="https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/geospatial_visualization_2.0/style.css"> -->
+    <link rel="stylesheet" href="./header.css">
+    <link rel="shortcut icon" href="https://dubidub.github.io/blog/assets/favicon.png" type="image/png" />
+    <script src="./vars.js" charset="utf-8" type="text/javascript" ></script>
+    <script src="./loadDatasets.js" charset="utf-8" type="text/javascript" ></script>
+    <script src="./loadLayers.js" charset="utf-8" type="text/javascript" ></script>
+    <script src="./loadFilters.js" charset="utf-8" type="text/javascript" ></script>
+    <script src="./loadMaps.js" charset="utf-8" type="text/javascript" ></script>
+    <script src="./generalFunctions.js" charset="utf-8" type="text/javascript" ></script>
     
+    <!-- Social Network -->
+    <!-- <meta property="og:image" content="https://dubidub.github.io/traffic_accident_2020/cover.PNG" /> -->
+    <meta property="og:type" content="website" />
+    <!-- <meta property="og:url" content="https://dubidub.github.io/traffic_accident_2020/zh_tw.html" /> -->
+    <meta property="og:description" content="將2020年台灣交通事故斑點圖視覺化，快速定位交通事故熱區" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLLS8DZLPN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-PLLS8DZLPN');
+    </script>  
     <!-- DataTables General-->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
@@ -40,15 +63,25 @@
 
 <body>
     <div id="loading"></div>
+    <!-- Header -->
+    <div class="title">
+        <div class="header">
+        <a class="logo"><strong>GIS Online</strong> <i>free</i></a>
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+        <ul class="menu">
+            <li><a href="https://dubidub.github.io/blog/"><strong>ADU WORK IN PROGRESS</strong></a></li>
+            <li><a href="https://dubidub.github.io/blog/">Blog</a></li>
+            <li><a href="https://dubidub.github.io/blog/tools">Tools</a></li>
+        </ul>
+        </div>
+    </div>
     <!-- Modal -->
     <div id="Modal" style="z-index: 99999;"></div>
-
     <!-- Control Panel -->
     <div id="mySidepanel" class="sidepanel"></div>
-
     <!-- Map -->
-    <div class="map" id="mapid" style="width: 100vw; height: 100vh;"></div>
-        
+    <div class="map" id="mapid"></div>
     <!-- Scripts -->    
     <script id="variables">
         var config = {},
@@ -60,12 +93,6 @@
             filterNo = 0,
             tilelayerType = "OpenStreetMap_Mapnik";
     </script>
-    <script src="./vars.js" charset="utf-8" type="text/javascript" ></script>
-    <script src="./loadDatasets.js" charset="utf-8" type="text/javascript" ></script>
-    <script src="./loadLayers.js" charset="utf-8" type="text/javascript" ></script>
-    <script src="./loadFilters.js" charset="utf-8" type="text/javascript" ></script>
-    <script src="./loadMaps.js" charset="utf-8" type="text/javascript" ></script>
-    <script src="./generalFunctions.js" charset="utf-8" type="text/javascript" ></script>
     <script src="./onload.js" charset="utf-8" type="text/javascript" ></script>
     <!-- <script src="https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/geospatial_visualization_2.0/vars.js" charset="utf-8" type="text/javascript" ></script>
     <script src="https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/geospatial_visualization_2.0/loadDatasets.js" charset="utf-8" type="text/javascript" ></script>

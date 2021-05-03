@@ -24,6 +24,9 @@ $(document).ready( function() {
     $("#loadButton").click(openDatabaseTemp); 
     $("#exportButton").click(openExportOptions); 
     $("#fileUpload").change(uploadDataset); 
+    $("#mySidepanel").on("swipeleft",function(){
+        closeNav();
+    });
     if ( Object.keys(datasets).length != 0 ) {
         loadConfigLayer();
     }    
