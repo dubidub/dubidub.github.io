@@ -161,14 +161,18 @@ function addTemplateLayers(DATABASETEMP, datasetNumber) {
     updateTileLayer();    
 }
 function openNav() {
-    document.getElementById("mySidepanel").style.width = "415px";
-    document.getElementById("openbtn").style.display = "none";
-    document.getElementById("closebtn").style.display = "block";
+    if ( $( window ).width() > 520 ) {
+        $("#mySidepanel").css("width", "415px");
+    } else {
+        $("#mySidepanel").css("width", "100vw");
+    }
+    $("#openbtn").css("display", "none");
+    $("#closebtn").css("display", "block");
 }
 function closeNav() {
-    document.getElementById("mySidepanel").style.width = "0";
-    document.getElementById("openbtn").style.display = "block";
-    document.getElementById("closebtn").style.display = "none";
+    $("#mySidepanel").css("width", "0");
+    $("#openbtn").css("display", "block");
+    $("#closebtn").css("display", "none");
 }
 function exportHTML(hideBtn) { 
     $("#variables").empty();

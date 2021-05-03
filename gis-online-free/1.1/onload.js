@@ -16,6 +16,7 @@ L.control.zoom({
 $(document).ready( function() {
     loadSidePanel();
     addMapStyles();
+    checkWindowWidth();
     $("#layerTypes").val(tilelayerType);
     updateTileLayer();   
     $("#uploadButton").click( function() {
@@ -47,7 +48,18 @@ $(document).ready( function() {
         loadConfigLayer();
     }    
 });
-
+function checkWindowWidth () {
+    if ( $( window ).width() < 520 ) {
+        generateModal("WidthAlert");
+        $( "#modalTitleWidthAlert" ).html("視窗寬度建議");
+        layerContent = createElementAttributes("div", "layer-content", {
+                innerHTML: "視窗寬度不足，部分功能可能無法正常顯示。建議使用桌機、筆電、平板或寬度不小於 620px 的瀏覽器繼續。",
+                style: "line-height: 25px"
+            });
+        $( "#modalBodyWidthAlert" ).append(layerContent);
+        $( '#modalWidthAlert' ).modal();
+    }
+}
 function loadConfigLayer(){
     for ( let [key, value] of Object.entries(datasets) ) {
         addDatasetToSeg(key, value["fileType"], value["fileName"]);

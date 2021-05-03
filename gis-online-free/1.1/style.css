@@ -315,3 +315,65 @@ input[type="number"], input[type="color"] {
     border-top: 1px solid #bbb;
     border-bottom: 1px solid #bbb;
 }
+
+/* Mobile Device */
+@media (max-width: 500px ) {
+    .header .menu-icon { padding: 18px !important;}
+    .sidepanel { 
+        width: 100vw; 
+        font-size: 12px;
+    }
+    .sidepanel .input-readonly {
+        height: 24px; 
+        width: 140px
+    }
+    .view-button, .delete-button {
+        padding: 0 !important;
+        line-height: 20px !important;
+        font-size: 12px;
+        height: 24px;
+        width: 40px;
+    }
+    .edit-button, .hide-button, .delete-layer-button {
+        width: 30px;
+        font-size: 12px !important;
+        padding: 0 !important;
+        line-height: 20px !important;
+        height: 28px;
+    }
+    .add-button {
+        height: 30px;
+        width: 80px;
+        padding: 0 !important;
+        line-height: 20px !important;
+    }
+    .layer-select {
+        height: 28px !important;
+        line-height: 20px !important;
+        width: 200px !important;
+    }
+    #Modal, #Modal h5 { font-size: 12px !important}
+    #Modal h3, #Modal h4 { font-size: 14px !important }
+    .input-modal-title { width: 75% !important }
+    .filter-button {
+        padding: 0 3px !important;
+        line-height: 20px !important;
+        height: 28px !important;
+    }
+    #Modal .input-readonly { height: 28px !important; width: 140px !important }
+    .box-radio-input input[type="radio"] + span {
+        padding: 5px !important;
+        height: 45px !important;
+        width: 90px !important;
+        line-height: 16px !important;
+    }
+    .sub-attributes { line-height: 20px !important;}
+    .sub-attributes input { line-height: 0px !important;}
+    .layer-content { line-height: 20px !important;}
+    .btn { font-size: 14px !important; }
+    .dataTables_length { display: none;}
+    .popup-fixed { width: 100vw !important; }
+    .leaflet-popup-content { width: 80vw !important; }
+    .leaflet-popup-content h5 { font-size: 14px !important;}
+    .leaflet-popup-content td { font-size: 12px !important;}
+}
