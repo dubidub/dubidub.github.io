@@ -11,13 +11,7 @@ function loadSidePanel() {
             onclick: function(){closeNav();},
             innerHTML: "&ltrif;",
             id: "closebtn", 
-            // href: "javascript:void(0)"
         }), 
-        // closebtn = createElementAttributes("a", "closebtn", {
-        //     onclick: function(){closeNav();},
-        //     innerHTML: "&times;",
-        //     href: "javascript:void(0)"
-        // }), 
         segments = createElementAttributes("div", null, { id: "segments" }), 
         uploadExportSeg = createElementAttributes("div", null, { id: "uploadExportSeg" }), 
         datasetListSeg = createElementAttributes("div", null, { id: "datasetListSeg" }), 
@@ -28,17 +22,17 @@ function loadSidePanel() {
         fileUpload = createElementAttributes("input", "form-control-file", { id: "fileUpload" }), 
         uploadButton = createElementAttributes("button", "upload-button", {
             id: "uploadButton", 
-            innerHTML: "　新增　資料庫",
+            innerHTML: "<strong>新增資料庫</strong><br/><i><small>( csv, geojson )</small></i>",
             type: "button"
         }), 
         loadButton = createElementAttributes("button", "load-button", {
             id: "loadButton", 
-            innerHTML: "載入範例資料庫",
+            innerHTML: "<strong>載入範例<br/>資料庫</strong>",
             type: "button"
         }), 
         exportButton = createElementAttributes("button", "export-button", {
             id: "exportButton", 
-            innerHTML: "匯出地圖 HTML",
+            innerHTML: "<strong>匯出地圖<br/>HTML</strong>",
             type: "button",
         });
     addLoadExportButtons.append(fileUpload, uploadButton, loadButton, exportButton);
@@ -96,7 +90,7 @@ function openExportOptions() {
 }
 function closeExportOptions() {
     $(".export-container").css("display", "none");
-    $("#exportButton").html("匯出地圖HTML");
+    $("#exportButton").html("<strong>匯出地圖<br/>HTML</strong>");
 }
 function openDatabaseTemp() {
     closeExportOptions();
@@ -109,7 +103,7 @@ function openDatabaseTemp() {
 }
 function closeDatabaseTemp() {
     $(".image-container").css("display", "none");
-    $("#loadButton").html("載入範例資料庫");
+    $("#loadButton").html("<strong>載入範例<br/>資料庫</strong>");
 }
 function loadDatebaseTemp(DATABASETEMP) {
     closeDatabaseTemp();

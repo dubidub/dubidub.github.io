@@ -205,7 +205,7 @@ input[type="number"], input[type="color"] {
     word-wrap: break-word;
     width: 7em;
     height: 4em;
-    padding: 3px 22px;
+    padding: 3px;
 }
 .upload-button {
     background:#23a3a7;	
