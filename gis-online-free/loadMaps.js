@@ -120,8 +120,10 @@ function addPopup(object, fields, entry, dataset, layer, coordColumns) {
             autoPan: false,
         }).setContent(html_text);
     object.bindPopup(popup_text);
-    object.on({
-        mouseover: function (e) { this.openPopup(); },
-        mouseout: function (e) { this.closePopup(); }
-    });
+    if ( $( window ).width() > 520 ) {
+        object.on({
+            mouseover: function (e) { this.openPopup(); },
+            mouseout: function (e) { this.closePopup(); }
+        });
+    }    
 }

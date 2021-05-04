@@ -128,7 +128,7 @@ function loadTemplate(DATABASETEMP) {
             $("#loading").html("");
         }
     };
-    $("#loading").html('<div class="loading"><img src="https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/gis-online-free/1.2/resources/loading.gif" /></div>');
+    $("#loading").html('<div class="loading"><img src="https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/gis-online-free/resources/loading.gif" /></div>');
     xhr.open(method, url, true);
     xhr.send();
 }
