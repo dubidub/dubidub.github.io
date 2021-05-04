@@ -1,5 +1,5 @@
 function uploadDataset(evt) {  
-	$("#loading").html('<div class="loading"><img src="resources/loading.gif" /></div>');
+	$("#loading").html('<div class="loading"><img src="https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/gis-online-free/1.2/resources/loading.gif" /></div>');
     try {
         let file = evt.target.files[0],
             fileFullname = file.name.split("."),

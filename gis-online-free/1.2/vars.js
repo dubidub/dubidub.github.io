@@ -311,22 +311,22 @@ var dataTablesLang = {
 }
 var exportFig = {
     "showPanel": {
-        "src": "https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/geospatial_visualization_2.0/resources/show-modal.PNG",
+        "src": "https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/gis-online-free/1.2/resources/show-modal.PNG",
         "caption": "顯示控制面板",
         "hide": false
     },
     "hidePanel": {
-        "src": "https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/geospatial_visualization_2.0/resources/hide-modal.PNG",
+        "src": "https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/gis-online-free/1.2/resources/hide-modal.PNG",
         "caption": "隱藏控制面板",
         "hide": true
     }
 }
 var datasetTemplates = {
     "tw-road-safety-2020": {
-        "src": "https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/geospatial_visualization_2.0/resources/2020-traffic-accidents.PNG", 
+        "src": "https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/gis-online-free/1.2/resources/2020-traffic-accidents.PNG", 
         "figcaption": "2020年台灣A1交通事故",
         "entries": "(1,806筆資料, 304KB)",
-        "url": "https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/geospatial_visualization_2.0/resources/tw-road-safety-2020.csv",
+        "url": "https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/gis-online-free/1.2/resources/tw-road-safety-2020.csv",
         "fileName": "台灣A1交通事故2020",
         "fileType": "csv",
         "tilelayer": "Dark_CartoDB_DarkMatter",
@@ -349,10 +349,10 @@ var datasetTemplates = {
         }],        
     }, 
     "flight-routes-2014": {
-        "src": "https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/geospatial_visualization_2.0/resources/flight-routes-2014.PNG", 
+        "src": "https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/gis-online-free/1.2/resources/flight-routes-2014.PNG", 
         "figcaption": "2014年全球航線資料",
         "entries": "(67,663筆資料, 10.9MB)",
-        "url": "https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/geospatial_visualization_2.0/resources/flight-routes-2014.csv",
+        "url": "https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/gis-online-free/1.2/resources/flight-routes-2014.csv",
         "fileName": "全球航線",
         "fileType": "csv",
         "tilelayer": "Esri_WorldTopoMap",
@@ -1058,10 +1058,10 @@ var datasetTemplates = {
         }],  
     }, 
     "taipei-landuse": {
-        "src": "https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/geospatial_visualization_2.0/resources/taipei-landuse.PNG", 
+        "src": "https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/gis-online-free/1.2/resources/taipei-landuse.PNG", 
         "figcaption": "台北市土地分區使用",
         "entries": "(15,538筆資料, 16.9MB)",
-        "url": "https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/geospatial_visualization_2.0/resources/taipei-landuse.csv",
+        "url": "https://cdn.jsdelivr.net/gh/dubidub/dubidub.github.io/gis-online-free/1.2/resources/taipei-landuse.csv",
         "fileName": "台北土地使用",
         "fileType": "csv",
         "tilelayer": "Esri_WorldImagery",
