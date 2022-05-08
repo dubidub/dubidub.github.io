@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<head>
+</head>
+
+<body>
+</body>
+
+<script src="./routes_dict.js"></script>
+<script src="./routes_stop_1.js"></script>
+<!-- <script src="./routes_stop_2.js"></script> -->
+<script src="./airlines_dict.js"></script>
+<script src="./airports_dict.js"></script>
+
+<script>
+
+ori = 'TPE';
+
+city_stop_1 = Object.keys(routes_stop_1[ori]);
+city_dir = Object.keys(routes_dict[ori]);
+
+des = 'BNI';
+
+var ori_stop_1 = Object.keys(routes_stop_1['TPE']);
+var des_dir = Object.keys(routes_dict['BNI']);
+
+for ( i=0; i < des_dir.length; i++ ) {
+
+}
+alert(ori);
+
+</script>
+
+<!--
+<script>
+  alert(Object.keys(routes_stop_1).length)
+  var ori = 'TPE';
+  var data_to_show = []
+
+  var direct_flight = Object.keys(routes_dict['TPE']);
+  var one_stop = Object.keys(routes_stop_1['TPE']);
+  var two_stop = Object.keys(routes_stop_2['TPE']);
+  // data_to_show.push(['direct_flight', direct_flight]);
+  // data_to_show.push(['one_stop', one_stop]);
+  // data_to_show.push(['two_stop', two_stop]);
+
+  var des = 'LHR';
+  // alert(Object.keys(routes_dict).length);
+
+
+  if ( direct_flight.includes(des) ) {
+
+    headlineCreate('h2', 'FLIGHTS INFO');
+    legCreate(ori, des);
+
+  } else if ( one_stop.includes(des) ) {
+
+    headlineCreate('h2', 'STOPOVER OPTIONS');
+    listCreate(routes_stop_1[ori][des]);
+    // headlineCreate('h2', 'FLIGHTS INFO');
+    // headlineCreate('h3', 'First Leg');
+    // var sel_stop = routes_stop_1[ori][des][0];
+    // legCreate(ori, sel_stop);
+    // legCreate(sel_stop, des);
+
+  } else if ( two_stop.includes(des) ) {
+
+    headlineCreate('h2', 'STOPOVER OPTIONS');
+    tableCreate([routes_stop_2[ori][des]]);
+    // headlineCreate('h2', 'FLIGHTS INFO');
+    // headlineCreate('h3', 'First Leg');
+    // var sel_stop = routes_stop_2[ori][des][0];
+    legCreate(ori, sel_stop[0]);
+    legCreate(sel_stop[0], sel_stop[1]);
+    legCreate(sel_stop[1], des);
+
+  } else {
+    alert("no match condition");
+  }
+
+  function legCreate(origin, destination) {
+    headlineCreate('h3', origin+' - '+destination);
+    var carriers = routes_dict[origin][destination];
+    tableCreate(carriers);
+  };
+
+  function headlineCreate(headline, data) {
+    var body = document.getElementsByTagName('body')[0];
+    var title = document.createElement(headline);
+    title.appendChild(document.createTextNode(data));
+    body.appendChild(title);
+  };
+  function listCreate(data) {
+    var body = document.getElementsByTagName('body')[0];
+    var ul = document.createElement('ul');
+    for (var i = 0; i < data.length; i++) {
+      var li = document.createElement('li');
+      li.appendChild(document.createTextNode(data[i]));
+      li.innerHTML = data[i];
+      li.onclick = function showFlights() {
+        var sel_stop = this.innerHTML;
+        headlineCreate('h2', 'FLIGHTS INFO');
+        legCreate(ori, sel_stop);
+        legCreate(sel_stop, des);
+      };
+      ul.appendChild(li);
+    }
+    body.appendChild(ul);
+  };
+  // function showFlights(stop) {
+  //   headlineCreate('h2', 'FLIGHTS INFO');
+  //   legCreate(ori, stop);
+  //   legCreate(stop, des);
+  // };
+
+
+
+  // var routes_ori = {};
+  // var routes_des = {};
+  // for (var i = 1; i < routes.length; i++ ) {
+  //   if ( routes[i][3] == ori ) {
+  //     if ( !Object.keys(routes_ori).includes(routes[i][6]) ) {
+  //       routes_ori[routes[i][6]] = [];
+  //     }
+  //     routes_ori[routes[i][6]].push(routes[i][0]);
+  //
+  //   }
+  //   if ( routes[i][6] == des ) {
+  //     if ( !Object.keys(routes_des).includes(routes[i][3]) ) {
+  //       routes_des[routes[i][3]] = [];
+  //     }
+  //     routes_des[routes[i][3]].push(routes[i][0]);
+  //   }
+  // }
+  // var connections = [];
+  // var arr1 = Object.keys(routes_ori);
+  // var arr2 = Object.keys(routes_des);
+  // const stops = arr1.filter(value => arr2.includes(value));
+  // alert(stops);
+
+  // for ( var i = 0; i < routes_ori.length; i++ ) {
+  //   for ( var j = 0; j < routes_des.length; j++ ) {
+  //     if ( routes_ori[i][2] == routes_des[j][1] ) {
+  //       connections.push([routes_ori[i], routes_des[j]]);
+  //     }
+  //   }
+  // }
+
+  // var dict_test = {};
+  // dict_test['vsdf'] = 12;
+  // dict_test['hfg'] = [12,35,3];
+  // alert( !Object.keys(dict_test).includes('hfsg') );
+  // ruits.includes("Banana", 3);
+  // alert(routes_ori['LAX']);
+
+  function tableCreate(data) {
+    var body = document.getElementsByTagName('body')[0];
+    var tbl = document.createElement('table');
+    tbl.style.width = '100%';
+    tbl.setAttribute('border', '1');
+    var tbdy = document.createElement('tbody');
+    for (var i = 0; i < data.length; i++) {
+      var tr = document.createElement('tr');
+      for (var j = 0; j < data[i].length; j++) {
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(data[i][j]));
+        tr.appendChild(td);
+      }
+      tbdy.appendChild(tr);
+    }
+    tbl.appendChild(tbdy);
+    body.appendChild(tbl);
+  };
+  // tableCreate(data_to_show);
+  // tableCreate(connections);
+
+<!-- </script> -->

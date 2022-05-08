@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<head>
+  <!-- General -->
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <title>Hotel Perks Finder | Adu Work in Progress</title>
+  <link rel="stylesheet" href="./style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <link rel="shortcut icon" href="https://dubidub.github.io/blog/assets/favicon.png" type="image/png" />
+
+  <!-- Social Network -->
+  <meta property="og:image" content="https://dubidub.github.io/hotel_perks_finder/resources/cover.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dubidub.github.io/hotel_perks_finder/" />
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="Adu Work In Progress" />
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLLS8DZLPN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-PLLS8DZLPN');
+  </script>
+
+  <!-- Leaflet Library -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
+
+  <!-- Autocomplete library  -->
+  <link rel="stylesheet" href="./awesomplete.css" />
+  <script src="./awesomplete.js" async></script>
+</head>
+
+<body>
+  <div class="title">
+    <div class="header">
+      <a class="logo" onclick="home_map()">Hotel Perks Finder</a>
+      <input class="menu-btn" type="checkbox" id="menu-btn" />
+      <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+      <ul class="menu">
+        <li><a href="https://dubidub.github.io/blog/"><strong>ADU WORK IN PROGRESS</strong></a></li>
+        <li><a href="https://dubidub.github.io/blog/">Blog</a></li>
+        <li><a href="https://dubidub.github.io/blog/tools">Tools</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <datalist id="mylist"></datalist>
+  <datalist id="hotellist"></datalist>
+  <form class="form">
+    <select name="search_option" id="search_option" onchange="search_box()">
+      <option value="" disabled selected>Search By</option>
+      <option value="region" selected>Region/City</option>
+      <option value="hotel">Hotel</option>
+    </select>
+    <input type="text" id="input_ori" placeholder="Region/City"
+     onclick="clearInputOri()" class="awesomplete" list="mylist"/>
+    <input type="text" id="input_hotel" placeholder="Hotel Name"
+     onclick="clearInputOri()" class="awesomplete" list="hotellist"/>
+    <!-- <input type="text" id="input_des" placeholder="To" onchange="inputDestination()"
+     onclick="clearInputDes()" class="awesomplete" list="mylist"/> -->
+    <!-- <input type="button" id="search" value="Search"> -->
+  </form>
+
+  <div id="mapid"></div>
+  <!-- <div id="footer"></div> -->
+</body>
+
+<!-- functions -->
+<script src="./resources/visalx_cat.js"></script>
+<script src="./resources/visalx_hotels.js"></script>
+<script src="./resources/visalx_perks.js"></script>
+<script src="./functions.js"></script>
+<script src="./main.js"></script>
+<!-- <script src="./routes_stop_1.js"></script> -->
+<!-- <script src="./airlines_dict.js"></script> -->
