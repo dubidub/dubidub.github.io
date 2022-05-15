@@ -34,12 +34,16 @@
   <!-- Autocomplete library  -->
   <link rel="stylesheet" href="./awesomplete.css" />
   <script src="./awesomplete.js" async></script>
+
+  <!-- Button Favicon -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
   <div class="title">
     <div class="header">
-      <a class="logo" onclick="home_map()">Hotel Perks Finder</a>
+      <a class="logo" onclick="home_map()"><strong>Hotel Perks</strong> <i>finder</i></a>
       <input class="menu-btn" type="checkbox" id="menu-btn" />
       <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
       <ul class="menu">
@@ -52,20 +56,105 @@
 
   <datalist id="mylist"></datalist>
   <datalist id="hotellist"></datalist>
-  <form class="form">
-    <select name="search_option" id="search_option" onchange="search_box()">
-      <option value="" disabled selected>Search By</option>
-      <option value="region">Region/City</option>
-      <option value="hotel">Hotel</option>
-    </select>
-    <input type="text" id="input_ori" placeholder="Region/City"
-     onclick="clearInputOri()" class="awesomplete" list="mylist"/>
-    <input type="text" id="input_hotel" placeholder="Hotel Name"
-     onclick="clearInputOri()" class="awesomplete" list="hotellist"/>
-    <!-- <input type="text" id="input_des" placeholder="To" onchange="inputDestination()"
-     onclick="clearInputDes()" class="awesomplete" list="mylist"/> -->
-    <!-- <input type="button" id="search" value="Search"> -->
-  </form>
+
+  <div class="form">
+    <form>
+      <button class="option_button" type="button" onclick="open_option_modal()"><i class="fa fa-gear"></i></button>
+      <input type="text" id="input_ori" placeholder="Enter a region / city"
+       onclick="clearInputOri()" class="awesomplete" list="mylist"/>
+      <input type="text" id="input_hotel" placeholder="Enter a property"
+       onclick="clearInputOri()" class="awesomplete" list="hotellist"/>
+      <button class="option_button close_button" id="close_button" type="button" onclick="close_info_modal()"><i class="fa fa-close"></i></button>
+    </form>
+  </div>
+
+  <!-- Hotel Info Modal and Option Modal -->
+  <div id="hotel_info_modal" class="info_modal"></div>
+  <div id="option_modal" class="option_modal">
+    <div class="fst-filter">
+      <div class="wrap">
+        <h4>SEARCH PROPERTY BY</h4>
+          <div class="wrapper">
+            <input type="radio" id="search_by_city" name="serch_property" value="search_by_city"  onclick="search_box(this.value)" checked>
+            <label for="search_by_city">Region / City</label><br>
+          </div>
+          <div class="wrapper">
+            <input type="radio" id="search_by_property" name="serch_property" value="search_by_property" onclick="search_box(this.value)">
+            <label for="search_by_property">Property Name</label>
+          </div>
+      </div>
+    </div>
+    <div class="fst-filter">
+      <div class="wrap">
+        <h4>FILTER BY HOTEL COLLECTIONS</h4>
+        <div class="wrapper">
+          <input type="checkbox" id="visalx" name="visalx" value="visalx" checked disabled>
+          <label for="visalx">VISA Luxury Hotel Collection</label><br>
+        </div>
+        <div class="wrapper">
+          <input type="checkbox" id="vslx" name="vslx" value="vslx" disabled>
+          <label for="vslx">VISA Signature Luxury Hotel Collection</label><br>
+        </div>
+        <div class="wrapper">
+          <input type="checkbox" id="axhc" name="axhc" value="axhc" disabled>
+          <label for="axhc">AMEX Hotel Collection</label><br>
+        </div>
+        <div class="wrapper">
+          <input type="checkbox" id="axfhr" name="axfhr" value="axfhr" disabled>
+          <label for="axfhr">AMEX Fine Hotels + Resorts</label><br>
+        </div>
+        <div class="wrapper">
+          <input type="checkbox" id="kwc" name="kwc" value="kwc" disabled>
+          <label for="kwc">KIWI COLLECTION</label><br>
+        </div>
+        <div class="wrapper">
+          <input type="checkbox" id="tbh" name="tbh" value="tbh" disabled>
+          <label for="tbh">Tablet Hotels</label><br>
+        </div>
+        <div class="wrapper">
+          <input type="checkbox" id="vth" name="vth" value="vth" disabled>
+          <label for="vth">VIRTUOSO</label><br>
+        </div>
+      </div>
+    </div>
+    <div class="fst-filter">
+      <div class="wrap">
+        <h4>FILTER BY PERKS</h4>
+        <div class="wrapper">
+          <input type="checkbox" id="perk_cbf" name="perk_cbf" value="perk_cbf" checked disabled>
+          <label for="perk_cbf">Breakfast</label><br>
+        </div>
+        <div class="wrapper">
+          <input type="checkbox" id="perk_cru" name="perk_cru" value="perk_cru" checked disabled>
+          <label for="perk_cru">Room Upgrades</label><br>
+        </div>
+        <div class="wrapper">
+          <input type="checkbox" id="perk_eci" name="perk_eci" value="perk_eci" checked disabled>
+          <label for="perk_eci">Early Check-in</label><br>
+        </div>
+        <div class="wrapper">
+          <input type="checkbox" id="perk_lco" name="perk_lco" value="perk_lco" checked disabled>
+          <label for="perk_lco">Late Check-out</label><br>
+        </div>
+        <div class="wrapper">
+          <input type="checkbox" id="perk_fcd" name="perk_fcd" value="perk_fcd" checked disabled>
+          <label for="perk_fcd">Free Credit</label><br>
+        </div>
+        <div class="wrapper">
+          <input type="checkbox" id="perk_irg" name="perk_irg" value="perk_irg" checked disabled>
+          <label for="perk_irg">In-room Gift</label><br>
+        </div>
+        <div class="wrapper">
+          <input type="checkbox" id="perk_wga" name="perk_wga" value="perk_wga" checked disabled>
+          <label for="perk_wga">Welcome Gift</label><br>
+        </div>
+        <div class="wrapper">
+          <input type="checkbox" id="perk_cin" name="perk_cin" value="perk_cin" checked disabled>
+          <label for="perk_cin">Internet</label><br>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div id="mapid"></div>
   <!-- <div id="footer"></div> -->
@@ -77,5 +166,3 @@
 <script src="./resources/visalx_perks.js"></script>
 <script src="./functions.js"></script>
 <script src="./main.js"></script>
-<!-- <script src="./routes_stop_1.js"></script> -->
-<!-- <script src="./airlines_dict.js"></script> -->

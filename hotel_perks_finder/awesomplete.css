@@ -10,6 +10,7 @@
 .awesomplete {
     display: inline-block;
     position: relative;
+    z-index: 99999999 !important;
 }
 
 .awesomplete > input {
@@ -19,7 +20,7 @@
 .awesomplete > ul {
     position: absolute;
     left: 0;
-    z-index: 99999999;
+    z-index: 99999999 !important;
     min-width: 100%;
     box-sizing: border-box;
     list-style: none;

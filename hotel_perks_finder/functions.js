@@ -1,28 +1,30 @@
 function clearInputOri() {
   document.getElementById('input_ori').value = "";
   document.getElementById('input_hotel').value = "";
-}
-
-function clearInputDes() {
-  document.getElementById('input_des').value = "";
+  close_info_modal();
 }
 
 function inputOrigin() {
   markerLayer.clearLayers();
   let bounds = L.latLngBounds();
   try {
-    let region = document.getElementById('input_ori').value;
-    let hotels = visalx_cat[region];
+    let region = document.getElementById('input_ori').value,
+        hotels = visalx_cat[region];
     for ( let i=0; i<hotels.length; i++ ) {
-      let hotel_info = visalx_hotels[hotels[i]];
-      let lat = hotel_info['lat'];
-      let lng = hotel_info['lng'];
+      let hotel_info = visalx_hotels[hotels[i]],
+          lat = hotel_info['lat'],
+          lng = hotel_info['lng'],
+          name = hotel_info['name'],
+          og_image = hotel_info['og_image'],
+          marker = L.marker([lat, lng], {
+              riseOnHover : true,
+          }).addTo(markerLayer);
+
       bounds.extend([lat, lng]);
-      let name = hotel_info['name'];
-      let marker = L.marker([lat, lng], {
-          riseOnHover : true,
-      }).addTo(markerLayer);
-      marker.bindPopup(name);
+      marker.bindPopup(
+        '<img src="' + og_image + '" style="min-width: 200px;width:100%;height:100%;">' +
+        '<h3>' + name + '</h3>'
+      );
       marker.on('mouseover', function (e) {
         this.openPopup();
       });
@@ -30,10 +32,10 @@ function inputOrigin() {
         this.closePopup();
       });
       marker.on('click', function (e) {
-        var popup = L.popup()
-          .setLatLng([lat, lng])
-          .setContent(hotel_perk_info(hotels[i]))
-          .openOn(map);
+        map.flyTo([lat, lng]);
+        document.getElementById('hotel_info_modal').innerHTML = hotel_perk_info(hotels[i]);
+        document.getElementById("hotel_info_modal").style.display = "block";
+        document.getElementById("close_button").style.display = "inline";
       });
     }
   } catch (e) {
@@ -46,24 +48,25 @@ function inputHotel() {
   markerLayer.clearLayers();
   let bounds = L.latLngBounds();
   try {
-    let hotel = document.getElementById('input_hotel').value;
-
-    var rev_hotel = {};
+    let hotel = document.getElementById('input_hotel').value,
+        rev_hotel = {};
     for(let key in visalx_hotels) {
       rev_hotel[visalx_hotels[key]['name']] = key;
     }
-
-    let code = rev_hotel[hotel];
-
-    let hotel_info = visalx_hotels[code];
-    let lat = hotel_info['lat'];
-    let lng = hotel_info['lng'];
+    let code = rev_hotel[hotel],
+        hotel_info = visalx_hotels[code],
+        lat = hotel_info['lat'],
+        lng = hotel_info['lng'],
+        name = hotel_info['name'],
+        og_image = hotel_info['og_image'],
+        marker = L.marker([lat, lng], {
+            riseOnHover : true,
+        }).addTo(markerLayer);
     bounds.extend([lat, lng]);
-    let name = hotel_info['name'];
-    let marker = L.marker([lat, lng], {
-        riseOnHover : true,
-    }).addTo(markerLayer);
-    marker.bindPopup(name);
+    marker.bindPopup(
+      '<img src="' + og_image + '" style="min-width: 200px;width:100%;height:100%;">' +
+      '<h3>' + name + '</h3>'
+    );
     marker.on('mouseover', function (e) {
       this.openPopup();
     });
@@ -71,10 +74,10 @@ function inputHotel() {
       this.closePopup();
     });
     marker.on('click', function (e) {
-      var popup = L.popup()
-        .setLatLng([lat, lng])
-        .setContent(hotel_perk_info(code))
-        .openOn(map);
+      map.flyTo([lat, lng]);
+      document.getElementById('hotel_info_modal').innerHTML = hotel_perk_info(code);
+      document.getElementById("hotel_info_modal").style.display = "block";
+      document.getElementById("close_button").style.display = "inline";
     });
   } catch (e) {
     console.log(e);
@@ -83,10 +86,10 @@ function inputHotel() {
 }
 
 function hotel_perk_info(code) {
-  var html_text_seg = '<img src="' + visalx_hotels[code]['og_image'] + '" style="width:100%;height:100%;">' +
+  var html_text_seg = '<img src="' + visalx_hotels[code]['og_image'] + '" style="width:100%;">' +
                       '<h1>' + visalx_hotels[code]['name'] + '</h1>' +
                       '<p>' + visalx_hotels[code]['address'] + '</p>' +
-                      '<table><thead><tr><th>&nbsp;</th><th><h2>VISA</h2><p>Luxury Hotel Collection</p></th></tr></thead>' +
+                      '<table><thead><tr><th>&nbsp;</th><th><h2>VISA</h2><i>Luxury Hotel Collection</i></th></tr></thead>' +
                       '<tfoot><tr><th>&nbsp;</th><td>' +
                       '<a href="' + visalx_hotels[code]['link'] + '" target="_blank"><button>BOOK</button></a></td></tr></tfoot>' +
                       '<tbody>' +
@@ -99,7 +102,7 @@ function hotel_perk_info(code) {
                       '<tr><th>Welcome Gift</th><td>' + perks_break(code, 'WGA') + '</td></tr>' +
                       '<tr><th>Internet</th><td>' + perks_break(code, 'CIN') + '</td></tr>' +
                       '<tr><th>Other</th><td>' + perks_break(code, 'OTH') + '</td></tr>' +
-                      '</tbody>'
+                      '</tbody></table>'
                       ;
   return html_text_seg;
 }
@@ -114,14 +117,24 @@ function perks_break(code, perk) {
   return perk_text;
 }
 
-function search_box() {
-  let search_opt = document.getElementById('search_option').value;
-  if ( search_opt == "region" ) {
-    document.getElementById("input_ori").style.display = "block";
+function search_box(city_or_property) {
+  if ( city_or_property == "search_by_city" ) {
+    document.getElementById("input_ori").style.display = "inline";
     document.getElementById("input_hotel").style.display = "none";
   }
-  if ( search_opt == "hotel" ) {
+  if ( city_or_property == "search_by_property" ) {
     document.getElementById("input_ori").style.display = "none";
-    document.getElementById("input_hotel").style.display = "block";
+    document.getElementById("input_hotel").style.display = "inline";
   }
+}
+
+function close_info_modal() {
+  document.getElementById("hotel_info_modal").style.display = "none";
+  document.getElementById("option_modal").style.display = "none";
+  document.getElementById("close_button").style.display = "none";
+}
+function open_option_modal() {
+  close_info_modal();
+  document.getElementById("option_modal").style.display = "block";
+  document.getElementById("close_button").style.display = "inline";
 }
