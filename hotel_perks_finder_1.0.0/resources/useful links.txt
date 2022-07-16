@@ -1,19 +1,39 @@
-Target : VISA and VISA Signature Luxury Hotel Collection 
+Target : VISA and VISA Signature Luxury Hotel Collection
 
 
 Perks description & Categories (csv) (應不需要)
 https://gitlab.com/pointimize.legacy/pointimize-data/-/blob/master/hotel/data-collection/elite/elitePerks/perks.csv
 
-All VL hotels perks & categories & description 
+All VL hotels perks & categories & description
 https://gitlab.com/pointimize.legacy/pointimize-data/-/blob/master/hotel/data-collection/elite/elitePerks/output/EP00VL.json
 
-All VS hotels perks & categories & description 
+All VS hotels perks & categories & description
 https://gitlab.com/pointimize.legacy/pointimize-data/-/blob/master/hotel/data-collection/elite/elitePerks/output/EP00VS.json
 
-All VL hotels names & coordinates & links & countries & addresses   no cities 
+All VL hotels names & coordinates & links & countries & addresses   no cities
 https://gitlab.com/pointimize.legacy/pointimize-data/-/blob/master/hotel/data-collection/elite/EP00VL/json/visalx_hotels.json
 
 All VS hotels names & coordinates & links & countries & addresses   no cities
 https://gitlab.com/pointimize.legacy/pointimize-data/-/blob/master/hotel/data-collection/elite/EP00VS/json/visasg_hotels.json
 
 
+
+visa, visasignature :
+hotel links : working
+location category : yes
+
+amexfhr, amexhc :
+hotel links : not working
+location category : no
+
+kiwi :
+hotel links : working
+location category : yes
+
+tablet :
+hotel links : working
+location category : no
+
+virtuoso :
+hotel links : working
+location category : no
