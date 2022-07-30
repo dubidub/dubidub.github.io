@@ -27,18 +27,6 @@ html {
   /* padding: 0 1rem 0 1rem; */
   display: flex;
 }
-.wrap_hotel_map > .hotelPanel {
-  flex: 3 0 0%;
-  background-color: #ddd; /* Black*/
-  overflow-x: block; /* Disable horizontal scroll */
-  overflow-y: auto;
-  padding-top: 50px; /* Place content 60px from the top */
-  padding-bottom: 0; /* Place content 60px from the top */
-  transition: 0.5s; /* 0.5 second transition effect to slide in the sidepanel */
-}
-.wrap_hotel_map > .mapid {
-  flex: 2 0 0%;
-}
 
 /*
 #footer {
@@ -107,6 +95,7 @@ form {
   flex: 1 1 1;
   /* margin: .3rem; */
   border: 1px solid #ccc;
+  border-radius: 8px;
   width: 310px;
   flex: 1;
   font-size: 16px;

@@ -45,6 +45,7 @@ function inputOrigin() {
       marker.on('click', function (e) {
         map.flyTo([lat, lng]);
         document.getElementById('hotel_info_modal').innerHTML = hotel_perk_info(name, elites);
+        document.getElementById("info_modal_overlay").style.display = "block";
         document.getElementById("hotel_info_modal").style.display = "block";
         // document.getElementById("close_button").style.display = "block";
       });
@@ -92,6 +93,7 @@ function property_onclick(hotel_id) {
       name = hotel_info['name'],
       elites = hotel_info['elites'];
   document.getElementById('hotel_info_modal').innerHTML = hotel_perk_info(name, elites);
+  document.getElementById("info_modal_overlay").style.display = "block";
   document.getElementById("hotel_info_modal").style.display = "block";
 }
 
@@ -234,16 +236,20 @@ function perks_break(program, id, perk_short) {
 // }
 
 function close_info_modal() {
+  document.getElementById("info_modal_overlay").style.display = "none";
   document.getElementById("hotel_info_modal").style.display = "none";
   // document.getElementById("option_modal").style.display = "none";
-  document.getElementById("close_button").style.display = "none";
+  // document.getElementById("close_button").style.display = "none";
+  document.getElementById("option_modal").style.display = "none";
 }
 function open_option_modal() {
   // close_info_modal();
   document.getElementById("option_modal").style.display = "block";
+  document.getElementById("info_modal_overlay").style.display = "block";
   // document.getElementById("close_button").style.display = "inline";
 }
 
 function close_option_modal() {
   document.getElementById("option_modal").style.display = "none";
+  document.getElementById("info_modal_overlay").style.display = "none";
 }
