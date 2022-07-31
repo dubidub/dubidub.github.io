@@ -79,75 +79,122 @@
 
   <div id="option_modal" class="option_modal">
     <button class="close_button" id="close_option_button" type="button" onclick="close_option_modal()"><i class="fa fa-close"></i></button>
-    <div class="fst-filter">
-      <div class="wrap">
-        <h4>FILTER BY HOTEL COLLECTIONS</h4>
+    <div class="fst-filter"><h1>FILTERS</h1></div>
+    <div class="fst-filter flexbox-wrap">
+      <div class="wrap flexbox">
+        <h4>Hotel Collections</h4>
         <div class="wrapper">
-          <input type="checkbox" id="visalx" name="visalx" value="visalx" checked disabled>
-          <label for="visalx">VISA Luxury Hotel Collection</label><br>
+          <input type="checkbox" id="EP00VL" name="elite_fliter" value="EP00VL" disabled>
+          <label for="EP00VL">VISA Luxury Hotel Collection</label><br>
         </div>
         <div class="wrapper">
-          <input type="checkbox" id="vslx" name="vslx" value="vslx" checked disabled>
-          <label for="vslx">VISA Signature Luxury Hotel Collection</label><br>
+          <input type="checkbox" id="EP00VS" name="elite_fliter" value="EP00VS" disabled>
+          <label for="EP00VS">VISA Signature Luxury Hotel Collection</label><br>
         </div>
         <div class="wrapper">
-          <input type="checkbox" id="axhc" name="axhc" value="axhc" checked disabled>
-          <label for="axhc">AMEX Hotel Collection</label><br>
+          <input type="checkbox" id="EP00HC" name="elite_fliter" value="EP00HC" disabled>
+          <label for="EP00HC">AMEX Hotel Collection</label><br>
         </div>
         <div class="wrapper">
-          <input type="checkbox" id="axfhr" name="axfhr" value="axfhr" checked disabled>
-          <label for="axfhr">AMEX Fine Hotels + Resorts</label><br>
+          <input type="checkbox" id="EP00FH" name="elite_fliter" value="EP00FH" disabled>
+          <label for="EP00FH">AMEX Fine Hotels+Resorts</label><br>
         </div>
         <div class="wrapper">
-          <input type="checkbox" id="kwc" name="kwc" value="kwc" checked disabled>
-          <label for="kwc">KIWI COLLECTION</label><br>
+          <input type="checkbox" id="EP00KC" name="elite_fliter" value="EP00KC" disabled>
+          <label for="EP00KC">KIWI COLLECTION</label><br>
         </div>
         <div class="wrapper">
-          <input type="checkbox" id="tbh" name="tbh" value="tbh" checked disabled>
-          <label for="tbh">Tablet Hotels</label><br>
+          <input type="checkbox" id="EP00TP" name="elite_fliter" value="EP00TP" disabled>
+          <label for="EP00TP">Tablet Hotels</label><br>
         </div>
         <div class="wrapper">
-          <input type="checkbox" id="vth" name="vth" value="vth" checked disabled>
-          <label for="vth">VIRTUOSO</label><br>
+          <input type="checkbox" id="EP00VT" name="elite_fliter" value="EP00VT" disabled>
+          <label for="EP00VT">VIRTUOSO</label><br>
+        </div>
+      </div>
+      <div class="wrap flexbox">
+        <h4>Perk Types</h4>
+        <div class="wrapper">
+          <input type="checkbox" id="CBF" name="perk_filter" value="CBF" disabled>
+          <label for="CBF">Breakfast</label><br>
+        </div>
+        <div class="wrapper">
+          <input type="checkbox" id="CRU" name="perk_filter" value="CRU" disabled>
+          <label for="CRU">Room Upgrades</label><br>
+        </div>
+        <div class="wrapper">
+          <input type="checkbox" id="ECI" name="perk_filter" value="ECI" disabled>
+          <label for="ECI">Early Check-in</label><br>
+        </div>
+        <div class="wrapper">
+          <input type="checkbox" id="LCO" name="perk_filter" value="LCO" disabled>
+          <label for="LCO">Late Check-out</label><br>
+        </div>
+        <div class="wrapper">
+          <input type="checkbox" id="FCD" name="perk_filter" value="FCD" disabled>
+          <label for="FCD">Free Credit</label><br>
+        </div>
+        <div class="wrapper">
+          <input type="checkbox" id="IRG" name="perk_filter" value="IRG" disabled>
+          <label for="IRG">In-room Gift</label><br>
+        </div>
+        <div class="wrapper">
+          <input type="checkbox" id="WGA" name="perk_filter" value="WGA" disabled>
+          <label for="WGA">Welcome Gift</label><br>
+        </div>
+        <div class="wrapper">
+          <input type="checkbox" id="CIN" name="perk_filter" value="CIN" disabled>
+          <label for="CIN">Internet</label><br>
+        </div>
+        <div class="wrapper">
+          <input type="checkbox" id="OTH" name="perk_filter" value="OTH" disabled>
+          <label for="OTH">Others</label><br>
         </div>
       </div>
     </div>
-    <div class="fst-filter">
-      <div class="wrap">
-        <h4>FILTER BY PERKS</h4>
+    <!-- <div class="fst-filter">
+      <div class="wrap flexbox">
+        <h4>Perk Types</h4>
         <div class="wrapper">
-          <input type="checkbox" id="perk_cbf" name="perk_cbf" value="perk_cbf" checked disabled>
-          <label for="perk_cbf">Breakfast</label><br>
+          <input type="checkbox" id="CBF" name="perk_filter" value="CBF" disabled>
+          <label for="CBF">Breakfast</label><br>
         </div>
         <div class="wrapper">
-          <input type="checkbox" id="perk_cru" name="perk_cru" value="perk_cru" checked disabled>
-          <label for="perk_cru">Room Upgrades</label><br>
+          <input type="checkbox" id="CRU" name="perk_filter" value="CRU" disabled>
+          <label for="CRU">Room Upgrades</label><br>
         </div>
         <div class="wrapper">
-          <input type="checkbox" id="perk_eci" name="perk_eci" value="perk_eci" checked disabled>
-          <label for="perk_eci">Early Check-in</label><br>
+          <input type="checkbox" id="ECI" name="perk_filter" value="ECI" disabled>
+          <label for="ECI">Early Check-in</label><br>
         </div>
         <div class="wrapper">
-          <input type="checkbox" id="perk_lco" name="perk_lco" value="perk_lco" checked disabled>
-          <label for="perk_lco">Late Check-out</label><br>
+          <input type="checkbox" id="LCO" name="perk_filter" value="LCO" disabled>
+          <label for="LCO">Late Check-out</label><br>
         </div>
         <div class="wrapper">
-          <input type="checkbox" id="perk_fcd" name="perk_fcd" value="perk_fcd" checked disabled>
-          <label for="perk_fcd">Free Credit</label><br>
+          <input type="checkbox" id="FCD" name="perk_filter" value="FCD" disabled>
+          <label for="FCD">Free Credit</label><br>
         </div>
         <div class="wrapper">
-          <input type="checkbox" id="perk_irg" name="perk_irg" value="perk_irg" checked disabled>
-          <label for="perk_irg">In-room Gift</label><br>
+          <input type="checkbox" id="IRG" name="perk_filter" value="IRG" disabled>
+          <label for="IRG">In-room Gift</label><br>
         </div>
         <div class="wrapper">
-          <input type="checkbox" id="perk_wga" name="perk_wga" value="perk_wga" checked disabled>
-          <label for="perk_wga">Welcome Gift</label><br>
+          <input type="checkbox" id="WGA" name="perk_filter" value="WGA" disabled>
+          <label for="WGA">Welcome Gift</label><br>
         </div>
         <div class="wrapper">
-          <input type="checkbox" id="perk_cin" name="perk_cin" value="perk_cin" checked disabled>
-          <label for="perk_cin">Internet</label><br>
+          <input type="checkbox" id="CIN" name="perk_filter" value="CIN" disabled>
+          <label for="CIN">Internet</label><br>
+        </div>
+        <div class="wrapper">
+          <input type="checkbox" id="OTH" name="perk_filter" value="OTH" disabled>
+          <label for="OTH">Others</label><br>
         </div>
       </div>
+    </div> -->
+    <div class="fst-filter button-wrap">
+      <button class="apply-button" onclick="get_ep_filter()">Apply</button>
     </div>
   </div>
 
@@ -197,5 +244,6 @@
 <script src="./resources/matched_hotels.js"></script>
 <script src="./resources/all_elite_perks.js"></script>
 <script src="./resources/perks_collection_desc.js"></script>
+<script src="./functions_filter.js"></script>
 <script src="./functions.js"></script>
 <script src="./main.js"></script>

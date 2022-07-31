@@ -5,7 +5,7 @@
   background-color: #fff; /* Black*/
   overflow-x: block; /* Disable horizontal scroll */
   overflow-y: auto;
-  padding: 60px 15px 0 30px; /* Place content 60px from the top */
+  padding: 70px 15px 0 30px; /* Place content 60px from the top */
   padding-bottom: 0; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidepanel */
   -ms-overflow-style: none;  /* hide scrollbar for IE and Edge */
@@ -36,6 +36,11 @@
 .hotelPanel .fst-filter .wrap:hover {
   background-color: #eee;
 }
+.hotelPanel .fst-filter h2 {
+  margin: 0 0 .5em 0;
+  font-size: 1.2em;
+  font-weight: normal;
+}
 .hotelPanel .fst-filter h3 {
   margin: 0 0 .5em 0;
   font-size: 1.5em;
@@ -44,10 +49,16 @@
 .hotelPanel .fst-filter .property_desc {
   font-size: 14px;
   color: #666;
+  line-height: 120%;
 }
 .hotelPanel .fst-filter li {
   font-size: 16px;
   color: #666;
+  list-style-type: disc;
+  list-style-position: inside;
+  padding: 4px 0 4px 1.4em;
+  text-indent: -1.4em;
+  line-height: 100%;
 }
 .hotelPanel .wrap p {
   font-size: 10px;
@@ -80,15 +91,15 @@
 .hotelPanel .wrapper{
   display: flex;
   margin: 1em 0;
+  gap: 1.5em;
 }
-.hotelPanel .wrapper .property_elites {
+.hotelPanel .wrapper .property_elites, .hotelPanel .wrapper .property_perks {
   flex: 1 0 0%;
+  /* margin: 1em; */
 }
-.hotelPanel .wrapper .property_perks {
-  flex: 1 0 0%;
-}
+
 .hotelPanel .property_elites h4 , .property_perks h4 {
   margin: 5px 0;
   font-size: 16px;
-  font-weight: normal;
+  font-weight: 600;
 }

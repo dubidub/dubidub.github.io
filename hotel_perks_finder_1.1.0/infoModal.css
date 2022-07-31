@@ -129,7 +129,7 @@ tbody li {
   /* list-style: none; */
   list-style-type: disc;
   list-style-position: inside;
-  padding: 5px 0 5px 20px;
+  padding: 5px 0 5px 1.4em;
   text-indent: -1.4em;
 }
 
@@ -141,6 +141,25 @@ tfoot th  {
 }
 tfoot td  {
   text-align: center;
-  padding: 2em 1em;
+  padding: 20px;
   /* border-top: 1px solid #ccc; */
+}
+
+table button {
+  background-color: #101C4D;
+  border: 2px solid #101C4D;;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  /* margin: 4px 2px; */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 5px;
+}
+table button:hover {
+  background-color: #fff;
+  color: #101C4D;
 }

@@ -3,20 +3,39 @@ function clearInputOri() {
     document.getElementById('input_ori').value = "";
     // document.getElementById('input_hotel').value = "";
     close_info_modal();
+    clear_filters();
   } catch (e) {
     console.log(e);
   }
 }
 
 function inputOrigin() {
-  document.getElementById("hotelPanel").innerHTML = '';
+  let search_input = document.getElementById('input_ori').value,
+      hotel_list = search_key[search_input];
+  show_search_results(hotel_list);
+  add_filters(hotel_list);
+}
+
+function show_search_results(hotel_list) {
+  if ( hotel_list.length > 1 ) {
+    document.getElementById("hotelPanel").innerHTML =
+      '<div class="fst-filter"><h2>' + hotel_list.length + ' results</h2></div>';
+  } else if ( hotel_list.length == 1 ) {
+    document.getElementById("hotelPanel").innerHTML =
+      '<div class="fst-filter"><h2>' + hotel_list.length + ' result</h2></div>';
+  } else if ( hotel_list.length == 0 ) {
+    document.getElementById("hotelPanel").innerHTML =
+      '<div class="fst-filter"><h2>No matched results</h2></div>';
+  }
+
   markerLayer.clearLayers();
   let bounds = L.latLngBounds();
+
   try {
-    let search_input = document.getElementById('input_ori').value,
-        hotels = search_key[search_input];
-    for ( let i=0; i<hotels.length; i++ ) {
-      let hotel_info = matched_hotels[hotels[i]],
+    // let search_input = document.getElementById('input_ori').value,
+    //     hotels = search_key[search_input];
+    for ( let i=0; i<hotel_list.length; i++ ) {
+      let hotel_info = matched_hotels[hotel_list[i]],
           lat = hotel_info['geo']['lat'],
           lng = hotel_info['geo']['lon'],
           name = hotel_info['name'],
@@ -30,7 +49,7 @@ function inputOrigin() {
 
       bounds.extend([lat, lng]);
 
-      document.getElementById("hotelPanel").innerHTML += addHotelList(name, desc, elites, og_image, hotels[i]);
+      document.getElementById("hotelPanel").innerHTML += addHotelList(name, desc, elites, og_image, hotel_list[i]);
 
       marker.bindPopup(
         '<img src="' + og_image + '" style="min-width: 200px;width:100%;height:100%;">' +
@@ -50,40 +69,54 @@ function inputOrigin() {
         // document.getElementById("close_button").style.display = "block";
       });
     }
+    map.fitBounds(bounds);
   } catch (e) {
     console.log(e);
-  }
-  map.fitBounds(bounds);
-}
-
-function get_ep_filter() {
-  var array = []
-  var checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
-
-  for (var i = 0; i < checkboxes.length; i++) {
-    array.push(checkboxes[i].value)
   }
 }
 
 function addHotelList(name, desc, elites, og_image, hotel_id) {
   let elite_list = "",
-      e_prog = Object.keys(elites);
+      perk_list = "",
+      e_prog = Object.keys(elites),
+      e_perks = [];
+
+  // show list of hotel collections
   for ( let i=0; i<e_prog.length; i++ ) {
     let prog_text = '<li>' + elite_desc[e_prog[i]] + '</li>';
     elite_list = elite_list + prog_text;
   }
+  // find how many different perks offered by hotel collections
+  for ( let i=0; i<e_prog.length; i++ ) {
+    let elite = e_prog[i],
+        hotel_in_elite = elites[e_prog[i]]['id'],
+        perks_of_hotel = all_elite_perks[elite][hotel_in_elite]['perks'],
+        list_of_perks = Object.keys(perks_of_hotel);
+    for ( let j=0; j<list_of_perks.length; j++ ) {
+      if ( perks_of_hotel[list_of_perks[j]].length > 0 && !e_perks.includes(list_of_perks[j]) ) {
+        e_perks.push(list_of_perks[j]);
+      }
+    }
+  }
+  // show list of perks
+  for ( let i=0; i<e_perks.length; i++ ) {
+    let perk_text = '<li>' + perks_desc[e_perks[i]] + '</li>';
+    perk_list = perk_list + perk_text;
+  }
 
-  let property_info = '<div class="fst-filter" onclick="property_onclick(' + hotel_id +
-                      ')" onmousemove="property_onhover(' + hotel_id +
-                      ')"><div class="wrap"><div class="property_image"><img src="' +
-                      og_image +
-                      '"></div><div class="property_text"><div class="property_title"><h3>' +
-                      name +
-                      '</h3></div><div class="property_desc">' +
-                      desc +
-                      '</div><div class="wrapper"><div class="property_elites"><h4>Hotel Collection</h4>' +
-                      elite_list +
-                      '</div></div>';
+  // generate hotel search results
+  let property_info = '<div class="fst-filter" onclick="property_onclick(' + hotel_id + ')" onmousemove="property_onhover(' + hotel_id + ')">' +
+                        '<div class="wrap">' +
+                          '<div class="property_image"><img src="' + og_image + '"></div>' +
+                          '<div class="property_text">' +
+                            '<div class="property_title"><h3>' + name + '</h3></div>' +
+                            '<div class="property_desc">' + desc + '</div>' +
+                            '<div class="wrapper">' +
+                              '<div class="property_elites"><h4>Hotel Collection</h4>' + elite_list + '</div>' +
+                              '<div class="property_perks"><h4>Perks</h4>' + perk_list + '</div>' +
+                          '</div>' +
+                        '</div>' +
+                      '</div>';
 
   return property_info;
 }
@@ -238,15 +271,12 @@ function perks_break(program, id, perk_short) {
 function close_info_modal() {
   document.getElementById("info_modal_overlay").style.display = "none";
   document.getElementById("hotel_info_modal").style.display = "none";
-  // document.getElementById("option_modal").style.display = "none";
-  // document.getElementById("close_button").style.display = "none";
-  document.getElementById("option_modal").style.display = "none";
+  close_option_modal();
 }
 function open_option_modal() {
   // close_info_modal();
   document.getElementById("option_modal").style.display = "block";
   document.getElementById("info_modal_overlay").style.display = "block";
-  // document.getElementById("close_button").style.display = "inline";
 }
 
 function close_option_modal() {
