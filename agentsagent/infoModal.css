@@ -7,7 +7,7 @@
   height: 100vh;
   background-color: rgba(128,128,128,0.8); /* color */
   display: none; /* making it hidden by default */
-  z-index: 1010; /* Stay on top */
+  z-index: 2000; /* Stay on top */
 }
 
 .info_modal {
@@ -26,7 +26,7 @@
     transform: translate(-50%, -50%);
     border: 1px solid #ccc;
     border-radius: 10px;
-    z-index: 1011; /* Stay on top */
+    z-index: 2001; /* Stay on top */
 }
 
 .info_modal::-webkit-scrollbar {

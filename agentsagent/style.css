@@ -29,7 +29,7 @@ body {
 
 .results_filter {
   width: 250px !important;
-  padding: 10px 0;
+  padding: 10px;
   background-color: #fff;
   overflow-y: auto;
   -ms-overflow-style: none;  /* hide scrollbar for IE and Edge */
