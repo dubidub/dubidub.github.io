@@ -6,13 +6,8 @@ html {
 body {
   margin:0;
   padding: 0;
-  background-color: #042759;
+  background-color: #fff;
   font-family: "PT Sans", "Helvetica Neue","Segoe UI","Roboto",sans-serif;
-}
-
-.header {
-  /* height: 7%; */
-  /* width: 100%; */
 }
 
 .title {
@@ -23,17 +18,18 @@ body {
 
 .search_results {
   height: 92.5vh; /* Specify a height */
-  width: 100%; /* 0 width - change this with JavaScript */
-  position: fixed; /* Stay in place */
+  width: 1050px; /* 0 width - change this with JavaScript */
+  /* position: fixed;  */
   z-index: 1001; /* Stay on top */
   top: 7.5vh;
   left: 0;
   display: flex;
+  margin: auto;
 }
 
 .results_filter {
   width: 250px !important;
-  padding: 5px;
+  padding: 10px 0;
   background-color: #fff;
   overflow-y: auto;
   -ms-overflow-style: none;  /* hide scrollbar for IE and Edge */
@@ -188,13 +184,10 @@ body {
   box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1);
   position: fixed;
   width: 100%;
-  z-index: 1010;
+  z-index: 1200;
+  text-align: center;
   /* height: 7.5vh; */
   /* padding: 20.9px; */
-}
-
-.header a {
-  color: #fff;
 }
 
 .header ul {
@@ -235,6 +228,7 @@ body {
   padding: 0 20px;
   text-decoration: none;
   line-height: 7.5vh;
+  color: #fff;
 }
 
 /* menu */

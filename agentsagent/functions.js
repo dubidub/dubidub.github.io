@@ -68,7 +68,6 @@ function show_search_results(hotel_list) {
       });
     }
     map.fitBounds(bounds);
-    setCookie('map_bounds', bounds);
   } catch (e) {
     console.log(e);
   }
@@ -123,7 +122,7 @@ function addHotelList(name, address, elites, og_image, hotel_id) {
                             '<div class="property_address">' + address +
                             '  [ <a href="https://www.google.com/maps/search/' + name + '" target="_blank">Google Map</a> ]</div>' +
                             '<div class="wrapper">' +
-                              '<div class="wrapper_perks">' + 
+                              '<div class="wrapper_perks">' +
                                 '<div class="property_elites">' +
                                   '<div class="property_elites_handle">Hotel programs</div>' + elite_list + '</div>' +
                                 '<div class="property_perks">' +

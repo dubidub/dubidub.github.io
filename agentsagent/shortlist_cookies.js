@@ -1,8 +1,8 @@
 function setCookie(cname, cvalue) {
-  let d = new Date();
-  d.setTime(d.getTime() + (365*24*60*60*1000));
-  let expires = "expires" + d.toUTCString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + "; SameSite=None; Secure";
+  // let d = new Date();
+  // d.setTime(d.getTime() + (365*24*60*60*1000));
+  let expires = 60*60*24*365;
+  document.cookie = cname + "=" + cvalue + "; SameSite=None; Secure; Max-Age=" + expires ;
 }
 
 function getCookie(cname) {
