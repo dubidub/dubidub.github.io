@@ -11,23 +11,22 @@ function clearInputOri() {
 function inputOrigin() {
   let search_input = document.getElementById('input_ori').value,
       hotel_list = search_key[search_input];
+  setCookie('searchresults_properties', hotel_list);
+  setCookie('input_origin', search_input);
+  if ( !getCookie('sort_by') ) {
+    setCookie('sort_by', 'elite');
+  }
   show_search_results(hotel_list);
   add_filters(hotel_list);
-  setCookie('input_origin', search_input);
+  document.getElementById('reportIssue_link').setAttribute('href', "https://docs.google.com/forms/d/e/1FAIpQLSfsObnz3MqDTIJ7vm_DYfpkQ5Q35X8qSkf0VhDMFXJEjSOAEA/viewform?usp=pp_url&entry.1988529203=the+destination's+search+results&entry.1742635947=" + search_input );
 }
 
-function show_search_results(hotel_list) {
+function show_search_results(unsorted_hotel_list) {
+  document.getElementById('loader').style.display = 'block';
+  let hotel_list = sort_hotel_list(unsorted_hotel_list);
   setCookie('searchresults_properties', hotel_list);
-  if ( hotel_list.length > 1 ) {
-    document.getElementById("hotelPanel").innerHTML =
-      '<div class="hotelPanel_handle">' + hotel_list.length + ' results</div>';
-  } else if ( hotel_list.length == 1 ) {
-    document.getElementById("hotelPanel").innerHTML =
-      '<div class="hotelPanel_handle">' + hotel_list.length + ' result</div>';
-  } else if ( hotel_list.length == 0 ) {
-    document.getElementById("hotelPanel").innerHTML =
-      '<div class="hotelPanel_handle">No matched results</div>';
-  }
+  render_hotelPanel_handle(hotel_list);
+  console.log(document.cookie);
 
   markerLayer.clearLayers();
   let bounds = L.latLngBounds();
@@ -41,7 +40,7 @@ function show_search_results(hotel_list) {
           address = hotel_info['address'],
           elites = hotel_info['elites'],
           og_image = hotel_info['og_image'],
-          desc = hotel_info['desc_en'],
+          // desc = hotel_info['desc_en'],
           marker = L.marker([lat, lng], {
               riseOnHover : true,
           }).addTo(markerLayer);
@@ -72,6 +71,7 @@ function show_search_results(hotel_list) {
     console.log(e);
   }
   document.getElementById('hotelPanel').scrollTop = 0;
+  document.getElementById('loader').style.display = 'none';
 }
 
 function addHotelList(name, address, elites, og_image, hotel_id) {
@@ -98,10 +98,11 @@ function addHotelList(name, address, elites, og_image, hotel_id) {
     }
   }
   // show list of perks
-  for ( let i=0; i<e_perks.length; i++ ) {
-    // let perk_text = '<li>' + perks_desc[e_perks[i]] + '</li>';
-    let perk_text = '<img class="icon_image" src="' + perks_icon[e_perks[i]] + '" title="' + perks_desc[e_perks[i]] + '">　';
-    perk_list = perk_list + perk_text;
+  for ( let perk of Object.keys(filter_perk) ) {
+    if ( e_perks.includes(perk) ) {
+      let perk_text = '<img class="icon_image" src="' + perks_icon[perk] + '" title="' + perks_desc[perk] + '">　';
+      perk_list = perk_list + perk_text;
+    }
   }
 
   // generate hotel search results
@@ -118,13 +119,15 @@ function addHotelList(name, address, elites, og_image, hotel_id) {
                         '<div class="wrap">' +
                           '<div class="property_image"><img src="' + og_image + '"></div>' +
                           '<div class="property_text">' +
-                            '<div class="property_title">' + name + '</div>' +
+                            '<div class="property_title"><div>' + name + '</div>' +
+                            '<a href="https://docs.google.com/forms/d/e/1FAIpQLSfsObnz3MqDTIJ7vm_DYfpkQ5Q35X8qSkf0VhDMFXJEjSOAEA/viewform?usp=pp_url&entry.1988529203=a+specific+hotel+property&entry.765673812=' + name + '" target="_blank">' +
+                            '<i class="fas fa-exclamation-triangle" title="Report an issue"></i></a></div>' +
                             '<div class="property_address">' + address +
                             '  [ <a href="https://www.google.com/maps/search/' + name + '" target="_blank">Google Map</a> ]</div>' +
                             '<div class="wrapper">' +
                               '<div class="wrapper_perks">' +
                                 '<div class="property_elites">' +
-                                  '<div class="property_elites_handle">Hotel programs</div>' + elite_list + '</div>' +
+                                  '<div class="property_elites_handle">Hotel preferred partners</div>' + elite_list + '</div>' +
                                 '<div class="property_perks">' +
                                   '<div class="property_perks_handle">Perk types</div>' + perk_list + '</div>' +
                               '</div>' +
@@ -162,9 +165,9 @@ function hotel_perk_info(name, elites, address) {
                       '<div class="info_modal_address">' + address +
                       '  [ <a href="https://www.google.com/maps/search/' + name +
                       '" target="_blank">Google Map</a> ]</div>' +
-                      '<table>' +
+                      '<div class="table-container"><table>' +
                       table_head(elites) + table_foot(elites) + table_body(elites) +
-                      '</table>' ;
+                      '</table></div>' ;
   return html_text_seg;
 }
 
@@ -176,7 +179,7 @@ function add_close_button() {
 }
 
 function table_head(elites) {
-  let table_head_text = '<thead><tr><th>&nbsp;</th>',
+  let table_head_text = '<thead><tr><th style="width: 12vw;">&nbsp;</th>',
       e_progs = Object.keys(elites);
   for ( let i=0; i<e_progs.length; i++ ) {
     let prog_text = '<th><i>' + elite_desc[e_progs[i]] + '</i></th>';
@@ -227,13 +230,41 @@ function table_body(elites) {
 }
 
 function perks_break(program, id, perk_short) {
-  let perk_text = "";
-  for (let i = 0; i < all_elite_perks[program][id]['perks'][perk_short].length; i++) {
+  let perk_text = "",
+      perk_content = all_elite_perks[program][id]['perks'][perk_short];
+
+  if ( perk_content.length < 2 ) {
+    for (let i = 0; i < perk_content.length; i++) {
+      perk_text = perk_text.concat('<li>' + perk_content[i] + '</li>');
+    }
+  } else {
+    perk_text = perk_text.concat('<li>' + perk_content[0] + '</li>');
+    for (let i = 1; i < perk_content.length; i++) {
+      perk_text = perk_text.concat('<li class="hidden perk_' + program + id + perk_short + '">' + perk_content[i] + '</li>');
+    }
     perk_text = perk_text.concat(
-      '<li>' + all_elite_perks[program][id]['perks'][perk_short][i] + '</li>'
+        '<p onclick="expand_hide_item(' + "'perk_" + program + id + perk_short + "'" + ')" ' +
+        'id="perk_' + program + id + perk_short + '"' + '>[Expand]</p>'
     );
   }
   return perk_text;
+}
+
+function expand_hide_item(className) {
+    let elements = document.querySelectorAll('.'+className),
+        element = document.querySelector('.'+className),
+        elementStyles = window.getComputedStyle(element);
+    if (elementStyles.getPropertyValue('display') === 'none') {
+      document.getElementById(className).innerHTML = '[Hide]' ;
+      elements.forEach((item) => {
+        item.style.display = 'list-item';
+      });
+    } else {
+      document.getElementById(className).innerHTML = '[Expand]' ;
+      elements.forEach((item) => {
+        item.style.display = 'none';
+      });
+    }
 }
 
 function close_info_modal() {

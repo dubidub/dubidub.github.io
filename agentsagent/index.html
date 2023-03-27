@@ -41,10 +41,17 @@
 
   <!-- Button Favicon -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 </head>
 
 <body>
+  <div id="loader"><div class="spinner"></div></div>
+  <!-- <button id="report-issue-btn" title="Report an issue">
+    <i class="fas fa-exclamation-triangle"></i>
+  </button> -->
+
   <div class="title">
     <div class="header">
       <div class="logo"><strong>Agents'Agent</strong> <i>beta</i></div>
@@ -53,7 +60,8 @@
       <ul class="menu">
         <!-- <li><a href="https://dubidub.github.io/blog/"><strong>ADU WORK IN PROGRESS</strong></a></li> -->
         <!-- <li><a href="https://dubidub.github.io/blog/">Blog</a></li> -->
-        <li><a href="https://forms.gle/hPYrZ8sJqFwHEJvY7" target="_blank">Feedback</a></li>
+        <!-- <li><a href="https://forms.gle/hPYrZ8sJqFwHEJvY7" target="_blank">Feedback</a></li> -->
+        <li><a id="reportIssue_link" href="" target="_blank">Report an issue</a></li>
       </ul>
     </div>
   </div>
@@ -86,79 +94,16 @@
       <div class="showmap_box" id="showmap_box" onclick="show_map()">
         <div class="showmap_box_handle" id="showmap_box_handle">Show on map</div>
       </div>
-      <div class="shortlist_box" id="shortlist_box" onclick="show_shortlist()">
-        <div class="shortlist_box_handle" id="shortlist_box_handle">Shortlist</div>
+      <div class="shortlist">
+        <div class="shortlist_box" id="shortlist_box" onclick="show_shortlist()">
+          <div class="shortlist_box_handle" id="shortlist_box_handle">Shortlist</div>
+        </div>
+        <div class="shortlist_clear" onclick="clear_shortlist()">Clear</div>
       </div>
       <div class="filter_box">
         <div class="filter_box_handle">Filter by</div>
-        <div class="filter_box_hotel">
-          <div class="filter_box_hotel_handle">Hotel programs
-            <input type="checkbox" onclick="select_all_hotels()" style="float:right" id="hotel_program_checkbox" checked>
-            <!-- <label for="hotel_programs"></label> -->
-          </div>
-          <div class="filter_box_wrapper">
-            <input type="checkbox" id="HC00HY" name="elite_fliter" value="HC00HY" onclick="get_ep_filter()" disabled>
-            <label for="HC00HY">Hyatt Prive</label><br>
-          </div>
-          <div class="filter_box_wrapper">
-            <input type="checkbox" id="HC00MR" name="elite_fliter" value="HC00MR" onclick="get_ep_filter()" disabled>
-            <label for="HC00MR">Marriott STARS & Luminous</label><br>
-          </div>
-          <div class="filter_box_wrapper">
-            <input type="checkbox" id="HC00FS" name="elite_fliter" value="HC00FS" onclick="get_ep_filter()" disabled>
-            <label for="HC00FS">Four Seasons Preferred Partners</label><br>
-          </div>
-          <div class="filter_box_wrapper">
-            <input type="checkbox" id="EP00HC" name="elite_fliter" value="EP00HC" onclick="get_ep_filter()" disabled>
-            <label for="EP00HC">AMEX The Hotel Collection</label><br>
-          </div>
-          <div class="filter_box_wrapper">
-            <input type="checkbox" id="EP00FH" name="elite_fliter" value="EP00FH" onclick="get_ep_filter()" disabled>
-            <label for="EP00FH">AMEX Fine Hotels + Resorts</label><br>
-          </div>
-          <div class="filter_box_wrapper">
-            <input type="checkbox" id="EP00VT" name="elite_fliter" value="EP00VT" onclick="get_ep_filter()" disabled>
-            <label for="EP00VT">Virtuoso</label><br>
-          </div>
-        </div>
-        <div class="filter_box_perks">
-          <div class="filter_box_perks_handle">Perk types
-            <input type="checkbox" onclick="select_all_perks()" style="float:right" id="perks_checkbox" checked>
-            <!-- <label for="perks"></label> -->
-          </div>
-          <div class="filter_box_wrapper">
-            <input type="checkbox" id="CBF" name="perk_filter" value="CBF" onclick="get_ep_filter()" disabled>
-            <label for="CBF">Breakfast</label><br>
-          </div>
-          <div class="filter_box_wrapper">
-            <input type="checkbox" id="CRU" name="perk_filter" value="CRU" onclick="get_ep_filter()" disabled>
-            <label for="CRU">Room Upgrades</label><br>
-          </div>
-          <div class="filter_box_wrapper">
-            <input type="checkbox" id="ECI" name="perk_filter" value="ECI" onclick="get_ep_filter()" disabled>
-            <label for="ECI">Early Check-in</label><br>
-          </div>
-          <div class="filter_box_wrapper">
-            <input type="checkbox" id="LCO" name="perk_filter" value="LCO" onclick="get_ep_filter()" disabled>
-            <label for="LCO">Late Check-out</label><br>
-          </div>
-          <div class="filter_box_wrapper">
-            <input type="checkbox" id="FCD" name="perk_filter" value="FCD" onclick="get_ep_filter()" disabled>
-            <label for="FCD">Free Credit</label><br>
-          </div>
-          <div class="filter_box_wrapper">
-            <input type="checkbox" id="WGA" name="perk_filter" value="WGA" onclick="get_ep_filter()" disabled>
-            <label for="WGA">Welcome Gift</label><br>
-          </div>
-          <div class="filter_box_wrapper">
-            <input type="checkbox" id="CIN" name="perk_filter" value="CIN" onclick="get_ep_filter()" disabled>
-            <label for="CIN">Internet</label><br>
-          </div>
-          <div class="filter_box_wrapper">
-            <input type="checkbox" id="OTH" name="perk_filter" value="OTH" onclick="get_ep_filter()" disabled>
-            <label for="OTH">Others</label><br>
-          </div>
-        </div>
+        <div class="filter_box_hotel" id="filter_box_hotel"></div>
+        <div class="filter_box_perks" id="filter_box_perks"></div>
       </div>
     </div>
     <!-- Hotel Side Panel -->
@@ -178,5 +123,6 @@
 <script src="./shortlist_cookies.js"></script>
 <script src="./show_map.js"></script>
 <script src="./functions_filter.js"></script>
+<script src="./functions_sort.js"></script>
 <script src="./functions.js"></script>
 <script src="./main.js"></script>

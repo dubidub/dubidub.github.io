@@ -35,6 +35,7 @@ document.getElementById('input_ori').addEventListener('awesomplete-selectcomplet
 
 window.onload = function(){
     console.log(document.cookie);
+    render_filter_boxes();
     let input_origin = getCookie('input_origin');
     if (input_origin == '') {
       document.getElementById('input_ori').value = 'New York';

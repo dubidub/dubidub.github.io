@@ -53,12 +53,14 @@
     padding: 20px 10px 10px 10px;
     font-size: 32px;
     font-weight: bold;
+    height: 6vh;
 }
 
 .info_modal .info_modal_address {
     padding: 0px 10px 20px 10px;
     font-size: 14px;
     font-weight: normal;
+    height: 4vh;
 }
 
 .info_modal p, .info_modal table {
@@ -72,6 +74,25 @@
     }
 }
 
+
+/* Table */
+
+.table-container {
+  height: 65vh;
+  overflow-y: scroll;
+}
+
+thead {
+  position: sticky;
+  top: 0;
+}
+
+tfoot {
+  position: sticky;
+  bottom: 0;
+  background-color: #fff;
+  z-index:1;
+}
 
 table {
   width: 100%;
@@ -139,15 +160,14 @@ tbody li {
   text-indent: -1.4em;
 }
 
+tbody li.hidden {
+  display: none;
+}
 /* Tablefooter */
 
-tfoot th  {
-  /* padding: 2em 1em; */
-  /* border-top: 1px solid #ccc; */
-}
 tfoot td  {
   text-align: center;
-  padding: 20px;
+  padding: 10px 20px 5px 20px;
   /* border-top: 1px solid #ccc; */
 }
 
@@ -169,4 +189,10 @@ table button:hover {
   background-color: #fff;
   color: #101C4D;
   border: 1px solid #101C4D;;
+}
+
+.info_modal table tbody td p {
+  padding: 0 1.5rem 0 0;
+  margin:  0 0 15px 0;
+  color: #00b;
 }

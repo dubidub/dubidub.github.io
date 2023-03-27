@@ -22,9 +22,11 @@ function getCookie(cname) {
 
 function show_shortlist() {
   hide_map();
+  clear_filters();
   let shortlist = getCookie('shortlist_properties').split(','),
       shortlist_properties = shortlist.filter( n => n);
   show_search_results(shortlist_properties);
+  add_filters(shortlist_properties);
   document.getElementById("shortlist_box_handle").innerHTML = 'Close shortlist';
   document.getElementById("shortlist_box").className = 'close_shortlist';
   document.getElementById("shortlist_box").setAttribute('onClick', 'close_shortlist()');
@@ -71,4 +73,26 @@ function delist_item(hotel_id) {
     document.getElementById('shortlist_box_handle').innerHTML = 'Shortlist: ' + shortlist_properties.length;
   }
   // document.getElementById('shortlist_box_handle').innerHTML = 'Shortlist: ' + shortlist_properties.length;
+}
+
+function clear_shortlist(){
+  let shortlist = getCookie('shortlist_properties').split(',');
+  setCookie('shortlist_properties', '');
+  for ( let item of shortlist ) {
+    let elementid = 'shortlist' + item;
+    try {
+      document.getElementById(elementid).innerHTML = 'Shortlist';
+      document.getElementById(elementid).className = 'actions_shortlist';
+      document.getElementById(elementid).setAttribute('onClick', 'shortlist_item("' + item + '")');
+    } catch(e) {
+      console.log(e);
+    }
+  }
+  if ( document.getElementById('shortlist_box_handle').innerHTML != 'Close shortlist' ) {
+    document.getElementById('shortlist_box_handle').innerHTML = 'Shortlist: 0';
+  } else {
+    shortlist_properties = [];
+    // show_search_results(shortlist_properties);
+    show_shortlist();
+  }
 }

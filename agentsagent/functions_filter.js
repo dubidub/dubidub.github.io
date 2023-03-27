@@ -1,27 +1,6 @@
-var filter_perk = {
-  'CBF': [],
-  'CRU': [],
-  'ECI': [],
-  'LCO': [],
-  'FCD': [],
-  // 'IRG': [],
-  'WGA': [],
-  'CIN': [],
-  'OTH': [],
-};
+var filter_perk = {};
 
-var filter_e_prog = {
-  'EP00FH': [],
-  'EP00HC': [],
-  // 'EP00KC': [],
-  // 'EP00TP': [],
-  // 'EP00VL': [],
-  // 'EP00VS': [],
-  'EP00VT': [],
-  'HC00HY': [],
-  'HC00MR': [],
-  'HC00FS': []
-}
+var filter_e_prog = {}
 
 function select_all_hotels() {
   var checkboxes = document.getElementsByName('elite_fliter');
@@ -70,6 +49,7 @@ function get_ep_filter() {
       filtered_list.push(filtered_list_e_prog[i]);
     }
   }
+  // let sort_by = document.getElementById("sort_options").value;
   show_search_results(filtered_list);
   close_option_modal();
 }
@@ -117,18 +97,63 @@ function add_filters(hotel_list) {
 }
 
 function check_filter_boxes() {
+  // document.querySelector(".filter_box_wrapper").style.color = "#aaa";
   let e_prog = Object.keys(filter_e_prog),
       list_of_perks = Object.keys(filter_perk);
   for ( let i=0; i<e_prog.length; i++ ) {
+    document.getElementById(e_prog[i]).nextElementSibling.style.color = "#aaa";
     if ( filter_e_prog[e_prog[i]].length > 0 ) {
       document.getElementById(e_prog[i]).checked = true;
       document.getElementById(e_prog[i]).disabled = false;
+      document.getElementById(e_prog[i]).nextElementSibling.style.color = "black";
     }
   }
   for ( let i=0; i<list_of_perks.length; i++ ) {
+    document.getElementById(list_of_perks[i]).nextElementSibling.style.color = "#aaa";
     if ( filter_perk[list_of_perks[i]].length > 0 ) {
       document.getElementById(list_of_perks[i]).checked = true;
       document.getElementById(list_of_perks[i]).disabled = false;
+      document.getElementById(list_of_perks[i]).nextElementSibling.style.color = "black";
     }
   }
+}
+
+function render_filter_boxes() {
+  // render hotel filters
+  let elite_desc_keys = Object.keys(elite_desc);
+  for ( let i=0; i<elite_desc_keys.length; i++ ) {
+    filter_e_prog[elite_desc_keys[i]] = []
+  }
+  let filter_box_wrappers_hotel = '';
+  for ( let i=0; i<elite_desc_keys.length; i++ ) {
+    filter_box_wrappers_hotel +=
+      '<div class="filter_box_wrapper">' +
+      '<input type="checkbox" id="' + elite_desc_keys[i] + '" name="elite_fliter" value="' + elite_desc_keys[i] + '" onclick="get_ep_filter()" disabled>' +
+      '<label for="' + elite_desc_keys[i] + '">' + elite_desc[elite_desc_keys[i]] + '</label><br>' +
+      '</div>'
+  }
+  let filter_box_hotel_content =
+    '<div class="filter_box_hotel_handle">Hotel preferred partners' +
+    '<input type="checkbox" onclick="select_all_hotels()" style="float:right" id="hotel_program_checkbox" checked></div>' +
+    filter_box_wrappers_hotel;
+  document.getElementById("filter_box_hotel").innerHTML += filter_box_hotel_content;
+
+  // render perks filter
+  let perks_desc_keys = Object.keys(perks_desc);
+  for ( let i=0; i<perks_desc_keys.length; i++ ) {
+    filter_perk[perks_desc_keys[i]] = []
+  }
+  let filter_box_wrappers_perks = '';
+  for ( let i=0; i<perks_desc_keys.length; i++ ) {
+    filter_box_wrappers_perks +=
+      '<div class="filter_box_wrapper">' +
+      '<input type="checkbox" id="' + perks_desc_keys[i] + '" name="perk_filter" value="' + perks_desc_keys[i] + '" onclick="get_ep_filter()" disabled>' +
+      '<label for="' + perks_desc_keys[i] + '">' + perks_desc[perks_desc_keys[i]] + '</label><br>' +
+      '</div>'
+  }
+  let filter_box_perks_content =
+    '<div class="filter_box_perks_handle">Perk types' +
+    '<input type="checkbox" onclick="select_all_perks()" style="float:right" id="perks_checkbox" checked></div>' +
+    filter_box_wrappers_perks;
+  document.getElementById("filter_box_perks").innerHTML += filter_box_perks_content;
 }
