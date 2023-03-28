@@ -32,8 +32,18 @@ function sort_hotel_list(hotel_list) {
     for ( let item of hotel_list_to_be_sorted ) {
       hotel_list_sorted.push(item['id']);
     }
-  } else {
+  } else if ( sort_by == 'perk' ) {
     sortDictList(hotel_list_to_be_sorted, 'perksNo', 'desc', 'elitesNo', 'desc', 'name', 'asc');
+    for ( let item of hotel_list_to_be_sorted ) {
+      hotel_list_sorted.push(item['id']);
+    }
+  } else if ( sort_by == 'name_asc' ) {
+    sortDictList(hotel_list_to_be_sorted, 'name', 'asc', 'elitesNo', 'desc', 'perksNo', 'desc');
+    for ( let item of hotel_list_to_be_sorted ) {
+      hotel_list_sorted.push(item['id']);
+    }
+  } else {
+    sortDictList(hotel_list_to_be_sorted, 'name', 'desc', 'elitesNo', 'desc', 'perksNo', 'desc');
     for ( let item of hotel_list_to_be_sorted ) {
       hotel_list_sorted.push(item['id']);
     }
@@ -79,13 +89,35 @@ function render_hotelPanel_handle(hotel_list) {
                     '<select id="sort_options" onchange="sort_hotels()">' +
                     '<option value="elite" selected>Sort by: Most preferred partners first</option>' +
                     '<option value="perk">Sort by: Most perk types first</option>' +
+                    '<option value="name_asc">Sort by: Hotel name (A to Z)</option>' +
+                    '<option value="name_desc">Sort by: Hotel name (Z to A)</option>' +
+                    '</select>' +
+                    '</div></div>';
+  } else if ( sort_by == 'perk' ) {
+    sort_options =  '<div class="hotelPanel_handle_sort">' +
+                    '<select id="sort_options" onchange="sort_hotels()">' +
+                    '<option value="elite">Sort by: Most preferred partners first</option>' +
+                    '<option value="perk" selected>Sort by: Most perk types first</option>' +
+                    '<option value="name_asc">Sort by: Hotel name (A to Z)</option>' +
+                    '<option value="name_desc">Sort by: Hotel name (Z to A)</option>' +
+                    '</select>' +
+                    '</div></div>';
+  } else if ( sort_by == 'name_asc' ) {
+    sort_options =  '<div class="hotelPanel_handle_sort">' +
+                    '<select id="sort_options" onchange="sort_hotels()">' +
+                    '<option value="elite">Sort by: Most preferred partners first</option>' +
+                    '<option value="perk">Sort by: Most perk types first</option>' +
+                    '<option value="name_asc" selected>Sort by: Hotel name (A to Z)</option>' +
+                    '<option value="name_desc">Sort by: Hotel name (Z to A)</option>' +
                     '</select>' +
                     '</div></div>';
   } else {
     sort_options =  '<div class="hotelPanel_handle_sort">' +
                     '<select id="sort_options" onchange="sort_hotels()">' +
                     '<option value="elite">Sort by: Most preferred partners first</option>' +
-                    '<option value="perk" selected>Sort by: Most perk types first</option>' +
+                    '<option value="perk">Sort by: Most perk types first</option>' +
+                    '<option value="name_asc">Sort by: Hotel name (A to Z)</option>' +
+                    '<option value="name_desc" selected>Sort by: Hotel name (Z to A)</option>' +
                     '</select>' +
                     '</div></div>';
   }
