@@ -19,6 +19,13 @@ body {
   padding-top: 50px; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidepanel */
 }
+.map-control {
+  right: 15px !important;
+}
+.RicgR {
+  bottom: 9vh !important;
+  right: 15px !important;
+}
 .fst-filter {
   margin: 0 0 15px;
 }
@@ -42,7 +49,7 @@ body {
 .loading {
   position: absolute;
   height: 100%;
-  width: 100%; 
+  width: 100%;
   background-color: #000;
   bottom: 0;
   left: 0;
@@ -103,7 +110,7 @@ select:hover{
   display: flex;
   font-size: 13px;
   padding: 4px 0;
-  margin: 0 0 0 0;  
+  margin: 0 0 0 0;
 }
 
 /* checkbox design */
@@ -123,7 +130,7 @@ select:hover{
               inset 0 0 15px rgba(0,0,0,.2);
 }
 .osman:checked{
-  background: linear-gradient(rgb(252, 83, 83),rgb(252, 101, 101)); 
+  background: linear-gradient(rgb(252, 83, 83),rgb(252, 101, 101));
 }
 .osman::before{
   content:'';

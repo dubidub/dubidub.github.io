@@ -1,7 +1,7 @@
-window.addEventListener('load', function () {      
+window.addEventListener('load', function () {
     loadDatasets("臺南市");
     loadCarType();
-    loadMonths();
+    // loadMonths();
     loadCounties();
 })
 
@@ -22,7 +22,7 @@ function loadMonths() {
     for (let i = 0; i < months.length; i++) {
         selectMonth.innerHTML = selectMonth.innerHTML +
         '<option value="' + months[i] + '">' + months[i] + '</option>';
-    }  
+    }
 }
 
 function loadCounties() {
@@ -33,7 +33,7 @@ function loadCounties() {
         if ( !['臺北市', '桃園市', '新北市', '臺中市', '臺南市', '高雄市'].includes(counties[i]) ) {
         selectCounty.innerHTML = selectCounty.innerHTML +
                                     '<option value="' + counties[i] + '">' + counties[i] + '</option>';
-        }        
+        }
     }
 }
 
@@ -51,7 +51,7 @@ function selectCarSubType() {
     resetConfig();
 }
 
-function clearFilters() {      
+function clearFilters() {
     document.getElementById("accType").checked = false;
     document.getElementById("carType").value = "all";
     document.getElementById("carSubType").innerHTML = "";

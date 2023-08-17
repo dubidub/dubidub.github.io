@@ -148,7 +148,7 @@ function resetConfig() {
     if ( accType.checked ) {
       let accTypeFilter = {
         "dataId":["fi4bu3mll"],
-        "name":["事故類型"],
+        "name":["事故類別名稱"],
         "type":"multiSelect",
         "value":["A1"],
       };
@@ -173,18 +173,18 @@ function resetConfig() {
       filters.push(carTypeFilter);
     }
 
-    let selectMonth = document.getElementById('selectMonth');
-    if ( selectMonth.value != "all" ) {
-      let start = new Date(monthDict[selectMonth.value][0]);
-      let end = new Date(monthDict[selectMonth.value][1]);
-      let selectMonthFilter = {
-        "dataId":["fi4bu3mll"],
-        "name":["日期"],
-        "type":"multiSelect",
-        "value":getDatesBetweenDates(start, end),
-      };
-      filters.push(selectMonthFilter);
-    }
+    // let selectMonth = document.getElementById('selectMonth');
+    // if ( selectMonth.value != "all" ) {
+    //   let start = new Date(monthDict[selectMonth.value][0]);
+    //   let end = new Date(monthDict[selectMonth.value][1]);
+    //   let selectMonthFilter = {
+    //     "dataId":["fi4bu3mll"],
+    //     "name":["日期"],
+    //     "type":"multiSelect",
+    //     "value":getDatesBetweenDates(start, end),
+    //   };
+    //   filters.push(selectMonthFilter);
+    // }
 
     let dateAnimation = document.getElementById('dateAnimation');
     if ( dateAnimation.checked ) {
