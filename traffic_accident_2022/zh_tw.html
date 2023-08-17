@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<head>
+  <!--General-->
+  <meta charset="UTF-8"/>
+  <title>2022 全國交通事故地圖 | Adu Work in Progress</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./header.css">
+  <link rel="shortcut icon" href="https://dubidub.github.io/blog/assets/favicon.png" type="image/png" />
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <!-- Social Network -->
+  <meta property="og:image" content="https://dubidub.github.io/traffic_accident_2022/cover.PNG" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dubidub.github.io/traffic_accident_2022/zh_tw.html" />
+  <meta property="og:description" content="將2022年台灣交通事故斑點圖視覺化，快速定位交通事故熱區" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLLS8DZLPN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-PLLS8DZLPN');
+  </script>
+  <!--Uber Font-->
+  <link rel="stylesheet" href="https://d1a3f4spazzrp4.cloudfront.net/kepler.gl/uber-fonts/4.0.0/superfine.css">
+  <!--MapBox css-->
+  <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.1/mapbox-gl.css" rel="stylesheet">
+  <!-- Load React/Redux -->
+  <script src="https://unpkg.com/react@16.8.4/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16.8.4/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/redux@3.7.2/dist/redux.js" crossorigin></script>
+  <script src="https://unpkg.com/react-redux@7.1.3/dist/react-redux.min.js" crossorigin></script>
+  <script src="https://unpkg.com/styled-components@4.1.3/dist/styled-components.min.js" crossorigin></script>
+  <!-- Load Kepler.gl -->
+  <script src="https://unpkg.com/kepler.gl@2.5.0/umd/keplergl.min.js" crossorigin></script>
+  <!--MapBox token-->
+  <script>
+    const MAPBOX_TOKEN = 'pk.eyJ1IjoidWJlcmRhdGEiLCJhIjoiY2p5aHB5bzEzMDI3MjNucWx4dmhvbW5wYyJ9.ZjLMWjog4imdrZhtheCOtA';
+    const WARNING_MESSAGE = 'Please Provide a Mapbox Token in order to use Kepler.gl. Edit this file and fill out MAPBOX_TOKEN with your access key';
+  </script>
+</head>
+
+<body>
+  <!-- Header -->
+  <div class="title">
+    <div class="header">
+      <a class="logo">2022 全國交通事故地圖</a>
+      <input class="menu-btn" type="checkbox" id="menu-btn" />
+      <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+      <ul class="menu">
+        <li><a href="https://dubidub.github.io/blog/"><strong>ADU WORK IN PROGRESS</strong></a></li>
+        <li><a href="https://dubidub.github.io/blog/">Blog</a></li>
+        <li><a href="https://dubidub.github.io/blog/tools">Tools</a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- SidePanel -->
+  <div id="mySidepanel" class="sidepanel">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div class="fst-filter">
+      <div class="wrap">
+        <h4>縣市交通事故資料庫</h4>
+        <div class="wrapper">
+          <input class="button bt-data" type="button" id="taipei" value="臺北市" onclick="loadDatasets(this.value)">
+          <input class="button bt-data" type="button" id="newTaipei" value="新北市" onclick="loadDatasets(this.value)">
+          <input class="button bt-data" type="button" id="taoyuan" value="桃園市" onclick="loadDatasets(this.value)">
+        </div>
+        <div class="wrapper">
+          <input class="button bt-data" type="button" id="taichung" value="臺中市" onclick="loadDatasets(this.value)">
+          <input class="button bt-data" type="button" id="tainan" value="臺南市" onclick="loadDatasets(this.value)">
+          <input class="button bt-data" type="button" id="kaohsiung" value="高雄市" onclick="loadDatasets(this.value)">
+        </div>
+        <div class="wrapper">
+          <select id="selectCounty" class="bt-data" onchange="loadDatasets(this.value)">
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="fst-filter">
+      <div class="wrap">
+        <h4>資料呈現方式</h4>
+        <div class="wrapper">
+          <input class="button bt-layer" type="button" id="hexbin" value="事故頻率 (3D)" onclick="selectLayer(this.value)">
+          <input class="button bt-layer" type="button" id="pointsFreq" value="事故細節" onclick="selectLayer(this.value)">
+        </div>
+      </div>
+    </div>
+    <div class="fst-filter">
+      <div class="wrap">
+        <h4>篩選條件　<input type="button" id="clearFilters" value="清空" onclick="clearFilters()"></h4>
+        <div class="wrapper">
+          <div class="clmn1">死亡車禍</div>
+          <div class="clmn2">
+            <input class="osman" type="checkbox" id="accType" onchange="resetConfig()"/>
+          </div>
+        </div>
+        <div class="wrapper">
+          <div class="clmn1">月份</div>
+          <div class="clmn2">
+            <select id="selectMonth" onchange="resetConfig()"></select>
+          </div>
+        </div>
+        <div class="wrapper">
+          <div class="clmn1">開啟時間軸</div>
+          <div class="clmn2">
+            <input class="osman" type="checkbox" id="dateAnimation" onchange="resetConfig()"/>
+          </div>
+        </div>
+        <div class="wrapper">
+          <div class="clmn1">車輛類型</div>
+          <div class="clmn2">
+            <select id="carType" onchange="selectCarSubType(this)"></select>
+          </div>
+        </div>
+        <div class="wrapper">
+          <div class="clmn1"></div>
+          <div class="clmn2">
+            <select id="carSubType" onchange="resetConfig()"></select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="fst-filter">
+      <div class="wrap">
+        <p> 網站架構與說明：
+          <a href="https://dubidub.github.io/blog/road-safety-data-visualization-taiwan-2020/"><u>《2020 全國交通事故地圖》</u></a>
+        </p>
+        <p> 資料來源：
+          <a href="https://data.gov.tw/dataset/12197"><u>《政府資料開放平台》</u></a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <button class="openbtn" id="openbtn" onclick="openNav()"></button>
+  <div id="loading"></div>
+  <!-- Kepler.gl map -->
+  <div id="app">
+  </div>
+  <!-- Scripts -->
+  <script src="./reactComponent.js"></script>
+  <script src="./vars_zh.js"></script>
+  <script src="./keplerConfigs_zh.js"></script>
+  <script src="./pageEvents_zh.js"></script>
+</body>
