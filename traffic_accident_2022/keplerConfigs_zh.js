@@ -1,5 +1,5 @@
 function changeConfig() {
-    console.log(config);
+    // console.log(config);
     (function customize(keplerGl, store) {
         var loadedData = keplerGl.KeplerGlSchema.load(
             datasets,
@@ -30,6 +30,7 @@ function loadDatasets(elmnt) {
         document.getElementById("loading").innerHTML = '';
         document.getElementById("openbtn").innerHTML = '&vellip;　' + elmnt;
         datasets = [JSON.parse(xhr.responseText)];
+        console.log(datasets);
         config["config"]["mapState"] = {
             "bearing":15.923076923076922,
             "dragRotate":true,
