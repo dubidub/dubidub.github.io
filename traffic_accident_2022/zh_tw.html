@@ -54,6 +54,41 @@
       </ul>
     </div>
   </div>
+  <!-- Select Location Modal -->
+  <div class="modal" id="myModal">
+      <div class="modal-content">
+          <h3>選擇交通事故資料庫</h3>
+          <select onchange="redirectHref(this.value)">
+              <option value="" selected disabled>-- 選擇縣市 --</option>              
+              <optgroup label="六都">
+                  <option value="臺北市">臺北市</option>
+                  <option value="新北市">新北市</option>
+                  <option value="桃園市">桃園市</option>
+                  <option value="臺中市">臺中市</option>
+                  <option value="臺南市">臺南市</option>
+                  <option value="高雄市">高雄市</option>
+              </optgroup>
+              <optgroup label="其他縣市">
+                  <option value="基隆市">基隆市</option>
+                  <option value="新竹市">新竹市</option>
+                  <option value="新竹縣">新竹縣</option>
+                  <option value="苗栗縣">苗栗縣</option>
+                  <option value="彰化縣">彰化縣</option>
+                  <option value="南投縣">南投縣</option>
+                  <option value="雲林縣">雲林縣</option>
+                  <option value="嘉義市">嘉義市</option>
+                  <option value="嘉義縣">嘉義縣</option>
+                  <option value="屏東縣">屏東縣</option>
+                  <option value="臺東縣">臺東縣</option>
+                  <option value="花蓮縣">花蓮縣</option>
+                  <option value="宜蘭縣">宜蘭縣</option>
+                  <option value="澎湖縣">澎湖縣</option>
+                  <option value="金門縣">金門縣</option>
+                  <option value="連江縣">連江縣</option>
+              </optgroup>
+          </select>
+      </div>
+  </div>
   <!-- SidePanel -->
   <div id="mySidepanel" class="sidepanel">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -61,17 +96,17 @@
       <div class="wrap">
         <h4>縣市交通事故資料庫</h4>
         <div class="wrapper">
-          <input class="button bt-data" type="button" id="taipei" value="臺北市" onclick="loadDatasets(this.value)">
-          <input class="button bt-data" type="button" id="newTaipei" value="新北市" onclick="loadDatasets(this.value)">
-          <input class="button bt-data" type="button" id="taoyuan" value="桃園市" onclick="loadDatasets(this.value)">
+          <input class="button bt-data" type="button" id="taipei" value="臺北市" onclick="redirectHref(this.value)">
+          <input class="button bt-data" type="button" id="newTaipei" value="新北市" onclick="redirectHref(this.value)">
+          <input class="button bt-data" type="button" id="taoyuan" value="桃園市" onclick="redirectHref(this.value)">
         </div>
         <div class="wrapper">
-          <input class="button bt-data" type="button" id="taichung" value="臺中市" onclick="loadDatasets(this.value)">
-          <input class="button bt-data" type="button" id="tainan" value="臺南市" onclick="loadDatasets(this.value)">
-          <input class="button bt-data" type="button" id="kaohsiung" value="高雄市" onclick="loadDatasets(this.value)">
+          <input class="button bt-data" type="button" id="taichung" value="臺中市" onclick="redirectHref(this.value)">
+          <input class="button bt-data" type="button" id="tainan" value="臺南市" onclick="redirectHref(this.value)">
+          <input class="button bt-data" type="button" id="kaohsiung" value="高雄市" onclick="redirectHref(this.value)">
         </div>
         <div class="wrapper">
-          <select id="selectCounty" class="bt-data" onchange="loadDatasets(this.value)">
+          <select id="selectCounty" class="bt-data" onchange="redirectHref(this.value)">
           </select>
         </div>
       </div>
@@ -123,10 +158,10 @@
     <div class="fst-filter">
       <div class="wrap">
         <p> 網站架構與說明：
-          <a href="https://dubidub.github.io/blog/road-safety-data-visualization-taiwan-2020/"><u>《2020 全國交通事故地圖》</u></a>
+          <a href="https://dubidub.github.io/blog/road-safety-data-visualization-taiwan-2020/" target="_blank"><u>《2020 全國交通事故地圖》</u></a>
         </p>
         <p> 資料來源：
-          <a href="https://data.gov.tw/dataset/12197"><u>《政府資料開放平台》</u></a>
+          <a href="https://data.gov.tw/dataset/161199" target="_blank"><u>政府資料開放平台, 《111年傷亡道路交通事故資料》</u></a>
         </p>
       </div>
     </div>

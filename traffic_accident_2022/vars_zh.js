@@ -12,7 +12,9 @@ var config = {
                             {"name":"發生時間","format":null},
                             {"name":"發生地點","format":null},
                             {"name":"死亡受傷人數","format":null},
-                            {"name":"車種","format":null}
+                            {"name":"車種","format":null},
+                            {"name":"事故類型及型態子類別名稱","format":null},
+                            {"name":"肇因研判子類別名稱-主要","format":null}
                         ]},
                     "compareMode":false,
                     "compareType":"absolute",
@@ -27,12 +29,12 @@ var config = {
             "animationConfig":{"currentTime":null,"speed":1}
             },
         "mapStyle":{
-            "styleType":"light",
+            "styleType":"dark",
             "topLayerGroups":{},
             "visibleLayerGroups":{"label":true,"road":true,"border":false,"building":true,"water":true,"land":true,"3d building":false},
             "threeDBuildingColor":[9.665468314072013,17.18305478057247,31.1442867897876],
             "mapStyles":{}
-        }        
+        }
     }
 };
 
@@ -44,7 +46,7 @@ const idValueDict = {
     "臺南市":"tainan",
     "高雄市":"kaohsiung",
   }
-  
+
 const carTypeDict = {
     '人': ['行人', '其他人', '乘客'],
     '全聯結車': ['自用', '營業用'],

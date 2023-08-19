@@ -1,9 +1,24 @@
 window.addEventListener('load', function () {
-    loadDatasets("臺南市");
-    loadCarType();
-    // loadMonths();
-    loadCounties();
+    // let name = '桃園市';
+    const urlString = window.location.href;
+    const url = new URL(urlString);
+    const params = new URLSearchParams(url.search);
+    city = params.get('location');
+    if (city) {
+        name = city;
+        loadDatasets(name);
+        loadCarType();
+        loadCounties();
+        openNav();
+    } else {
+        document.getElementById('myModal').style.display = "flex";
+    }
 })
+
+function redirectHref(city) {
+    currentUrl = window.location.href;
+    window.location.href = currentUrl.split('?')[0] + "?location=" + city;
+}
 
 function loadCarType() {
     let carType = document.getElementById('carType');

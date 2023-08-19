@@ -74,7 +74,7 @@ function selectLayer(elmnt) {
         "type":"hexagon",
         "config":{
           "dataId":"fi4bu3mll",
-          "label":"事故頻率蜂窩圖",
+          "label":"交通事故數",
           "color":[218,112,191],
           "columns":{"lat":"緯度","lng":"經度"},
           "isVisible":true,
@@ -89,7 +89,7 @@ function selectLayer(elmnt) {
               "colors":["#5A1846","#831A3D","#AC1C17","#D55D0E","#FFC300"]
             },
             "coverage":1,
-            "sizeRange":[0,500],
+            "sizeRange":[0,200],
             "percentile":[0,100],
             "elevationPercentile":[0,100],
             "elevationScale":5,
@@ -112,7 +112,7 @@ function selectLayer(elmnt) {
         "type":"point",
         "config":{
           "dataId":"fi4bu3mll",
-          "label":"事故細節斑點圖",
+          "label":"事故細節",
           "color":[34,63,154],
           "columns":{"lat":"緯度","lng":"經度","altitude":null},
           "isVisible":true,
