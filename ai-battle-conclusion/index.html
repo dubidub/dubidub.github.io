@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT Work vs. Claude Cowork 終極實戰對決</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a',
+                        },
+                        darkBg: '#0f172a',
+                        darkCard: '#1e293b'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-darkBg text-slate-100 min-h-screen flex flex-col">
+
+    <!-- Header / Navbar -->
+    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-brand-600 text-white p-2 rounded-lg">
+                    <i class="fa-solid fa-square-poll-vertical text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight">AI 實戰大賽：終極評測</h1>
+                    <p class="text-xs text-slate-400">ChatGPT Work vs. Claude Cowork</p>
+                </div>
+            </div>
+            <div class="text-xs bg-slate-800 border border-slate-700 px-3 py-1.5 rounded-full text-slate-300">
+                <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 mr-2 animate-pulse"></span>
+                數據基準日: 2026年7月
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Welcome Banner -->
+        <div class="bg-gradient-to-r from-brand-900 via-slate-900 to-slate-900 border border-brand-500/20 rounded-2xl p-6 md:p-8 mb-8 shadow-xl">
+            <div class="max-w-3xl">
+                <span class="bg-brand-500/10 text-brand-500 text-xs font-semibold px-2.5 py-1 rounded-full border border-brand-500/20">
+                    硬核實測分析報告
+                </span>
+                <h2 class="text-2xl md:text-3xl font-extrabold mt-4 mb-2 tracking-tight">
+                    三大跨境商業案例・深度對決
+                </h2>
+                <p class="text-slate-300 text-sm md:text-base leading-relaxed">
+                    本報告不談空泛的理論，而是直接利用兩大前沿 AI 系統（ChatGPT GPT-5.6 Terra 與 Claude Sonnet 5），針對三個高度複雜、橫跨多國市場的真實商業痛點進行產出，並由 Python 腳本對原始檔案（PPTX、XLSX、DOCX）進行底層代碼級別的交叉檢驗。
+                </p>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="flex overflow-x-auto pb-3 mb-8 border-b border-slate-800 scrollbar-none gap-2">
+            <button onclick="switchTab('overall')" id="tab-overall" class="tab-btn px-5 py-3 rounded-xl font-medium text-sm whitespace-nowrap transition-all duration-200 bg-brand-600 text-white shadow-lg shadow-brand-600/20">
+                <i class="fa-solid fa-chart-line mr-2"></i> 整體評測與裁決
+            </button>
+            <button onclick="switchTab('case1')" id="tab-case1" class="tab-btn px-5 py-3 rounded-xl font-medium text-sm whitespace-nowrap transition-all duration-200 bg-slate-800 text-slate-300 hover:bg-slate-700">
+                <i class="fa-solid fa-gears mr-2"></i> 案例一：工業物聯網 (PPTX)
+            </button>
+            <button onclick="switchTab('case2')" id="tab-case2" class="tab-btn px-5 py-3 rounded-xl font-medium text-sm whitespace-nowrap transition-all duration-200 bg-slate-800 text-slate-300 hover:bg-slate-700">
+                <i class="fa-solid fa-plane-departure mr-2"></i> 案例二：奢華旅遊 ROI (XLSX)
+            </button>
+            <button onclick="switchTab('case3')" id="tab-case3" class="tab-btn px-5 py-3 rounded-xl font-medium text-sm whitespace-nowrap transition-all duration-200 bg-slate-800 text-slate-300 hover:bg-slate-700">
+                <i class="fa-solid fa-seedling mr-2"></i> 案例三：建廠環評 (DOCX)
+            </button>
+        </div>
+
+        <!-- TAB CONTENT 1: OVERALL -->
+        <section id="content-overall" class="tab-content space-y-8">
+            
+            <!-- Verdict Banner -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="lg:col-span-2 bg-slate-800/50 border border-slate-700 rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-100 flex items-center">
+                            <i class="fa-solid fa-scale-balanced text-brand-500 mr-3"></i> 專家裁決與定位差異
+                        </h3>
+                        <p class="text-slate-300 text-sm mt-3 leading-relaxed">
+                            經過底層程式碼與文字密度的深度檢驗，兩大 AI 系統並非「誰能做、誰不能做」的差別，而是呈現了截然不同的<strong>「AI 人格特質與設計思維」</strong>。在面對跨境、高法規限制、高邏輯精準度的任務時，兩者的側重點完全不同。
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                        <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
+                            <div class="text-brand-500 font-bold text-sm mb-1">ChatGPT Work (Deep Research)</div>
+                            <div class="text-xs text-slate-400">硬核數據工程師與財務專家</div>
+                            <p class="text-xs text-slate-300 mt-2">極度擅長橫向財務建模、跨工作表公式關聯，以及在文件中用密集的「表格」取代贅字，數據可讀性極高。</p>
+                        </div>
+                        <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
+                            <div class="text-emerald-500 font-bold text-sm mb-1">Claude Cowork (Research)</div>
+                            <div class="text-xs text-slate-400">高美感商業決策與人文策略顧問</div>
+                            <p class="text-xs text-slate-300 mt-2">排版極具韻律與節奏感，文筆細緻且富有說服力。極度擅長挖掘地緣政治、地方宗教、認證等軟性但致命的細節。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Summary Stats -->
+                <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 flex flex-col justify-between">
+                    <h4 class="font-bold text-slate-200 mb-4">實測數據分析一覽</h4>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-xs text-slate-400 mb-1">
+                                <span>Case 1 (PPTX) 備忘錄字數</span>
+                                <span class="text-slate-200">ChatGPT 領先</span>
+                            </div>
+                            <div class="w-full bg-slate-900 rounded-full h-2">
+                                <div class="bg-brand-500 h-2 rounded-full" style="width: 100%"></div>
+                            </div>
+                            <div class="flex justify-between text-[10px] text-slate-500 mt-0.5">
+                                <span>ChatGPT: 3,242 字</span>
+                                <span>Claude: 2,276 字</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs text-slate-400 mb-1">
+                                <span>Case 2 (XLSX) 動態公式總數</span>
+                                <span class="text-slate-200">Claude 領先</span>
+                            </div>
+                            <div class="w-full bg-slate-900 rounded-full h-2">
+                                <div class="bg-emerald-500 h-2 rounded-full" style="width: 100%"></div>
+                            </div>
+                            <div class="flex justify-between text-[10px] text-slate-500 mt-0.5">
+                                <span>ChatGPT: 82 個</span>
+                                <span>Claude: 112 個</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs text-slate-400 mb-1">
+                                <span>Case 3 (DOCX) 內容深度 (字數)</span>
+                                <span class="text-slate-200">Claude 領先</span>
+                            </div>
+                            <div class="w-full bg-slate-900 rounded-full h-2">
+                                <div class="bg-emerald-500 h-2 rounded-full" style="width: 100%"></div>
+                            </div>
+                            <div class="flex justify-between text-[10px] text-slate-500 mt-0.5">
+                                <span>ChatGPT: 7,793 字</span>
+                                <span>Claude: 12,435 字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparison Table -->
+            <div class="bg-slate-800/30 border border-slate-700/80 rounded-2xl overflow-hidden shadow-lg">
+                <div class="p-6 border-b border-slate-700 bg-slate-800/50">
+                    <h3 class="font-bold text-lg">系統綜合能力對比矩陣</h3>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-sm">
+                        <thead>
+                            <tr class="border-b border-slate-700 bg-slate-900/40 text-slate-300">
+                                <th class="p-4 font-semibold">評估維度</th>
+                                <th class="p-4 font-semibold">ChatGPT Work (Deep Research)</th>
+                                <th class="p-4 font-semibold">Claude Cowork (Research)</th>
+                                <th class="p-4 font-semibold">實戰能力落差解析</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800 text-slate-300">
+                            <tr>
+                                <td class="p-4 font-medium text-slate-200">簡報結構美學 (PPTX)</td>
+                                <td class="p-4">
+                                    <span class="text-amber-500"><i class="fa-solid fa-circle-exclamation mr-1"></i> 模版機械感重</span><br>
+                                    Slide 2-15 均套用相同主標題，僅靠副標題區分。
+                                </td>
+                                <td class="p-4">
+                                    <span class="text-emerald-500"><i class="fa-solid fa-circle-check mr-1"></i> 人類設計思維</span><br>
+                                    每張幻燈片均有獨立設計的英/中大標題，節奏感極佳。
+                                </td>
+                                <td class="p-4 text-xs text-slate-400">
+                                    Claude 的 PPTX 導出不需要二次人工修改，視覺設計感更為成熟。
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-medium text-slate-200">財務與公式建模 (XLSX)</td>
+                                <td class="p-4">
+                                    <span class="text-emerald-500"><i class="fa-solid fa-circle-check mr-1"></i> 標準橫向預算模型</span><br>
+                                    採 Month 1-12 橫向展開，支援複雜的跨工作表動態公式關聯。
+                                </td>
+                                <td class="p-4">
+                                    <span class="text-amber-500"><i class="fa-solid fa-circle-exclamation mr-1"></i> 垂直式時間軸</span><br>
+                                    月份縱向展開。內建動態 `=RANK()` 與巢狀 IF 自動排程，產品思維極強。
+                                </td>
+                                <td class="p-4 text-xs text-slate-400">
+                                    ChatGPT 的試算表更符合 CFO 預算審閱習慣；Claude 的優先級矩陣動態邏輯則極富創意。
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-medium text-slate-200">法規與報告編寫 (DOCX)</td>
+                                <td class="p-4">
+                                    <span class="text-emerald-500"><i class="fa-solid fa-circle-check mr-1"></i> 極致結構與表格化</span><br>
+                                    含有 17 個詳盡表格，將污水排放標準、消防法規提煉得極度好讀。
+                                </td>
+                                <td class="p-4">
+                                    <span class="text-emerald-500"><i class="fa-solid fa-circle-check mr-1"></i> 頂級諮詢深度</span><br>
+                                    高達 1.2 萬字的麥肯錫級大作，深度洞察美網廢塑禁令、地方宗教及強迫勞動等。
+                                </td>
+                                <td class="p-4 text-xs text-slate-400">
+                                    ChatGPT 適合需要 5 分鐘快速精準閱讀的高階主管；Claude 則是需要推動大型投資談判時的最佳指南。
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB CONTENT 2: CASE 1 (CNC) -->
+        <section id="content-case1" class="tab-content hidden space-y-8">
+            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6">
+                <div class="flex items-center space-x-3 mb-4">
+                    <div class="bg-brand-500/10 text-brand-500 p-2.5 rounded-xl border border-brand-500/10">
+                        <i class="fa-solid fa-microchip text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-100">案例一：中國大陸跨品牌工具機聯網解決方案 (PPTX)</h3>
+                        <p class="text-xs text-slate-400">簡體中文 (简体中文) ｜ 10-15 頁戰略簡報大綱</p>
+                    </div>
+                </div>
+                <p class="text-sm text-slate-300 leading-relaxed">
+                    本案例考驗 AI 對中國大陸重工業與工業物聯網（IIoT）市場的理解，以及經銷通路衝突的處理機制。兩者皆展現了高超的簡體中文轉譯能力，正確避開了台灣用語。
+                </p>
+            </div>
+
+            <!-- PPTX Feature Compare Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- ChatGPT PPTX -->
+                <div class="bg-slate-800/30 border border-slate-700 rounded-2xl p-6 space-y-4">
+                    <div class="flex justify-between items-center border-b border-slate-700 pb-3">
+                        <span class="font-bold text-slate-100 flex items-center">
+                            <i class="fa-brands fa-microsoft text-amber-500 mr-2"></i> ChatGPT PPTX 表現
+                        </span>
+                        <span class="text-xs bg-brand-500/10 text-brand-500 px-2.5 py-1 rounded-full font-medium">資料高密度</span>
+                    </div>
+                    <ul class="space-y-2.5 text-sm text-slate-300">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2 text-xs"></i>
+                            <span><strong>無比豐厚的備忘錄：</strong> 每頁 Slide 備忘錄長達 200~300 字，包含極多背景數據。</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2 text-xs"></i>
+                            <span><strong>精準在地用語：</strong> 完美使用了「数控机床」、「稼动率」、「分销商」等詞。</span>
+                        </li>
+                        <li class="flex items-start text-amber-500">
+                            <i class="fa-solid fa-triangle-exclamation mt-1 mr-2 text-xs"></i>
+                            <span><strong>致命板模感：</strong> Slide 2 至 15 全部複製了相同的簡報大標題，排版重疊度高。</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Claude PPTX -->
+                <div class="bg-slate-800/30 border border-slate-700 rounded-2xl p-6 space-y-4">
+                    <div class="flex justify-between items-center border-b border-slate-700 pb-3">
+                        <span class="font-bold text-slate-100 flex items-center">
+                            <i class="fa-brands fa-microsoft text-amber-500 mr-2"></i> Claude PPTX 表現
+                        </span>
+                        <span class="text-xs bg-emerald-500/10 text-emerald-500 px-2.5 py-1 rounded-full font-medium">設計師思維</span>
+                    </div>
+                    <ul class="space-y-2.5 text-sm text-slate-300">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2 text-xs"></i>
+                            <span><strong>優美的視覺節奏：</strong> 每一頁 Slide 都有專屬設計的簡報大標題，層次清晰分明。</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2 text-xs"></i>
+                            <span><strong>架構自然：</strong> 包含 AGENDA、MARKET OPPORTUNITY 等標準簡報切入點。</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2 text-xs"></i>
+                            <span><strong>對通路衝突的成熟理解：</strong> 提出「渠道分润回流機制」，深得傳統整機廠痛點。</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB CONTENT 3: CASE 2 (TRAVEL) -->
+        <section id="content-case2" class="tab-content hidden space-y-8">
+            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6">
+                <div class="flex items-center space-x-3 mb-4">
+                    <div class="bg-brand-500/10 text-brand-500 p-2.5 rounded-xl border border-brand-500/10">
+                        <i class="fa-solid fa-wallet text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-100">案例二：奢華旅行社 agent 產能自動化與 ROI 模型 (XLSX)</h3>
+                        <p class="text-xs text-slate-400">英文 (English) ｜ 三工作表財務與功能排序模型</p>
+                    </div>
+                </div>
+                <p class="text-sm text-slate-300 leading-relaxed">
+                    本案例極度考驗 AI 在試算表（Excel）上的邏輯實作能力。不僅需要對接 GDS 系統、忠誠度計劃、即時通訊排優先級，更需要具備真正的可編輯單元格與公式邏輯關聯，絕非靜態資料填充。
+                </p>
+            </div>
+
+            <!-- Dynamic Interactive Calculator (To prove web/interactivity capability) -->
+            <div class="bg-slate-900/60 border border-brand-500/30 rounded-2xl p-6 shadow-lg">
+                <h4 class="font-bold text-slate-100 text-base mb-2 flex items-center">
+                    <span class="flex h-3 w-3 relative mr-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-brand-500"></span>
+                    </span>
+                    動態 ROI 運營效益線上計算器 (Interactive Simulation)
+                </h4>
+                <p class="text-xs text-slate-400 mb-6">
+                    本計算器依據 ChatGPT 與 Claude 產出的核心數學模型設計，請嘗試拖動拉桿，即時查看自動化對旅行社團隊帶來的年省效益。
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-5">
+                        <div>
+                            <div class="flex justify-between text-xs text-slate-300 mb-2">
+                                <label for="range-agents">現有 Agent 全職員工數 (FTEs)</label>
+                                <span class="font-bold text-brand-500" id="val-agents">5 人</span>
+                            </div>
+                            <input type="range" id="range-agents" min="1" max="50" value="5" class="w-full accent-brand-500 bg-slate-800" oninput="calculateROI()">
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs text-slate-300 mb-2">
+                                <label for="range-rate">Agent 平均加權時薪 (USD/hr)</label>
+                                <span class="font-bold text-brand-500" id="val-rate">$55</span>
+                            </div>
+                            <input type="range" id="range-rate" min="20" max="150" value="55" class="w-full accent-brand-500 bg-slate-800" oninput="calculateROI()">
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs text-slate-300 mb-2">
+                                <label for="range-saving">單份奢華行程 AI 幫 agent 節省的工時 (小時)</label>
+                                <span class="font-bold text-brand-500" id="val-saving">11 小時</span>
+                            </div>
+                            <input type="range" id="range-saving" min="2" max="30" value="11" class="w-full accent-brand-500 bg-slate-800" oninput="calculateROI()">
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs text-slate-300 mb-2">
+                                <label for="range-trips">每位 Agent 每年平均規劃奢華行程數 (Plans)</label>
+                                <span class="font-bold text-brand-500" id="val-trips">30 次</span>
+                            </div>
+                            <input type="range" id="range-trips" min="5" max="100" value="30" class="w-full accent-brand-500 bg-slate-800" oninput="calculateROI()">
+                        </div>
+                    </div>
+                    
+                    <div class="bg-slate-800/80 border border-slate-700 rounded-xl p-6 flex flex-col justify-between text-center md:text-left">
+                        <div class="space-y-1">
+                            <div class="text-xs text-slate-400 uppercase tracking-wider">團隊年度累計節省工時</div>
+                            <div class="text-3xl font-extrabold text-brand-400" id="result-hours">1,650 小時</div>
+                        </div>
+                        <div class="space-y-1 mt-6 md:mt-0">
+                            <div class="text-xs text-slate-400 uppercase tracking-wider">年度總運營成本節省 (ROI)</div>
+                            <div class="text-4xl font-extrabold text-emerald-400" id="result-savings">$90,750 USD</div>
+                        </div>
+                        <div class="text-[10px] text-slate-500 mt-4 leading-relaxed">
+                            * 公式邏輯: 年度節省工時 = 員工數 × 行程數 × 節省時數；年度省額 = 累計工時 × 員工時薪。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Spreadsheet Details Compare -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- ChatGPT Spreadsheet -->
+                <div class="bg-slate-800/30 border border-slate-700 rounded-2xl p-6 space-y-4">
+                    <div class="flex justify-between items-center border-b border-slate-700 pb-3">
+                        <span class="font-bold text-slate-100 flex items-center">
+                            <i class="fa-solid fa-file-excel text-emerald-500 mr-2"></i> ChatGPT 試算表優勢
+                        </span>
+                        <span class="text-xs bg-brand-500/10 text-brand-500 px-2.5 py-1 rounded-full font-medium">財務邏輯硬核</span>
+                    </div>
+                    <ul class="space-y-3 text-sm text-slate-300">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2 text-xs"></i>
+                            <span><strong>橫向時間序列預算：</strong> Tab 3 採用業界標準的 12 個月橫向展開，對專案現金流的拆分極為細緻。</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2 text-xs"></i>
+                            <span><strong>跨表公式關聯：</strong> 動態關聯 Tab 3 的總計到 Tab 1 做 ROI 計算，是真正的可動態試算表。</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Claude Spreadsheet -->
+                <div class="bg-slate-800/30 border border-slate-700 rounded-2xl p-6 space-y-4">
+                    <div class="flex justify-between items-center border-b border-slate-700 pb-3">
+                        <span class="font-bold text-slate-100 flex items-center">
+                            <i class="fa-solid fa-file-excel text-emerald-500 mr-2"></i> Claude 試算表優勢
+                        </span>
+                        <span class="text-xs bg-emerald-500/10 text-emerald-500 px-2.5 py-1 rounded-full font-medium">產品思維巧妙</span>
+                    </div>
+                    <ul class="space-y-3 text-sm text-slate-300">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2 text-xs"></i>
+                            <span><strong>自動排序與排程：</strong> 巧妙運用了 `=RANK()` 與 `IF` 函數相結合，實現只要改變優先權權重，便能自動對產品進行排程階段分類。</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2 text-xs"></i>
+                            <span><strong>公式密度極高：</strong> 動態公式總數達到了 112 個，全自動化邏輯極為精巧。</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB CONTENT 4: CASE 3 (RECYCLING) -->
+        <section id="content-case3" class="tab-content hidden space-y-8">
+            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6">
+                <div class="flex items-center space-x-3 mb-4">
+                    <div class="bg-brand-500/10 text-brand-500 p-2.5 rounded-xl border border-brand-500/10">
+                        <i class="fa-solid fa-helmet-safety text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-100">案例三：馬來西亞吉打州塑料再生工廠可行性研究 (DOCX)</h3>
+                        <p class="text-xs text-slate-400">台灣繁體中文 (繁體中文) ｜ 高難度海外投資環評與政商公關策略</p>
+                    </div>
+                </div>
+                <p class="text-sm text-slate-300 leading-relaxed">
+                    本案例是此次實測中最具挑戰性的項目。設立廢塑再生加工廠涉及馬來西亞國家房屋及地方政府部（KPKT）、投資發展局（MIDA）、環境局（DOE）等多個敏感中央及地方行政機關。
+                </p>
+            </div>
+
+            <!-- Deep comparison block -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <!-- ChatGPT -->
+                <div class="bg-slate-800/20 border border-slate-700 rounded-2xl p-6 space-y-6">
+                    <div class="flex justify-between items-center border-b border-slate-700 pb-3">
+                        <span class="font-bold text-slate-100 flex items-center">
+                            <i class="fa-solid fa-file-word text-blue-500 mr-2"></i> ChatGPT DOCX 排版與結構大勝
+                        </span>
+                        <span class="text-xs bg-slate-700 text-slate-300 px-2 py-1 rounded">17 個專業表格</span>
+                    </div>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        ChatGPT 在排版美學上給了所有經理人巨大的驚喜。整份文件中包含了 <strong>17 個結構極其對稱的專業表格</strong>，包含了：
+                    </p>
+                    <div class="grid grid-cols-2 gap-3 text-xs">
+                        <div class="bg-slate-900/60 p-3 rounded border border-slate-800 text-slate-300">
+                            <strong class="text-brand-400 block mb-1">Standard A / B 廢水標準</strong>
+                            完整對照 BOD、COD、SS、pH 等關鍵參數。
+                        </div>
+                        <div class="bg-slate-900/60 p-3 rounded border border-slate-800 text-slate-300">
+                            <strong class="text-brand-400 block mb-1">公用事業申請路徑表</strong>
+                            詳列 MIDA、KPKT、BOMBA 的實務接通時程。
+                        </div>
+                        <div class="bg-slate-900/60 p-3 rounded border border-slate-800 text-slate-300">
+                            <strong class="text-brand-400 block mb-1">移工國籍利弊對照表</strong>
+                            深入剖析孟加拉籍與緬甸籍移工成本與法規。
+                        </div>
+                        <div class="bg-slate-900/60 p-3 rounded border border-slate-800 text-slate-300">
+                            <strong class="text-brand-400 block mb-1">吉打三大選址對照表</strong>
+                            雙溪大年、居林、武吉士南卯優劣勢分析。
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-400 italic">
+                        * 點評: 這是最適合直接呈送給董事會審閱的可讀性結構，數據一覽無遺。
+                    </p>
+                </div>
+
+                <!-- Claude -->
+                <div class="bg-slate-800/20 border border-slate-700 rounded-2xl p-6 space-y-6">
+                    <div class="flex justify-between items-center border-b border-slate-700 pb-3">
+                        <span class="font-bold text-slate-100 flex items-center">
+                            <i class="fa-solid fa-file-word text-blue-500 mr-2"></i> Claude DOCX 策略與深度大勝
+                        </span>
+                        <span class="text-xs bg-emerald-500/10 text-emerald-500 px-2.5 py-1 rounded-full font-medium">1.2 萬字顧問巨作</span>
+                    </div>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        雖然 Claude 僅使用了 5 個表格，但其在<strong>策略論述與地緣政治洞察</strong>上的深度深不可測：
+                    </p>
+                    <ul class="space-y-3 text-xs text-slate-300">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-circle-check text-emerald-500 mt-0.5 mr-2"></i>
+                            <span><strong>地緣政治解讀：</strong> 深入分析了 2025 年馬來西亞全面停止自美國進口塑料廢棄物，提醒投資人優先對接歐盟、日、韓，規避被扣關與退運風險。</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-circle-check text-emerald-500 mt-0.5 mr-2"></i>
+                            <span><strong>宗教與人文整合：</strong> 貼心地將吉打州當地的穆斯林員工文化納入排班。明確寫出了每日 5 次祈禱時間、齋戒月高負荷製程的排班調整、以及開齋節留才花紅策略。</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-circle-check text-emerald-500 mt-0.5 mr-2"></i>
+                            <span><strong>強迫勞動與人權風險評估：</strong> 正確揭露了下游買主在 B2B 面臨的 Sedex SMETA 供應鏈稽核，警告招募仲介費與扣留護照可能招致的國際合規風險。</span>
+                        </li>
+                    </ul>
+                    <p class="text-xs text-slate-400 italic">
+                        * 點評: 其論述具有極強的公關、法規說服力，適合用作與政府機關談判、或內部核心幹部的培訓守則。
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-slate-950 py-6 text-center text-xs text-slate-500 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p>© 2026 AI Benchmark Suite. All rights reserved. Powered by GitHub Pages.</p>
+            <p class="mt-2 text-[10px] text-slate-600">本頁面為實測比對之靜態展示頁，內容由 Python 代碼剖析真實產出檔案彙整而成。</p>
+        </div>
+    </footer>
+
+    <!-- Tab Logic & Calculator Logic -->
+    <script>
+        function switchTab(tabId) {
+            // Hide all contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.add('hidden'));
+
+            // Show selected content
+            document.getElementById('content-' + tabId).classList.remove('hidden');
+
+            // Reset tab button styles
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-brand-600', 'text-white', 'shadow-lg', 'shadow-brand-600/20');
+                btn.classList.add('bg-slate-800', 'text-slate-300', 'hover:bg-slate-700');
+            });
+
+            // Highlight selected tab button
+            const activeBtn = document.getElementById('tab-' + tabId);
+            activeBtn.classList.remove('bg-slate-800', 'text-slate-300', 'hover:bg-slate-700');
+            activeBtn.classList.add('bg-brand-600', 'text-white', 'shadow-lg', 'shadow-brand-600/20');
+        }
+
+        function calculateROI() {
+            // Get inputs
+            const agents = parseFloat(document.getElementById('range-agents').value);
+            const rate = parseFloat(document.getElementById('range-rate').value);
+            const saving = parseFloat(document.getElementById('range-saving').value);
+            const trips = parseFloat(document.getElementById('range-trips').value);
+
+            // Update range labels
+            document.getElementById('val-agents').textContent = agents + " 人";
+            document.getElementById('val-rate').textContent = "$" + rate + " USD/hr";
+            document.getElementById('val-saving').textContent = saving + " 小時";
+            document.getElementById('val-trips').textContent = trips + " 次";
+
+            // Calculation
+            const totalHoursSaved = agents * trips * saving;
+            const annualSavings = totalHoursSaved * rate;
+
+            // Update UI results
+            document.getElementById('result-hours').textContent = totalHoursSaved.toLocaleString() + " 小時";
+            document.getElementById('result-savings').textContent = "$" + annualSavings.toLocaleString() + " USD";
+        }
+
+        // Run initial calculation on load
+        window.onload = function() {
+            calculateROI();
+        }
+    </script>
+</body>
+</html>
